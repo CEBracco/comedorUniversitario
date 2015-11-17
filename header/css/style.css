@@ -106,14 +106,14 @@ Navigation
 
 #cd-logo {
   float: left;
-  margin: 13px 0 0 5%;
+  margin: 5px 0 0 5%;
 }
 #cd-logo img {
   display: block;
 }
 @media only screen and (min-width: 768px) {
   #cd-logo {
-    margin: 23px 0 0 5%;
+    margin: 20px 0 0 5%;
   }
 }
 @media only screen and (min-width: 1170px) {
@@ -122,6 +122,7 @@ Navigation
     opacity: 0;
     position: fixed;
     left: -20%;
+    margin-top: 14px;
     margin-left: 0;
     -webkit-transition: left 0.3s, opacity 0.3s;
     -moz-transition: left 0.3s, opacity 0.3s;
@@ -309,6 +310,7 @@ Secondary Fixed Navigation
   z-index: 3;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
 }
 .cd-secondary-nav ul {
   /* mobile first - secondary navigation hidden by default, triggered by tap/click on .cd-secondary-nav-trigger*/
@@ -455,7 +457,7 @@ Secondary Fixed Navigation
   .cd-secondary-nav.animate-children {
     /* on Firefox CSS transition/animation fails when parent element changes position attribute*/
     /* so we defined to diffent classes: .is-fixed to change the position value and .is-animated to change childrens' attributes (padding and opacity)*/
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    /*box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);*/
   }
   .cd-secondary-nav.animate-children li a {
     padding: 26px 30px 0 30px;

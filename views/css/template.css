@@ -1,0 +1,21 @@
+.row{
+	margin-right: 0px;
+}
+.option1{
+	background:url(../../img/comedor2.jpg) 50% 0 no-repeat fixed;
+}
+.option2{
+	background:url(../../img/comedor3.jpg) 50% 0 no-repeat fixed;
+}
+.option3{
+	background:url(../../img/comedor4.jpg) 50% 0 no-repeat fixed;
+}
+[class*="option"]{
+	min-height: 300px;
+	width: 100%;
+	background-size: cover;
+	color:white;
+}
+html{
+	overflow-x: hidden;
+}
