@@ -10,6 +10,9 @@
 .option3{
 	background:url(../../img/comedor4.jpg) 50% 0 no-repeat fixed;
 }
+.option4{
+	background:url(../../img/comedor5.jpg) 50% 0 no-repeat fixed;
+}
 [class*="option"]{
 	min-height: 300px;
 	width: 100%;
