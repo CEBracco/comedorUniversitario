@@ -1,24 +1,23 @@
-.row{
-	margin-right: 0px;
+.front{
+	z-index: 4;
 }
-.option1{
-	background:url(../../img/comedor2.jpg) 50% 0 no-repeat fixed;
+#cd-logo2{
+	display: none;
 }
-.option2{
-	background:url(../../img/comedor3.jpg) 50% 0 no-repeat fixed;
+.cd-btn{
+	display: none;
 }
-.option3{
-	background:url(../../img/comedor4.jpg) 50% 0 no-repeat fixed;
-}
-.option4{
-	background:url(../../img/comedor5.jpg) 50% 0 no-repeat fixed;
-}
-[class*="option"]{
-	min-height: 300px;
-	width: 100%;
-	background-size: cover;
-	color:white;
-}
-html{
-	overflow-x: hidden;
+
+@media only screen and (min-width: 1170px) {
+	#cd-logo2{
+		position: fixed;
+		display: block;
+		margin: 13px 0 0 5%;
+	}
+	.cd-btn{
+		display: inline;
+	}
+	.cd-header{
+		display: none;
+	}
 }

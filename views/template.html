@@ -8,13 +8,14 @@
 	<title>Comedor Universitario</title>
 
 	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../header/css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/template.css">
 	<link rel="stylesheet" type="text/css" href="css/frontend.css">
 	<link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/footer.css">
 	<link href="../material/css/roboto.min.css" rel="stylesheet">
     <link href="../material/css/material.min.css" rel="stylesheet">
     <link href="../material/css/ripples.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="../header/css/style.css">
 	<link rel="stylesheet" href="../animsition/css/animsition.min.css">
 
 	<script src="../jQuery/jquery.min.js"></script>
@@ -29,7 +30,7 @@
 	
 
 	<!-- <link rel="stylesheet" href="../header/css/reset.css">  -->
-	<script src="../header/js/main.js"></script> 
+	<!--<script src="../header/js/main.js"></script> -->
     <script>
         $(document).ready(function() {
             $.material.init();
@@ -41,7 +42,6 @@
 
 <header>
 	<div class="cd-header">
-		<div id="cd-logo"><a href="http://www.google.com" class="animsition-link"><img src="../img/logo2.png" alt="Logo"></a></div>
 		<nav class="cd-primary-nav">
 			<ul>
 				<!-- inser more links here -->
@@ -50,15 +50,19 @@
 				<li><a href="#0">Contacto</a></li>
 			</ul>
 		</nav> <!-- cd-primary-nav -->
+		<div id="cd-logo" class="is-hidden slide-in front"><a href="http://www.google.com" class="animsition-link"><img src="../img/logo2.png" alt="Logo"></a></div>
 	</div>
-	<div id="cd-intro">
+	<!-- <div id="cd-intro">
 		<div id="cd-intro-tagline">
-			<h1>Secondary Fixed Navigation</h1>
-			<a href="http://codyhouse.co/?p=296" class="cd-btn">Iniciar sesi&oacute;n</a>
-		</div>
+			<h1>Secondary Fixed Navigation</h1> -->
+<!-- 		</div>
 	</div>
+ -->
 
-	<div class="cd-secondary-nav">
+
+	<a href="http://codyhouse.co/?p=296" class="cd-btn is-hidden slide-in front">Iniciar sesi&oacute;n</a>
+	<div class="cd-secondary-nav is-fixed animate-children">
+		<div id="cd-logo2" class="is-hidden slide-in front"><a href="http://www.google.com" class="animsition-link"><img src="../img/logo2.png" alt="Logo"></a></div>
 		<a href="#0" class="cd-secondary-nav-trigger">Menu<span></span></a> <!-- button visible on small devices -->
 		<nav>
 			<ul>
@@ -95,45 +99,17 @@
 			</ul>
 		</nav>
 	</div> <!-- .cd-secondary-nav -->
+
 </header>
 
 <body>
 	<main class="cd-main-content">
-		<div class="row">
-			<div class="row option1">
-				<div class="col-md-8"></div>
-				<div class="col-md-4">
-					<h1>¿Quienes somos?</h1>
-					<p>Lorem ipsum lalallala lalalal alalalalalall al lallalalalal alalalalalala Lorem ipsum lalallala lalalal alalalalalall al lallalalalal alalalalalalaLorem ipsum lalallala lalalal alalalalalall al lallalalalal alalalalalala Lorem ipsum lalallala lalalal alalalalalall al lallalalalal alalalala lala Lorem ipsum lalallala lalalal alalalalalall al lallalalalal alalala lalala Lorem ipsum lalallala lalalal alalalalalall al lallalalalal alalalalalala</p>
-				</div>
-			</div>
-			<div class="row option4">
-				<div class="col-md-8"></div>
-				<div class="col-md-4">
-					<h1>Noticias</h1>
-					<a class="twitter-timeline" href="https://twitter.com/pruebaComedor" data-widget-id="667197478299697152"  width="700"
-					  height="100">>Tweets por el @pruebaComedor.</a>
-					<script>!function(d,s,id)
-					{var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
-					if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-									</div>
-			</div>
-			<div class="row option2">
-				<div class="col-md-8"></div>
-				<div class="col-md-4">
-					<h1>Historia</h1>
-					<p>Lorem ipsum lalallala lalalal alalalalalall al lallalalalal alalalalalala Lorem ipsum lalallala lalalal alalalalalall al lallalalalal alalalalalala Lorem ipsum lalallala lalalal alalalalalall al lallal alalal alalala lalala</p>
-				</div>
-			</div>
-		
-			<div class="row option3">
-				<div class="col-md-8"></div>
-				<div class="col-md-4">
-					<h1>Nuestras sedes</h1>
-					<p>Lorem ipsum lalallala lalalal alalalalalall al lallalalalal alalalalalala Lorem ipsum lalallala lalalal alalalalalall al lalla lalalal alalalal alala Lorem ipsum lalallala lalalal alalalalalall al lallalalalal alalalalalala</p>
-				</div>
-			</div>
-		</div>
+		<!-- contenido aca!!! -->
+		<style type="text/css">
+			body{
+				padding-top: 500px;
+			}
+		</style>
 	</main>
 
 </body>
