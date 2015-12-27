@@ -35,7 +35,7 @@ public class SedeController {
         return new ModelAndView("altaSede");
     }
     
-    @RequestMapping("editUsuario")
+    @RequestMapping("editSede")
     public ModelAndView editSede(@RequestParam long id, @ModelAttribute Sede sede) {
         sede = SedeDAO.getSede(id);
         return new ModelAndView("altaSede", "sedeObject", sede);
