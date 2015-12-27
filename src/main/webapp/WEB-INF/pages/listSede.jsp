@@ -17,22 +17,25 @@
 						<div class="row">
 							<div class="container-fluid">
 								<h3>Listado de Sedes</h3>
-								<table id="grid-data-api" class="table table-condensed table-hover table-striped" data-toggle="bootgrid">
+								<table id="grid-data-api" class="table table-condensed table-hover table-striped">
 								    <thead>
 								        <tr>
 								            <th data-column-id="nombre" data-order="asc">Nombre</th>
 								            <th data-column-id="domicilio">Domicilio</th>
 								            <th data-column-id="telefono">Tel&eacute;fono</th>
 								            <th data-column-id="email">Email</th>
+								            <th data-column-id="link" data-formatter="link" data-sortable="false">Detalles</th>
 								        </tr>
 								    </thead>
 								    <tbody>
-								        <tr>
-								            <td>Bosque</td>
-								            <td>Calle 50 s/n</td>
-								            <td>42583247</td>
-								            <td>comedor_bosque@unlp.edu.ar</td>
-								        </tr>
+								       	<c:forEach items="${sedeList}" var="sede">
+					                    <tr>
+											<td><c:out value="${sede.nombre}" /></td>
+											<td><c:out value="${sede.domicilio}" /></td>
+											<td><c:out value="${sede.telefono}" /></td>
+											<td><c:out value="${sede.mail}" /></td>
+										</tr>
+					                    </c:forEach>
 								    </tbody>
 								</table>
 							</div>
@@ -42,5 +45,17 @@
 			</div>
 		</div>
 		<script src="<c:url value="/resources/libs/jquery.bootgrid/jquery.bootgrid.js" />"></script>
+		<script>
+		$("#grid-data-api").bootgrid({
+		    formatters: {
+		        "link": function(column, row)
+		        {
+		            return "<a class='btn btn-raised btn-default btn-sm withoutMargin'>"
+					+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> Ver"
+					+ "     </a>";
+		        }
+		    }
+		});
+		</script>
 	</jsp:body>
 </t:template>

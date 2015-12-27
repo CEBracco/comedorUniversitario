@@ -39,7 +39,7 @@ public class SedeDAOImpl implements SedeDAO {
 
 	@Override
 	public List<Sede> getAllSedes() {
-		Query query = entityManager.createQuery("SELECT e FROM sede e");
+		Query query = entityManager.createQuery("SELECT e FROM Sede e");
 		return (List<Sede>)query.getResultList();
 	}
 

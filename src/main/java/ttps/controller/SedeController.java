@@ -1,5 +1,7 @@
 package ttps.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -48,6 +50,12 @@ public class SedeController {
             SedeDAO.updateSede(sede);
         }
         return new ModelAndView ("redirect:createSede");
+    }
+    
+    @RequestMapping("getAllSedes")
+    public ModelAndView getAllSedes() {
+        List<Sede> sedeList = SedeDAO.getAllSedes();
+        return new ModelAndView("listSede", "sedeList", sedeList);
     }
     
 	@RequestMapping("/altaSede")

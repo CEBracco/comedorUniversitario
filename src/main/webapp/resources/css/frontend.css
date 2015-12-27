@@ -59,6 +59,10 @@
 	background-color: rgba(245, 72, 74, 0.9);
 }
 
+.withoutMargin{
+	margin: initial;
+}
+
 body{
 	background:url(../libs/img/bg/2.jpg) 50% 0 no-repeat fixed;
 	background-size: cover;
