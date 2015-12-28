@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import ttps.dao.UserDAO;
-import unlp.comedor.Sede;
 import unlp.comedor.Usuario;
 @Repository
 @Transactional
@@ -48,4 +47,17 @@ public class UserDAOImpl implements UserDAO{
 		return (Usuario) entityManager.find(Usuario.class, id);
 	}
 
+	@Override
+	public Usuario getUser(Integer documento, String password){
+		Query query=entityManager.createQuery("from Usuario where dni=:dni and password=:password");
+		query.setParameter("dni", documento);
+		query.setParameter("password", password);
+		
+		if(query.getResultList().size() == 0){
+			return null;
+		}
+		else{
+			return (Usuario)query.getResultList().get(0);
+		}
+	}
 }

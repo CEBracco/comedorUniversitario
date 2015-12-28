@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html class="animsition">
@@ -54,8 +55,15 @@
 	</div>
 	<div id="cd-intro">
 		<div id="cd-intro-tagline">
-			<h1>Secondary Fixed Navigation</h1>
-			<a class="cd-btn" data-toggle="modal" href="#signIn">Iniciar sesi&oacute;n</a>
+			<c:choose>
+			    <c:when test="${empty user.nombre}">
+					<h1>¡Inicia sesi&oacute;n para comenzar!</h1>
+					<a class="cd-btn" data-toggle="modal" href="#signIn">Iniciar sesi&oacute;n</a>
+			    </c:when>
+			    <c:otherwise>
+					<h1>¡Bienvenid@, ${user.nombre}!</h1>	    	
+			    </c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 	
@@ -227,26 +235,24 @@ $(document).ready(function() {
         	<br>
         </div>
         <div class="modal-body">
-        	<form role="form" method="post">
+        	<form:form id="UserLoginForm" modelAttribute="usuario" method="post" action="login">
         		<div class="form-group">
-        			<label for="usuario"><span class="glyphicon glyphicon-user"></span> Usuario</label>
-        			<input type="text" class="form-control" id="usuario" name="usuario" placeholder="Ingrese su Email">
+        			<label for="dni"><span class="glyphicon glyphicon-user"></span> Documento</label>
+        			<form:input type="number" path="dni" cssClass="form-control" value="${usuarioObject.dni}" placeholder="Ingrese su Número de Documento"/>
         		</div>
         		<div class="form-group">
         			<label for="password"><span class="glyphicon glyphicon-eye-open"></span> Contraseña</label>
-        			<input type="text" class="form-control" id="password" name="password" placeholder="Ingrese su Contraseña">
+        			<form:input type="password" path="password" cssClass="form-control" value="${usuarioObject.password}" placeholder="Ingrese su Contraseña"/>
         		</div>
-        		<!-- <div class="checkbox">
-        		<label><input type="checkbox" value="" checked> Remember me</label>
-        		</div> -->
-        		<button type="submit" class="btn btn-default btn-success btn-block btn-raised"><span class="glyphicon glyphicon-off"></span> Acceder</button>
-        	</form>
+        		
+        		<button id="login" type="submit" class="btn btn-default btn-success btn-block btn-raised"><span class="glyphicon glyphicon-off"></span> Acceder</button>
+        	</form:form>
         </div>
         <div class="modal-footer">
         	<div class="container-fluid">
 	        	<div class="row">
 		        	<div class="col-md-6">
-		        		<button type="submit" class="btn btn-default btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+		        		<button class="btn btn-default btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
 		        	</div>
 		        	<div class="col-md-6">
 		        		<p>¿No recuerda su <a href="#">Contraseña?</a></p>

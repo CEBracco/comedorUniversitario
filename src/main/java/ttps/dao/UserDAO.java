@@ -11,6 +11,6 @@ public interface UserDAO {
 	    public void deleteUser(long id);
 	    public List<Usuario> getAllUsers();
 	    public Usuario getUser(long id);
-	
+	    public Usuario getUser(Integer documento, String password);
 	
 }
