@@ -6,6 +6,7 @@
 <t:template>
 	<jsp:attribute name="head">
 		<link rel="stylesheet" type="text/css" href="<c:url value="/resources/libs/jquery.bootgrid/jquery.bootgrid.min.css" />">
+		<script src="<c:url value="/resources/libs/bootbox/bootbox.min.js"/>"></script>
 	</jsp:attribute>
 
 	<jsp:body>
@@ -28,6 +29,7 @@
 								        </tr>
 								    </thead>
 								    <tbody>
+
 								       	<c:forEach items="${sedeList}" var="sede">
 					                    <tr>
 											<td><c:out value="${sede.nombre}" /></td>
@@ -36,6 +38,7 @@
 											<td><c:out value="${sede.mail}" /></td>
 										</tr>
 					                    </c:forEach>
+
 								    </tbody>
 								</table>
 							</div>
@@ -44,18 +47,37 @@
 				</div>
 			</div>
 		</div>
+		
 		<script src="<c:url value="/resources/libs/jquery.bootgrid/jquery.bootgrid.js" />"></script>
 		<script>
-		$("#grid-data-api").bootgrid({
-		    formatters: {
-		        "link": function(column, row)
-		        {
-		            return "<a class='btn btn-raised btn-default btn-sm withoutMargin'>"
-					+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> Ver"
-					+ "     </a>";
-		        }
-		    }
-		});
+		var grid=$("#grid-data-api").bootgrid({
+				    formatters: {
+				        "link": function(column, row)
+				        {
+				            return "<button class='btn btn-raised btn-default btn-sm withoutMargin command'"
+				            + "data-row-nombre='"+ row.nombre + "'"
+				            + "data-row-domicilio='"+ row.domicilio + "'"
+				            + "data-row-telefono='"+ row.telefono + "'"
+				            + "data-row-email='"+ row.email + "'"
+            
+				            +">"
+							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> Ver"
+							+ "     </button>";
+				        }
+				    }
+				}).on("loaded.rs.jquery.bootgrid", function(){
+				        /* Executes after data is loaded and rendered */
+				        grid.find(".command").on("click", function(e){
+				        	
+				        	bootbox.dialog({
+				        		  title: "Detalles de la sede",
+				        		  message:  "<div class='well'><p><b>Nombre: </b>"+$(this).data("row-nombre").toString()+"</p>"+
+				        		  			"<p><b>Domicilio: </b>"+$(this).data("row-domicilio").toString()+"</p>"+
+				        		  			"<p><b>Tel&eacute;fono: </b>"+$(this).data("row-telefono").toString()+"</p>"+
+				        		  			"<p><b>Email: </b>"+$(this).data("row-email").toString()+"</p></div>"
+				        	});
+				        })
+				});
 		</script>
 	</jsp:body>
 </t:template>
