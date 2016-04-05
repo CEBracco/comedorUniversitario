@@ -1,0 +1,69 @@
+<html>
+
+    <head>
+
+        <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Include roboto.css to use the Roboto web font, material.css to include the theme and ripples.css to style the ripple effect -->
+        <link href="css/roboto.min.css" rel="stylesheet">
+        <link href="css/bootstrap-material-design.min.css" rel="stylesheet">
+        <link href="css/ripples.min.css" rel="stylesheet">
+
+    </head>
+
+    <body>
+
+        <!-- Your site -->
+
+        <h1>You can add your site here.</h1>
+
+        <h2>To ensure that material-design theme is working, check out the buttons below.</h2>
+
+        <h3 class="text-muted">If you can see the ripple effect on clicking them, then you are good to go!</h3>
+
+
+        <p class="bs-component">
+            <a href="javascript:void(0)" class="btn btn-default">Default</a>
+            <a href="javascript:void(0)" class="btn btn-primary btn-raised">Primary</a>
+            <a href="javascript:void(0)" class="btn btn-success">Success</a>
+            <a href="javascript:void(0)" class="btn btn-info">Info</a>
+            <a href="javascript:void(0)" class="btn btn-warning">Warning</a>
+            <a href="javascript:void(0)" class="btn btn-danger">Danger</a>
+            <a href="javascript:void(0)" class="btn btn-link">Link</a>
+        </p>
+
+        <!-- Your site ends -->
+
+        <script src="../jQuery/jquery.min.js"></script>
+        <script src="../bootstrap/js/bootstrap.min.js"></script>
+
+        <script src="js/ripples.min.js"></script>
+        <script src="js/material.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                // This command is used to initialize some elements and make them work properly
+                $.material.init();
+            });
+        </script>
+        <form>
+        <div class="form-group label-floating">
+                                    <label class="control-label" for="domicilio">Domicilio</label>
+                                    <input class="form-control" id="domicilio" type="text">
+                                    <p class="help-block">Ingrese el Domicilio de la nueva sede</p>
+                                    
+                      </div>
+
+                      <div class="form-group label-floating">
+  <label class="control-label" for="focusedInput1">Write something to make the label float</label>
+  <input class="form-control" id="focusedInput1" type="text">
+</div>
+<div class="form-group label-floating is-empty">
+                <label for="676" class="control-label">label</label>
+                <input type="email" class="form-control" id="676">
+
+                <p class="help-block">A valid email contains an @ character</p>
+              <span class="material-input"></span></div>
+                      </form>
+
+    </body>
+
+</html>

@@ -1,0 +1,54 @@
+.front{
+	z-index: 4;
+}
+#cd-logo2{
+	display: none;
+}
+.cd-btn{
+	display: none;
+}
+
+@media only screen and (min-width: 1170px) {
+	#cd-logo2{
+		position: fixed;
+		display: block;
+		margin: 13px 0 0 5%;
+	}
+	.cd-btn{
+		display: inline;
+	}
+	.cd-header{
+		display: none;
+	}
+}
+body{
+	background:url(../libs/img/bg/2.jpg) 50% 0 no-repeat fixed;
+	background-size: cover;
+	padding-top: 100px;
+}
+.well{
+	opacity: 0.93;
+}
+a:focus{
+	color:white;	
+}
+.item{
+    margin-bottom: -35px;
+	margin-top: 10px;
+}
+.panel-body.menus{
+	padding-top: 2px;
+	padding-bottom: 4px;
+}
+.form-group.selectMenu{
+	margin-top: 14px;
+}
+.btn-fab.big{
+	width:150px;
+	height:150px;
+	font-size:80px;
+	font-weight: inherit;
+	text-transform: none;
+	padding-top:25px;
+}
+
