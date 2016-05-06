@@ -1,6 +1,8 @@
 package ttps.controller;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,7 @@ public class HelloController {
 	private HttpSession httpSession;
 	
 	@RequestMapping(value={"/","index"})
-	public ModelAndView printView(@ModelAttribute("usuario") Usuario usuario){
+	public ModelAndView printView(@ModelAttribute("usuario") Usuario usuario, HttpServletRequest request,HttpServletResponse response){
 		Usuario user=(Usuario) httpSession.getAttribute("user");
 		ModelAndView view= new ModelAndView("index");
 		if(user != null){
