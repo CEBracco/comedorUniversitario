@@ -73,7 +73,20 @@ public class UserController {
 		        	}
 		        }
 		        else {
-		        	UserDAO.updateUser(usuario);
+	        		Responsable respo=responsableDAO.getResponsable(usuario.getId());
+	        		respo.setApellido(usuario.getApellido());
+	        		respo.setNombre(usuario.getNombre());
+	        		respo.setDni(usuario.getDni());
+	        		respo.setPassword(usuario.getPassword());
+	        		responsableDAO.updateResponsable(respo);
+	        		
+	        		if(usuario.getRol().equals("admin")){
+	        			responsableDAO.toAdministrador(respo);
+	        		}
+	        		else{
+	        			responsableDAO.toResponsable(respo);
+	        		}
+	        		
 		        }
 		        redirectAttributes.addFlashAttribute("msj", "¡Usuario registrado con exito!");
 	    	}
@@ -91,6 +104,7 @@ public class UserController {
     	if(sessionUser != null && sesionRole.equals("Administrador")){
     		usuario = UserDAO.getUser(id);
     		ModelAndView editView= new ModelAndView("altaUser", "usuarioObject", usuario);
+    		editView.addObject("usuarioObjectRole", usuario.getClass().getSimpleName());
 	        editView.addObject("user", sessionUser);
     		editView.addObject("role", sesionRole);
     		editView.addObject("edit", true);

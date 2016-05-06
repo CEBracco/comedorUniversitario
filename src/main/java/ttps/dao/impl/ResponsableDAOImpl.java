@@ -59,4 +59,18 @@ public class ResponsableDAOImpl implements ResponsableDAO{
 			return (Responsable)query.getResultList().get(0);
 		}
 	}
+	
+	@Override
+	public Responsable toResponsable(Responsable responsable){
+		Query query = entityManager.createQuery("UPDATE Responsable SET tipo='Responsable' WHERE id=" + responsable.getId());
+		System.out.println("lalalalala" + query.executeUpdate());
+		return responsable;
+	}
+	
+	@Override
+	public Responsable toAdministrador(Responsable responsable){
+		Query query = entityManager.createQuery("UPDATE Responsable SET tipo='Administrador' WHERE id=" + responsable.getId());
+		query.executeUpdate();
+		return responsable;
+	}
 }

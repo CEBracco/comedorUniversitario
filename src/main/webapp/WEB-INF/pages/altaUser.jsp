@@ -67,8 +67,16 @@
 									    	<label for="rol" class="col-md-1 control-label">Rol de Usuario</label>
 										    <div class="col-md-11">
 											    <form:select cssClass="form-control" path="rol" required="required">
-		   											<form:option value="admin" label="Administrador"/>
-		   											<form:option value="respo" label="Responsable" />
+											    	<c:choose>
+													    <c:when test="${usuarioObjectRole == 'Administrador'}">
+													    	<form:option value="admin" label="Administrador" selected="true" />
+				   											<form:option value="respo" label="Responsable" />
+													    </c:when>
+													    <c:otherwise>
+				   											<form:option value="admin" label="Administrador"/>
+				   											<form:option value="respo" label="Responsable" selected="true" />
+													    </c:otherwise>	
+													</c:choose>
 												</form:select>
 									    		</div>
 									    	</div>
