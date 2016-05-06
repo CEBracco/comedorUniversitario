@@ -2,14 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <!DOCTYPE html>
 <html class="animsition">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, user-scalable=no">
-	
-	<title>Comedor Universitario</title>
+	<!-- -->
+	<title><spring:message code="page.titulo"/></title>
 
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/libs/bootstrap/css/bootstrap.min.css"/>">
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/frontend.css"/>">
@@ -54,14 +56,14 @@
 				</c:if>
 				<c:choose>
 				    <c:when test="${empty user.nombre}">
-						<li><a data-toggle="modal" href="#signIn">Ingresar</a></li>
+						<li><a data-toggle="modal" href="#signIn"><spring:message code="page.ingresar"/></a></li>
 				    </c:when>
 				    <c:otherwise>
-				    	<li><a href="#0">Mi Perfil</a></li>
+				    	<li><a href="#0"><spring:message code="page.perfil"/></a></li>
 				    </c:otherwise>	
 				</c:choose>
-				<li><a href="#0">Noticias</a></li>
-				<li><a href="#0">Contacto</a></li>
+				<li><a href="#0"><spring:message code="page.noticia"/></a></li>
+				<li><a href="#0"><spring:message code="page.contacto"/></a></li>
 			</ul>
 		</nav> <!-- cd-primary-nav -->
 	</div>
@@ -69,8 +71,8 @@
 		<div id="cd-intro-tagline">
 			<c:choose>
 			    <c:when test="${empty user.nombre}">
-					<h1>¡Inicia sesi&oacute;n para comenzar!</h1>
-					<a id="login-btn" class="cd-btn" data-toggle="modal" href="#signIn">Iniciar sesi&oacute;n</a>
+					<h1><spring:message code="page.inisesion"/></h1>
+					<a id="login-btn" class="cd-btn" data-toggle="modal" href="#signIn"><spring:message code="page.ingresar"/></a>
 			    </c:when>
 			    <c:otherwise>
 					<h1>¡Bienvenid@, ${user.nombre}!</h1>

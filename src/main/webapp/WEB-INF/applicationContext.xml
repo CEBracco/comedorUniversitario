@@ -12,6 +12,6 @@
    
     <!-- Se habilitan anotaciones en gral -->
     <mvc:annotation-driven />
-
+	
       
 </beans>
