@@ -286,7 +286,7 @@ $(window).load(function(){
       <div class="modal-content">
         <div class="modal-header">
         	<button type="button" class="close" data-dismiss="modal">&times;</button>
-        	<h3 style="color:white"><span class="glyphicon glyphicon-lock"></span></span><spring:message code="page.login.ingresar"/></h3>
+        	<h3 style="color:white"><span class="glyphicon glyphicon-lock"></span> <spring:message code="page.login.ingresar"/></h3>
         	<br>
         </div>
         <div class="modal-body">
@@ -294,27 +294,27 @@ $(window).load(function(){
         		<div class="form-group">
         			<spring:message code="page.login.placeHolder.usuario" var="placeHolderU"/>
         			
-        			<label for="dni"><span class="glyphicon glyphicon-user"></span><spring:message code="page.login.documento"/></label>
+        			<label for="dni"><span class="glyphicon glyphicon-user"></span> <spring:message code="page.login.documento"/></label>
         			<form:input type="number" path="dni" cssClass="form-control" value="${usuarioObject.dni}" placeholder="${placeHolderU}"  required="required"/>
         		</div>
         		<div class="form-group">
+        			<spring:message code="page.login.placeHolder.password" var="placeHolderPass"/>
         			
-        			
-        			<label for="password"><span class="glyphicon glyphicon-eye-open"></span><spring:message code="page.login.documento"/></label>
-        			<form:input type="password" path="password" cssClass="form-control" value="${usuarioObject.password}" placeholder="ingrese la contraseña" required="required"/>
+        			<label for="password"><span class="glyphicon glyphicon-eye-open"></span> <spring:message code="page.login.password"/></label>
+        			<form:input type="password" path="password" cssClass="form-control" value="${usuarioObject.password}" placeholder="${placeHolderPass}" required="required"/>
         		</div>
         		
-        		<button id="login" type="submit" class="btn btn-default btn-success btn-block btn-raised"><span class="glyphicon glyphicon-off"> value=<spring:message code="page.login.ingresar"/></span></button>
+        		<button id="login" type="submit" class="btn btn-default btn-success btn-block btn-raised"><span class="glyphicon glyphicon-off"></span> <spring:message code="page.login.ingresar"/></button>
         	</form:form>
         </div>
         <div class="modal-footer">
         	<div class="container-fluid">
 	        	<div class="row">
 		        	<div class="col-md-6">
-		        		<button class="btn btn-default btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span><spring:message code="page.login.cancel"/></button>
+		        		<button class="btn btn-default btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> <spring:message code="page.login.cancelar"/></button>
 		        	</div>
 		        	<div class="col-md-6">
-		        		<p></span><spring:message code="page.login.noRecuerda"/> <a href="#"><spring:message code="page.login.contraseña"/></a></p>
+		        		<p><spring:message code="page.login.noRecuerda"/> <a href="#"><spring:message code="page.login.password"/></a>?</p>
 		        	</div>
 	        	</div>
         	</div>

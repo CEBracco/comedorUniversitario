@@ -73,6 +73,7 @@
 			</div>
 		</div>
 		<script src="<c:url value="/resources/libs/jquery.bootgrid/jquery.bootgrid.js" />"></script>
+		<script src="<c:url value="/resources/js/borrar.js" />"></script>
 		<script>
 		var grid=$("#grid-data-api").bootgrid({
 				    formatters: {
@@ -92,7 +93,17 @@
 							+"<button class='btn btn-raised btn-default btn-sm withoutMargin command'>"
 							+ "<span class='glyphicon glyphicon glyphicon-pencil' aria-hidden='true'></span> Editar"
 							+ "</button>"
-							+ "</a>";
+							+ "</a>"
+							+ "<a href='#'>"
+//							+ "<button class='btn btn-raised btn-default btn-sm withoutMargin command'>"
+							+"<button class='btn btn-raised btn-default btn-sm withoutMargin command-delete'"
+    						+"data-row-nombre='"+row.nombre+"'"
+							+"data-row-id='"+row.id+"'"
+							+"data-row-link='deleteUsuario'>"
+							
+							+ "<span class='glyphicon glyphicon glyphicon-trash' aria-hidden='true'></span> Borrar"
+							+ "</button>"
+							+"</a>";
 				        }
 				    }
 				}).on("loaded.rs.jquery.bootgrid", function(){

@@ -32,12 +32,15 @@ public class UserDAOImpl implements UserDAO{
 
 	@Override
 	public void deleteUser(long id) {
-		entityManager.remove(entityManager.find(Usuario.class, id));
+		//entityManager.remove(entityManager.find(Usuario.class, id));
+		Query query = entityManager.createQuery("UPDATE Usuario set activo=0 where id=:id");
+		query.setParameter("id", id);
+		query.executeUpdate();
 	}
 
 	@Override
 	public List<Usuario> getAllUsers() {
-		Query query = entityManager.createQuery("SELECT e FROM sede e");
+		Query query = entityManager.createQuery("SELECT e FROM Usuario e where e.activo=1");
 		return (List<Usuario>)query.getResultList();
 	}
 
@@ -48,7 +51,7 @@ public class UserDAOImpl implements UserDAO{
 
 	@Override
 	public Usuario getUser(Integer documento, String password){
-		Query query=entityManager.createQuery("from Usuario where dni=:dni and password=:password");
+		Query query=entityManager.createQuery("from Usuario where dni=:dni and password=:password and activo=1");
 		query.setParameter("dni", documento);
 		query.setParameter("password", password);
 		

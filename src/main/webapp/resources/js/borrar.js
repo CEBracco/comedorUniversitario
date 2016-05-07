@@ -1,5 +1,5 @@
 function consultar(id,dir){
-    
+
  $.ajax({
                 data:  id,
                 url:   dir+'?id='+id,
@@ -33,7 +33,7 @@ $("#grid-data-api").on("loaded.rs.jquery.bootgrid", function()
 		 bootbox.confirm("¿Estas seguro de que deseas eliminar?", function(result) {
 			  if(result){
 				 
-				  $.notify(+rows[2]+" ha sido borrado", { globalPosition: 'bottom left', 
+				  $.notify(rows[2]+" ha sido borrado", { globalPosition: 'bottom left', 
 						 style: 'bootstrap',
 						 className: 'success',
 						 showAnimation: 'slideDown',
@@ -41,7 +41,7 @@ $("#grid-data-api").on("loaded.rs.jquery.bootgrid", function()
 						 showDuration: 700,
 						 hideDuration: 900,
 						 autoHideDelay: 4000});
-//				consultar(rows[0],rows[1]);
+				consultar(rows[0],rows[1]);
 				fila.remove();
 					 
 				 }

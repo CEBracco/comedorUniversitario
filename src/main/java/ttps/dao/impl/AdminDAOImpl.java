@@ -42,7 +42,7 @@ public class AdminDAOImpl implements AdministradorDAO{
 
 	@Override
 	public List<Administrador> getAllAdministradores() {
-		Query query = entityManager.createQuery("SELECT e FROM Administrador e");
+		Query query = entityManager.createQuery("SELECT e FROM Administrador e WHERE tipo='Administrador' and activo=1");
 		return (List<Administrador>)query.getResultList();
 	}
 

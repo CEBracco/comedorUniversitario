@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -138,5 +139,18 @@ public class UserController {
     	}
     }
     
-	
+    @RequestMapping("deleteUsuario")
+    public @ResponseBody String deleteUsuario(@RequestParam long id) {
+    	Usuario sessionUser=(Usuario)httpSession.getAttribute("user");
+    	String sesionRole=(String)httpSession.getAttribute("role");
+    	if(sessionUser != null && sesionRole.equals("Administrador")){
+    		
+    		UserDAO.deleteUser(id);
+    		
+    		return "Usuario eliminado";
+    		
+    	}else{
+    		return "la operacion no ha podido realizarse";
+    	}
+    }
 }
