@@ -35,9 +35,10 @@ public class AdminDAOImpl implements AdministradorDAO{
 
 	@Override
 	public void deleteAdministrador(long id) {
-		// TODO Auto-generated method stub
-		entityManager.remove(entityManager.find(Administrador.class, id));
-		
+		//entityManager.remove(entityManager.find(Administrador.class, id));
+		Query query = entityManager.createQuery("UPDATE Administrador set activo=0 where id=:id");
+		query.setParameter("id", id);
+		query.executeUpdate();
 	}
 
 	@Override

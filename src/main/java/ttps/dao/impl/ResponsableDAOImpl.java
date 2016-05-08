@@ -31,8 +31,10 @@ public class ResponsableDAOImpl implements ResponsableDAO{
 
 	@Override
 	public void deleteResponsable(long id) {
-		entityManager.remove(entityManager.find(Responsable.class, id));
-		
+		//entityManager.remove(entityManager.find(Administrador.class, id));
+		Query query = entityManager.createQuery("UPDATE Responsable set activo=0 where id=:id");
+		query.setParameter("id", id);
+		query.executeUpdate();
 	}
 
 	@Override

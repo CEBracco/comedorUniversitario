@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -93,4 +94,22 @@ public class SedeController {
     	}
     }
 	
+    @RequestMapping("deleteSede")
+    public @ResponseBody String deleteSede(@RequestParam long id) {
+    	Usuario sessionUser=(Usuario)httpSession.getAttribute("user");
+    	String sesionRole=(String)httpSession.getAttribute("role");
+    	if(sessionUser != null && sesionRole.equals("Administrador")){
+    		
+    		if(SedeDAO.getSede(id).getResponsables().isEmpty()){
+    			SedeDAO.deleteSede(id);
+    			return "Sede eliminada";
+    		}
+    		else{
+    			return "La sede no debe poseer responsables asignados";
+    		}
+    		
+    	}else{
+    		return "No tiene permisos para realizar esta accion!";
+    	}
+    }
 }

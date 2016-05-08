@@ -32,12 +32,15 @@ public class ComensalDAOimpl implements ComensalDAO{
 
 	@Override
 	public void deleteComensal(long id) {
-		entityManager.remove(entityManager.find(Comensal.class, id));		
+		//entityManager.remove(entityManager.find(Comensal.class, id));
+		Query query = entityManager.createQuery("UPDATE Comensal set activo=0 where id=:id");
+		query.setParameter("id", id);
+		query.executeUpdate();
 	}
 
 	@Override
 	public List<Comensal> getAllComensales() {
-		Query query = entityManager.createQuery("SELECT e FROM Comensal e");
+		Query query = entityManager.createQuery("SELECT e FROM Comensal e where activo=1");
 		return (List<Comensal>)query.getResultList();
 	}
 
@@ -48,7 +51,7 @@ public class ComensalDAOimpl implements ComensalDAO{
 
 	@Override
 	public Comensal getComensal(Integer documento, String password) {
-		Query query=entityManager.createQuery("from Comensal where dni=:dni and password=:password");
+		Query query=entityManager.createQuery("from Comensal where dni=:dni and password=:password and activo=1");
 		query.setParameter("dni", documento);
 		query.setParameter("password", password);
 		

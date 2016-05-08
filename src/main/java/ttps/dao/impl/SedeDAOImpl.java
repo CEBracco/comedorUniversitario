@@ -33,12 +33,15 @@ public class SedeDAOImpl implements SedeDAO {
 
 	@Override
 	public void deleteSede(long id) {
-		entityManager.remove(entityManager.find(Sede.class, id));
+		//entityManager.remove(entityManager.find(Sede.class, id));
+		Query query = entityManager.createQuery("UPDATE Sede set activo=0 where id=:id");
+		query.setParameter("id", id);
+		query.executeUpdate();
 	}
 
 	@Override
 	public List<Sede> getAllSedes() {
-		Query query = entityManager.createQuery("SELECT e FROM Sede e");
+		Query query = entityManager.createQuery("SELECT e FROM Sede e where activo=1");
 		return (List<Sede>)query.getResultList();
 	}
 
