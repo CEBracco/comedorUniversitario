@@ -15,7 +15,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ttps.dao.PlatoDAO;
 import unlp.comedor.Plato;
-import unlp.comedor.Sede;
 import unlp.comedor.Usuario;
 
 @Controller

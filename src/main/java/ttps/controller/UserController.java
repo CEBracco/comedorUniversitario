@@ -153,4 +153,18 @@ public class UserController {
     		return "la operacion no ha podido realizarse";
     	}
     }
+    
+    @RequestMapping("showProfile")
+    public ModelAndView showProfile() {
+    	Usuario sessionUser=(Usuario)httpSession.getAttribute("user");
+    	String sesionRole=(String)httpSession.getAttribute("role");
+    	if(sessionUser != null){
+    		ModelAndView presentacion= new ModelAndView("userProfile");
+    		presentacion.addObject("user", sessionUser);
+    		presentacion.addObject("role", sesionRole);
+    		
+    		return presentacion;
+    	}
+    	return new ModelAndView("redirect:index");
+    }
 }
