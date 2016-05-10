@@ -13,6 +13,7 @@
 	<!-- -->
 	<title><spring:message code="page.titulo"/></title>
 
+	
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/libs/bootstrap/css/bootstrap.min.css"/>">
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/frontend.css"/>">
 	<link rel="stylesheet" href="<c:url value="/resources/libs/font-awesome/css/font-awesome.min.css"/>">
@@ -35,6 +36,7 @@
 	<script src="<c:url value="/resources/libs/parallax-nice/scripts/jquery.scrollTo-1.4.2-min.js"/>"></script>
 	<script src="<c:url value="/resources/libs/animsition/js/animsition.min.js"/>" charset="utf-8"></script>
 	
+	<script src="<c:url value="/resources/js/sugerencia.js"/>"></script>
 
 	<script src="<c:url value="/resources/libs/header/js/main.js"/>"></script>
     <script>
@@ -102,6 +104,12 @@
 				<c:if test="${role == 'Administrador'}">
 				<li>
 					<a href="getAllUsuarios" class="animsition-link">
+						<b><spring:message code="page.sugerencia"/></b>
+						<span></span><!-- icon -->
+					</a>
+				</li>
+				<li>
+					<a href="getAllUsuarios" class="animsition-link">
 						<b><spring:message code="page.usuarios"/></b>
 						<span></span><!-- icon -->
 					</a>
@@ -111,6 +119,14 @@
 						<b><spring:message code="page.sedes"/></b>
 						<span></span><!-- icon -->
 					</a>
+				</li>
+				</c:if>
+				<c:if test="${role == 'Responsable'}">
+				<li>
+					<b>
+					 <a class="animsition-link" href="createSugerencia" >Enviar Sugerencia</a>
+					</b>
+  
 				</li>
 				</c:if>
 				<li>
@@ -323,6 +339,40 @@ $(window).load(function(){
     </div>
   </div> 
 </c:if>
-
+ <div class="modal fade" id="sugerenciaModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+        	<button type="button" class="close" data-dismiss="modal">&times;</button>
+        	<h3 style="color:white"><span> Sugerencia </span></h3>
+        	<br>
+        </div>
+        <div class="modal-body">
+        	<form:form id="UserLoginForm" modelAttribute="usuario" method="post" action="login">
+	        	<label class="control-label" for="sugerencia"> ingrese su sugerencia</label>
+					<form:textarea cssClass="form-control" id="sugerencia" path="nombre" rows="10" cols="30" />	
+					<p class="help-block">Escriba una sugerencia para el comedor univeristario</p>
+				</div>
+				<div class="container-fluid">
+					<input class="btn btn-block btn-danger btn-raised" type="submit" value="Enviar" id="saveUser">
+				</div>
+			</form:form>
+        </div>
+        <div class="modal-footer">
+        	<div class="container-fluid">
+	        	<div class="row">
+		        	<div class="col-md-6">
+		        		<button class="btn btn-default btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> <spring:message code="page.login.cancelar"/></button>
+		        	</div>
+		        	<div class="col-md-6">
+		        		<p><spring:message code="page.login.noRecuerda"/> <a href="#"><spring:message code="page.login.password"/></a>?</p>
+		        	</div>
+	        	</div>
+        	</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </html>

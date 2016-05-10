@@ -31,7 +31,12 @@
 	opacity:0.95;
 }
 
+
 #signIn .modal-header{
+	background-color:rgba(245, 72, 74, 0.9)
+}
+#sugerenciaModal{opacity:0.95;}
+#sugerenciaModal .modal-header{
 	background-color:rgba(245, 72, 74, 0.9)
 }
 

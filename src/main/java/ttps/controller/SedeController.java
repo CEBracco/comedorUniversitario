@@ -26,6 +26,7 @@ public class SedeController {
 	@Autowired
     private SedeDAO SedeDAO;
     
+	
     @RequestMapping("createSede")
     public ModelAndView createSede(@ModelAttribute Sede sede) {
     	Usuario sessionUser=(Usuario)httpSession.getAttribute("user");
