@@ -3,12 +3,15 @@ package unlp.comedor;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 /**
@@ -25,14 +28,13 @@ public class Sugerencia {
     public String tipo;
     @ManyToOne
     private Usuario usuario;
-    @ManyToMany
-    private Set<Sede> sedes;
+    @ManyToOne
+    private Sede sede;
     private Boolean activo;
 
     
     public Sugerencia() {
-    	this.setSedes(new HashSet<Sede>());
-    	this.setActivo(true);
+    	 this.setActivo(true);
     }
 
     
@@ -84,13 +86,13 @@ public class Sugerencia {
 	}
 
 
-	public Set<Sede> getSedes() {
-		return sedes;
+	public Sede getSede() {
+		return sede;
 	}
 
 
-	public void setSedes(Set<Sede> sedes) {
-		this.sedes = sedes;
+	public void setSede(Sede sede) {
+		this.sede = sede;
 	}
 
 }

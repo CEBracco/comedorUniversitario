@@ -17,6 +17,7 @@ import unlp.comedor.Sugerencia;
 public class SugerenciaDAOImpl implements SugerenciaDAO {
 	@PersistenceContext
 	private EntityManager entityManager;
+	
 	@Override
 	public Sugerencia createSugerencia(Sugerencia sugerencia) {
 		return entityManager.merge(sugerencia);
@@ -37,7 +38,7 @@ public class SugerenciaDAOImpl implements SugerenciaDAO {
 
 	@Override
 	public List<Sugerencia> getAllSugerencias() {
-		Query query = entityManager.createQuery("SELECT e FROM sugerencia e");
+		Query query = entityManager.createQuery("SELECT e FROM Sugerencia e where activo=1");
 		return (List<Sugerencia>)query.getResultList();
 	}
 

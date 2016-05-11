@@ -85,6 +85,7 @@ public class SedeController {
     	String sesionRole=(String)httpSession.getAttribute("role");
     	if(sessionUser != null && sesionRole.equals("Administrador")){
     		List<Sede> sedeList = SedeDAO.getAllSedes();
+    
     		ModelAndView viewListado= new ModelAndView("listSede", "sedeList", sedeList);
     		viewListado.addObject("user", sessionUser);
     		viewListado.addObject("role", sesionRole);

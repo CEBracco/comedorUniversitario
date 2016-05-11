@@ -103,7 +103,7 @@
 			<ul>
 				<c:if test="${role == 'Administrador'}">
 				<li>
-					<a href="getAllUsuarios" class="animsition-link">
+					<a href="getAllSugerencias" class="animsition-link">
 						<b><spring:message code="page.sugerencia"/></b>
 						<span></span><!-- icon -->
 					</a>
