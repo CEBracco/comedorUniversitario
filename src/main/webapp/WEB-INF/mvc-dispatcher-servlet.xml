@@ -89,7 +89,9 @@
         <ref bean="localeChangeInterceptor" />
     </property>
 </bean>
-	
+
+<bean id="multipartResolver"
+    class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
 	
 	<!--  
 	<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" >

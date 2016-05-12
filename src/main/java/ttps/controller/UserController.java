@@ -1,7 +1,13 @@
 package ttps.controller;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -166,5 +173,22 @@ public class UserController {
     		return presentacion;
     	}
     	return new ModelAndView("redirect:index");
+    }
+    
+	@RequestMapping("savePhoto")
+    public ModelAndView savePhoto(@RequestParam MultipartFile file) throws IOException, FileNotFoundException {
+		//Usuario sessionUser=(Usuario)httpSession.getAttribute("user");
+
+		//Usuario usuario = UserDAO.getUser(sessionUser.getId());
+		//usuario.setFoto(route);
+		//UserDAO.updateUser(usuario);
+		
+		if (!file.isEmpty()) {
+			 BufferedImage src = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
+			 File destination = new File("pepe.jpg");
+			 ImageIO.write(src, "jpg", destination);
+		} 
+		
+		return new ModelAndView("redirect:showProfile");
     }
 }

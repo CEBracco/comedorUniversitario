@@ -103,12 +103,6 @@
 			<ul>
 				<c:if test="${role == 'Administrador'}">
 				<li>
-					<a href="getAllSugerencias" class="animsition-link">
-						<b><spring:message code="page.sugerencia"/></b>
-						<span></span><!-- icon -->
-					</a>
-				</li>
-				<li>
 					<a href="getAllUsuarios" class="animsition-link">
 						<b><spring:message code="page.usuarios"/></b>
 						<span></span><!-- icon -->
@@ -129,12 +123,14 @@
   
 				</li>
 				</c:if>
+				<c:if test="${role == 'Administrador'}">
 				<li>
-					<a href="#cd-placeholder-3" class="animsition-link">
+					<a href="getAllSugerencias" class="animsition-link">
 						<b><spring:message code="page.sugerencia"/></b>
 						<span></span><!-- icon -->
 					</a>
 				</li>
+				</c:if>
 				<li>
 					<a href="menuCartilla" class="animsition-link">
 						<b><spring:message code="page.cartilla"/></b>

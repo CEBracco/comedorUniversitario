@@ -1,17 +1,84 @@
-.panel-heading {
-	background: url(http://cine.nl/wp-content/uploads/2015/07/the-revenant-trailer.jpg) center center no-repeat;
-	background-size: cover;
-	height: 270px;
-}
 .user-image {
 		width: 180px;
 		height: 180px;
 		background: url(http://simplyleonardodicaprio.com/wp-content/uploads/leo-1.jpg) center top;
-		background-size: 140%;
+		background-size: cover;
 		border-radius: 50%;
 		border: 2px solid white;
 		margin-top: -110px;
 		display: block;
     	margin-left: auto;
-    	margin-right: auto
+    	margin-right: auto;
+	    position: relative;
+	    
+}
+.user-image:hover .fade-mini{
+	opacity: 1;
+}
+.fade-mini{
+	background: rgba(0, 0, 0, 0.8);
+	background-size: cover;
+	width: 176px;
+	height: 176px;
+	border-radius: 50%;
+	margin-top: -10px;
+	opacity: 0;
+	transition: opacity 0.4s ease;
+}
+.fade-mini h4{
+		text-align: center;
+		vertical-align: middle;
+		line-height: 180px;
+		color: white;
+}
+
+.fade-mini h4 a, .fade-mini h4 a{
+	color: white;
+	text-decoration: none;
+}
+
+.profile-header .panel-heading {
+	background: url(http://cine.nl/wp-content/uploads/2015/07/the-revenant-trailer.jpg) center center no-repeat;
+	background-size: cover;
+	height: 270px;
+	filter: grayscale(100%); /* Current draft standard */
+    -webkit-filter: grayscale(100%); /* New WebKit */
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%); 
+    -o-filter: grayscale(100%); /* Not yet supported in Gecko, Opera or IE */ 
+    filter: url(resources.svg#desaturate); /* Gecko */
+    filter: gray; /* IE */
+    -webkit-filter: grayscale(1); /* Old WebKit */
+}
+
+.not-bg {
+	background: none;
+	display: none;
+}
+
+.pull-down{
+	padding-top: 100px;
+}
+
+#upload{
+    display:none
+}
+
+/*Divs con mismo height*/
+@media only screen and (min-width : 992px){
+	.equal {
+	  display: -webkit-box;
+	  display: -moz-box;
+	  display: -ms-flexbox;
+	  display: -webkit-flex;
+	  display: flex;
+	}
+	
+	div[class*='col-'] {
+	  flex:1 1 auto;
+	  display: flex;
+	}
+	.panel {
+	  flex:1 0 100%;
+	}
 }
