@@ -9,6 +9,19 @@
 	<jsp:attribute name="head">
 		<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/profile.css"/>">
 		<script src="<c:url value="/resources/js/profile.js"/>"></script>
+		
+		<c:if test="${not empty user.foto}">
+		<style>
+			.user-image{
+				background: url(<c:url value="/profilePhoto?id=${user.id}"/>) center;
+				background-size: cover;			
+			}
+			.profile-header .panel-heading {
+				background: url(<c:url value="/profilePhoto?id=${user.id}"/>) no-repeat center;
+				background-size: cover;
+			}
+		</style>
+		</c:if>		
 	</jsp:attribute>
 	<jsp:body>
     	<div class="container-fluid
@@ -20,6 +33,8 @@
 					
 					<div class="panel profile-header" >
 						<div class="panel-heading <c:if test="${empty user.foto}">not-bg</c:if>"></div>
+						
+						
 						<div class="row text-center">
 								<div class="user-image">
 									<div class="fade-mini">
@@ -31,7 +46,7 @@
 								
 						</div>
 						<div class="panel-body">
-							<form id="formPhoto" action="savePhoto" method="post" enctype="multipart/form-data">
+							<form id="formPhoto" action="savePhoto" method="post" enctype="multipart/form-data" accept="image/*">
 								<input id="upload" type="file" name="file">
 							</form>
 						</div>
@@ -44,7 +59,16 @@
 				<div class="col-md-1"></div>
 				<div class="col-md-5">
 					<div class="panel">
-						<div class="panel-heading"><h3>Mis Datos</h3></div>
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-md-8 col-sm-9 col-xs-5">
+									<h3>Mis Datos</h3>
+								</div>
+								<div class="col-md-4 col-sm-3 col-xs-7">
+									<a href="editProfile" class="btn btn-raised btn-danger btn-sm withoutMargin marginTop animsition-link"><span class='glyphicon glyphicon glyphicon-pencil'></span>  Editar</a>
+								</div>
+							</div>
+						</div>
 						<div class="panel-body">
 								<div class="row">
 									<div class="col-xs-6"><p><b>Nombre</b></p></div>
@@ -66,7 +90,7 @@
 						<div class="panel-heading"><h3>Mi Contraseña</h3></div>
 						<div class="panel-body">
 							<div class="row text-center">
-									<a href="#" class="btn btn-raised btn-danger">Cambiar Contraseña</a>
+									<a href="changePassword" class="btn btn-raised btn-danger animsition-link">Cambiar Contraseña</a>
 							</div>
 							<br>
 						</div>

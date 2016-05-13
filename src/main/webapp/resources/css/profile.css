@@ -1,7 +1,7 @@
 .user-image {
 		width: 180px;
 		height: 180px;
-		background: url(http://simplyleonardodicaprio.com/wp-content/uploads/leo-1.jpg) center top;
+		background: url(../img/empty_user.svg) center ;
 		background-size: cover;
 		border-radius: 50%;
 		border: 2px solid white;
@@ -38,7 +38,6 @@
 }
 
 .profile-header .panel-heading {
-	background: url(http://cine.nl/wp-content/uploads/2015/07/the-revenant-trailer.jpg) center center no-repeat;
 	background-size: cover;
 	height: 270px;
 	filter: grayscale(100%); /* Current draft standard */
