@@ -23,30 +23,48 @@
 										<h3>Listado de Sugerencias</h3>
 									</div>
 									
+									<c:if test="${role == 'Comensal'}">
+										<div class="col-md-6">
+											<a href="createSugerencia" class="btn btn-raised btn-danger btn-sm withoutMargin marginTop pull-right animsition-link">Enviar Sugerencia</a>
+										</div>
+									</c:if>
 								</div>
 								<table id="grid-data-api" class="table table-condensed table-hover table-striped">
 								    <thead>
 								        <tr>
-								        	<th data-column-id="id" data-visible="false" data-visible-in-selection="false">Id</th>
+								        	
 								            <th data-column-id="Tipo" data-order="asc">Tipo</th>
-								            <th data-column-id="usuario">Usuario</th>
-								            <th data-column-id="sede">Sede</th>
-								            <th data-column-id="sugerencia" data-visible="false" data-visible-in-selection="false">Id</th>
+								            <th data-column-id="usuario">Dni Usuario</th>
+								           
 								  			<th data-column-id="link" data-formatter="link" data-sortable="false">Acciones</th>
 								        </tr>
 								    </thead>
 								    <tbody>
+									<c:choose>
+   										 <c:when test="${not empty sugerenciaList}">
+										       
+										 <c:forEach items="${sugerenciaList}" var="sugerencia">
+					                    	<tr>
+					                    		
+												<td><c:out value="${sugerencia.tipo}" /></td>
+												<td><c:out value="${sugerencia.usuario.dni}" /></td>
 
-								       	<c:forEach items="${sugerenciaList}" var="sugerencia">
-					                    <tr>
-					                    	<td><c:out value="${sugerencia.id}" /></td>
-											<td><c:out value="${sugerencia.tipo}" /></td>
-											<td><c:out value="${sugerencia.usuario.dni}" /></td>
-											<td><c:out value="${sugerencia.sede.nombre}" /></td>
-											<td><c:out value="${sugerencia.sugerencia}" /></td>
-											
-										</tr>
+												<td><a href="verSugerencia?id=${sugerencia.id}" class="btn btn-raised btn-default btn-sm withoutMargin command"> <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span>Ver</a></td>
+												
+											</tr>
+										
 					                    </c:forEach>
+										       
+										    </c:when>    
+										    <c:otherwise>
+										        <h3>no hay Sugerencias registradas</h3>
+										    </c:otherwise>
+										</c:choose>
+									
+									
+									
+									
+								       	
 
 								    </tbody>
 								</table>
@@ -59,31 +77,7 @@
 		
 		<script src="<c:url value="/resources/libs/jquery.bootgrid/jquery.bootgrid.js" />"></script>
 		<script src="<c:url value="/resources/js/borrar.js" />"></script>
-		<script>
-		var grid=$("#grid-data-api").bootgrid({
-				    formatters: {
-				        "link": function(column, row)
-				        {
-				            return "<button class='btn btn-raised btn-default btn-sm withoutMargin command'"
-				            + "data-row-id='"+ row.id + "'"
-				            + "data-row-sugerencia='"+ row.sugerencia + "'"
-				             +">"
-							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> Ver"
-							+ "     </button>"
-							
-				        }
-				    }
-				}).on("loaded.rs.jquery.bootgrid", function(){
-				        /* Executes after data is loaded and rendered */
-				        grid.find(".command").on("click", function(e){
-				        	
-				        	bootbox.dialog({
-				        		  title: "Sugerencia",
-				        		  message:  "<div class='well'>"+$(this).data("row-sugerencia").toString()+"</p>"+
-				        		  			"</div>"
-				        	});
-				        })
-				});
-		</script>
+		
+		
 	</jsp:body>
 </t:template>

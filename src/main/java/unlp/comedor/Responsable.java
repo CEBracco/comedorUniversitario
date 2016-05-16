@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 
 /**
@@ -14,7 +15,7 @@ import javax.persistence.ManyToMany;
 @DiscriminatorValue("Responsable")
 public class Responsable extends Usuario {
 
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	private Set<Sede> sedes;
 	
     public Responsable() {
@@ -24,9 +25,12 @@ public class Responsable extends Usuario {
 	public Set<Sede> getSedes() {
 		return sedes;
 	}
+	public void setSedes(Set<Sede> sedes){
+		this.sedes= sedes;
+	}
 
-	public void setSedes(Set<Sede> sedes) {
-		this.sedes = sedes;
+	public void setSede(Sede sede) {
+		this.sedes.add(sede);
 	}
     
     

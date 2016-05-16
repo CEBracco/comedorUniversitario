@@ -13,18 +13,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ttps.dao.AdministradorDAO;
+import ttps.dao.ComensalDAO;
+import ttps.dao.SedeDAO;
+import ttps.dao.ResponsableDAO;
 import unlp.comedor.Administrador;
+import unlp.comedor.Responsable;
+import unlp.comedor.Sede;
 import unlp.comedor.Usuario;
+import unlp.comedor.Comensal;
 
 @Controller
 public class HelloController {
 	
 	@Autowired
     private AdministradorDAO AdministradorDAO;
+	@Autowired
+	private ResponsableDAO ResponsableDAO;
+	@Autowired
+	private ComensalDAO Comensal;
+	@Autowired
+	private SedeDAO SedeDAO;
 	
 	private String defaultUserName="Root";
 	private Integer defaultUserDni=12345678;
 	private String defaultUserPassword="root";
+	
+	private String responsableUserName="Responsable";
+	private Integer responsableUserDni=12345;
+	private String responsablePassword="responsable";
+	
+	private String comensalUserName="Bracco";
+	private Integer comensalUserDni=1234;
+	private String comensalPassword="root";
+	
+	private String nombre="El Bosque";
+	private boolean activo =true;
+	private String mail="sede_el_bosque@comedor.com";
+	private String domicilio="120 y 50";
+	private String telefono="22123423";
 	
 	@Autowired
 	private HttpSession httpSession;
@@ -59,11 +85,32 @@ public class HelloController {
 	private void initialize(){
 		if(AdministradorDAO.getAdministrador(this.defaultUserDni, this.defaultUserPassword) == null){
     		Administrador defaultUser=new Administrador();
+    		Responsable responsableUser=new Responsable();
+    		Comensal comensalUser=new Comensal();
+    		Sede sede = new Sede();
+    		sede.setActivo(activo);
+    		sede.setDomicilio(domicilio);
+    		sede.setNombre(nombre);
+    		sede.setTelefono(telefono);
+    		sede.setMail(mail);
+    		SedeDAO.createSede(sede);
+    			
     		defaultUser.setDni(this.defaultUserDni);
     		defaultUser.setNombre(defaultUserName);
     		defaultUser.setPassword(defaultUserPassword);
     		
+    		responsableUser.setDni(responsableUserDni);
+    		responsableUser.setNombre(responsableUserName);
+    		responsableUser.setPassword(responsablePassword);
+    		responsableUser.setSede(SedeDAO.getSede(1));
+    		comensalUser.setDni(comensalUserDni);
+    		comensalUser.setNombre(comensalUserName);
+    		comensalUser.setPassword(comensalPassword);
+    		
     		AdministradorDAO.createAdministrador(defaultUser);
+    		ResponsableDAO.createResponsable(responsableUser);
+    		Comensal.createComensal(comensalUser);
+    		
     		System.out.println("Se creo el usuario default");
     	}
 	}

@@ -8,7 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,15 +28,37 @@ public class Sede {
     private String mail;
     @ManyToMany
     private Set<Cartilla> cartillas;
+    
+    @ManyToMany(mappedBy="sede", fetch = FetchType.EAGER)
+    private Set<Sugerencia> sugerencias;
+    
     @ManyToMany(mappedBy="sedes", fetch = FetchType.EAGER)
     private Set<Responsable> responsables;
-    private Boolean activo;
+   
+
+	private Boolean activo;
     
     public Sede() {
     	this.setResponsables(new HashSet<Responsable>());
     	this.setCartillas(new HashSet<Cartilla>());
     	this.setActivo(true);
+    	this.sugerencias = new HashSet<Sugerencia>();
     }
+    /**
+   	 * @return the sugerencias
+   	 */
+   	public Set<Sugerencia> getSugerencias() {
+   		return sugerencias;
+   	}
+
+
+   	/**
+   	 * @param sugerencias the sugerencias to set
+   	 */
+   	
+	public void setSugerencia(Sugerencia sugerencia) {
+   		this.sugerencias.add(sugerencia);
+   	}
 
     public Long getId() {
     	return id;

@@ -30,14 +30,10 @@ public class Usuario {
     private String apellido;
     private String foto;
     private String rol;
-   
-
-	@OneToMany
-    private Set<Sugerencia> sugerencias;
     private Boolean activo;
 
     public Usuario() {
-    	this.setSugerencias(new HashSet<Sugerencia>());
+    	
     	this.setActivo(true);
     }
 
@@ -104,13 +100,6 @@ public class Usuario {
 		this.id = id;
 	}
 
-	public Set<Sugerencia> getSugerencias() {
-		return sugerencias;
-	}
-
-	public void setSugerencias(Set<Sugerencia> sugerencias) {
-		this.sugerencias = sugerencias;
-	}
-
+	
 
 }

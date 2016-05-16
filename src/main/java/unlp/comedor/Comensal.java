@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 //import java.util.*;
@@ -28,14 +29,31 @@ public class Comensal extends Usuario {
     private String cargo;
     @OneToMany
     private Set<Ticket> tickets;
+    @OneToMany(mappedBy="usuario", fetch = FetchType.EAGER)
+    private Set<Sugerencia> sugerencias;
 
-    public Comensal() {
+    /**
+	 * @return the sugerencias
+	 */
+	public Set<Sugerencia> getSugerencias() {
+		return sugerencias;
+	}
+
+	/**
+	 * @param sugerencias the sugerencias to set
+	 */
+	public void setSugerencias(Sugerencia sugerencias) {
+		this.sugerencias.add(sugerencias);
+	}
+
+	public Comensal() {
     	this.setTickets(new HashSet<Ticket>());
     	this.celiaco=false;
     	this.diabetico=false;
     	this.hipertenso=false;
     	this.intolerante=false;
     	this.vegetariano=false;
+    	this.sugerencias=new HashSet<Sugerencia>();
     }
 
 	public Boolean getVegetariano() {

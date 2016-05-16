@@ -38,16 +38,25 @@
 										<div class="col-md-6">
 											<div class="form-group label-floating">
 												<label class="control-label" for="tipo">tipo</label>
-												<form:input type="text" cssClass="form-control" path="tipo"  required="required"/>
+												<select name="tipo" class="form-control">
+													
+  													<option  value="infraestructura">infraestructura</option>
+													<option  value="alimentacion">alimentacion</option>
+													<option  value="atencion">atencion</option>
+													
+													
+												</select>
 												<p class="help-block">Ingrese el Tipo de sugerencia</p>	
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group label-floating">
+											<label class="control-label" for="idSedes">Sede</label>
 												<select name="idSedes" class="form-control">
-  													<option selected="selected" value="0" disabled>Seleccionar una sede (opcional)</option>
-													<c:forEach items="${sedeList}" var="plato">
-														<option value="${plato.id}" label="${plato.nombre}"/>
+  													<option selected="selected" value="NONE" selected>Seleccionar una sede (opcional)</option>
+  													<option selected="selected" value="ALL" >Todas las sedes(sugerencia general)</option>
+													<c:forEach items="${sedeList}" var="sede">
+														<option value="${sede.id}" label="${sede.nombre}"/>
 													</c:forEach>
 												</select>
 											</div>

@@ -123,7 +123,7 @@
   
 				</li>
 				</c:if>
-				<c:if test="${role == 'Administrador'}">
+				<c:if test="${not empty role}">
 				<li>
 					<a href="getAllSugerencias" class="animsition-link">
 						<b><spring:message code="page.sugerencia"/></b>

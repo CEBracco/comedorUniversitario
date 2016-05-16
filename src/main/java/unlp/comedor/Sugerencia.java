@@ -3,15 +3,15 @@ package unlp.comedor;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
+
 import javax.persistence.Table;
 
 /**
@@ -26,15 +26,27 @@ public class Sugerencia {
     private Long id;
     private String sugerencia;
     public String tipo;
-    @ManyToOne
-    private Usuario usuario;
-    @ManyToOne
-    private Sede sede;
+    public String respuesta;
+    
+    @ManyToOne(optional = true)
+    @JoinColumn(name="usuario_id")
+    private Comensal usuario;
+    
+    @ManyToMany
+    private Set<Sede> sede;
+    
+    
     private Boolean activo;
 
-    
-    public Sugerencia() {
+    public void setRespuesta(String respuesta){
+    	this.respuesta=respuesta;
+    }
+    public String getRespuesta(){
+    	return this.respuesta;
+    }
+     public Sugerencia() {
     	 this.setActivo(true);
+    	 this.sede = new HashSet<Sede>();
     }
 
     
@@ -68,13 +80,13 @@ public class Sugerencia {
 
 
 
-	public Usuario getUsuario() {
+	public Comensal getUsuario() {
 		return usuario;
 	}
 
 
 	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+		this.usuario =(Comensal)usuario;
 	}
 
 	public Boolean getActivo() {
@@ -86,13 +98,13 @@ public class Sugerencia {
 	}
 
 
-	public Sede getSede() {
+	public Set<Sede> getSede() {
 		return sede;
 	}
 
 
 	public void setSede(Sede sede) {
-		this.sede = sede;
+		this.sede.add(sede);
 	}
 
 }
