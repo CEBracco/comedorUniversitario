@@ -18,7 +18,7 @@ public class Ticket {
 	@Column(name="id")
     private Long id;
     @OneToMany
-    private Set<Compra> compras;
+    private Set<Reserva> reservas;
     private Date fecha;
     private Double monto;
     @ManyToOne
@@ -29,7 +29,7 @@ public class Ticket {
 
     public Ticket() {
     	this.setMonto(0.0);
-    	this.setCompras(new HashSet<Compra>());
+    	this.setReservas(new HashSet<Reserva>());
     	this.setActivo(true);
     }
 
@@ -57,12 +57,12 @@ public class Ticket {
 		this.id = id;
 	}
 
-	public Set<Compra> getCompras() {
-		return compras;
+	public Set<Reserva> getReservas() {
+		return reservas;
 	}
 
-	public void setCompras(Set<Compra> compras) {
-		this.compras = compras;
+	public void setReservas(Set<Reserva> reservas) {
+		this.reservas = reservas;
 		this.calcularMonto();
 	}
 
@@ -84,27 +84,27 @@ public class Ticket {
 
 	public void calcularMonto(){
 		Double acumuladorPrecio= 0.0;
-		for (Compra compra : this.getCompras()) {
-			if(compra.getActivo()){
-				acumuladorPrecio=compra.getMonto();
+		for (Reserva reserva : this.getReservas()) {
+			if(reserva.getActivo()){
+				acumuladorPrecio=reserva.getMonto();
 			}
 		}
 		this.setMonto(acumuladorPrecio);
 	}
 	
-	public void addCompra(Compra compra){
-		this.getCompras().add(compra);
-		if(compra.getActivo()){
-			this.setMonto(this.getMonto() + compra.getMonto());
+	public void addReserva(Reserva reserva){
+		this.getReservas().add(reserva);
+		if(reserva.getActivo()){
+			this.setMonto(this.getMonto() + reserva.getMonto());
 		}
 	}
 	
-	public void removeCompra(Compra compra){
+	public void removeReserva(Reserva reserva){
 		//hacerrlo con contains
-		for (Compra compraActual : this.getCompras()) {
-			if(compraActual.getId()==compra.getId()){
-				compra.setActivo(false);
-				this.setMonto(this.getMonto() - compra.getMonto());
+		for (Reserva reservaActual : this.getReservas()) {
+			if(reservaActual.getId()==reserva.getId()){
+				reserva.setActivo(false);
+				this.setMonto(this.getMonto() - reserva.getMonto());
 			}
 		}
 	}

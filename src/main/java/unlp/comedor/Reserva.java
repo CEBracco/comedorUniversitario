@@ -1,19 +1,16 @@
 package unlp.comedor;
 
-import java.util.*;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
 @Entity
-@Table(name="Compra")
-public class Compra {
+@Table(name="Reserva")
+public class Reserva {
 
 	@Id @GeneratedValue
 	@Column(name="id")
@@ -22,17 +19,26 @@ public class Compra {
     private Boolean retirado;
     @ManyToOne
     private Dia dia;
-    @ManyToMany
-    private Set<Menu> menus;
+    @ManyToOne
+    private Menu menu;
     private Boolean activo;
 
-    public Compra() {
-    	this.setMenus(new HashSet<Menu>());
+    public Reserva() {
     	this.setVianda(false);
     	this.setRetirado(false);
     	this.setActivo(true);
     }
     
+
+	public Menu getMenu() {
+		return menu;
+	}
+
+
+	public void setMenu(Menu menu) {
+		this.menu = menu;
+	}
+
 
 	public Boolean getVianda() {
 		return vianda;
@@ -51,16 +57,6 @@ public class Compra {
 
 	public void setRetirado(Boolean retirado) {
 		this.retirado = retirado;
-	}
-
-
-	public Set<Menu> getMenus() {
-		return menus;
-	}
-
-
-	public void setMenus(Set<Menu> menus) {
-		this.menus = menus;
 	}
 
 
@@ -94,7 +90,7 @@ public class Compra {
 	}
 	
 	public Double getMonto(){
-		return (this.getDia().getCartilla().getPrecio()) * (this.getMenus().size());
+		return this.getDia().getCartilla().getPrecio();
 	}
 
 }
