@@ -10,5 +10,5 @@ public interface CartillaDAO {
     public void deleteCartilla(long id);
     public List<Cartilla> getAllCartillas();
     public Cartilla getCartilla(long id);
-   
+    public Cartilla getCartillaActual();
 }

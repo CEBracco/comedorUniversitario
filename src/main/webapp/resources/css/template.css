@@ -54,4 +54,7 @@ a:focus{
 	text-transform: none;
 	padding-top:25px;
 }
-
+.reset-margin{
+	padding-bottom: initial;
+	margin: initial
+}
