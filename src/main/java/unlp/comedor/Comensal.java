@@ -27,7 +27,7 @@ public class Comensal extends Usuario {
     private String mail;
     private String domicilio;
     private String cargo;
-    @OneToMany
+    @OneToMany(mappedBy="comensal", fetch = FetchType.EAGER)
     private Set<Ticket> tickets;
     @OneToMany(mappedBy="usuario", fetch = FetchType.EAGER)
     private Set<Sugerencia> sugerencias;

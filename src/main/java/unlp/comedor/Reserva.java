@@ -1,5 +1,7 @@
 package unlp.comedor;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,8 +19,9 @@ public class Reserva {
     private Long id;
     private Boolean vianda;
     private Boolean retirado;
+    private Date fecha;
     @ManyToOne
-    private Dia dia;
+    private Cartilla cartilla;
     @ManyToOne
     private Menu menu;
     private Boolean activo;
@@ -29,6 +32,12 @@ public class Reserva {
     	this.setActivo(true);
     }
     
+    public Reserva(Cartilla cartilla, Date fecha, Menu menu) {
+    	this();
+    	this.setFecha(fecha);
+    	this.setCartilla(cartilla);
+    	this.setMenu(menu);
+    }
 
 	public Menu getMenu() {
 		return menu;
@@ -78,19 +87,25 @@ public class Reserva {
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
 	}
-
-
-	public Dia getDia() {
-		return dia;
-	}
-
-
-	public void setDia(Dia dia) {
-		this.dia = dia;
-	}
 	
 	public Double getMonto(){
-		return this.getDia().getCartilla().getPrecio();
+		return this.getCartilla().getPrecio();
+	}
+
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	public Cartilla getCartilla() {
+		return cartilla;
+	}
+
+	public void setCartilla(Cartilla cartilla) {
+		this.cartilla = cartilla;
 	}
 
 }

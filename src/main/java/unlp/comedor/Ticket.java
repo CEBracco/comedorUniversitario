@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -22,15 +23,23 @@ public class Ticket {
     private Date fecha;
     private Double monto;
     @ManyToOne
+    @JoinColumn(name="comensal_id")
     private Comensal comensal;
     @ManyToOne
     private Sede sede;
     private Boolean activo;
 
     public Ticket() {
+    	this.setFecha(Calendar.getInstance().getTime());
     	this.setMonto(0.0);
     	this.setReservas(new HashSet<Reserva>());
     	this.setActivo(true);
+    }
+    
+    public Ticket(Sede sede ,Comensal comensal) {
+    	this();
+    	this.setComensal(comensal);
+    	this.setSede(sede);
     }
 
 	public Date getFecha() {

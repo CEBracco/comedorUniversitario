@@ -50,7 +50,7 @@
 													<tr>
 														<c:forEach items="${cartilla.semana}" var="dia">
 														<td>
-															<div class="form-group">
+															<div class="form-group reset-margin">
 															<select class="form-control" name="dias" required>
 																<option value="0" selected>No Seleccionado</option>
 																<c:forEach items="${dia.menus}" var="menu">
