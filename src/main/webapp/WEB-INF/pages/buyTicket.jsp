@@ -25,7 +25,6 @@
 										<a onclick="displayWeek()" href="javascript:void(0)" class="btn btn-raised btn-danger btn-sm withoutMargin marginTop pull-right">Añadir Semana</a>
 									</div>
 								</div>
-								<br>
 								
 																
 								<div class="col-md-12 defaultWeek hide">
@@ -69,6 +68,23 @@
 								</div>
 								
 								<form method="post" action="saveTicket">
+
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<label class="control-label" for="nombre">Sede</label>
+												<select id="sedeSelectInput" class="form-control reset-margin" name="sede" required>
+													<option value="" disabled selected>Seleccione una sede</option>
+													<c:forEach items="${sedeList}" var="sede">
+														<option value="${sede.id}">${sede.nombre}</option>
+													</c:forEach>
+												</select>
+											</div>
+										</div>
+									</div>
+
+									<br>
+
 									<div id="weekContainer" class="row">
 									
 										<div class="col-md-12 week">

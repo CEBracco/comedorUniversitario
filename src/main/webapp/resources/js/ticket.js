@@ -10,6 +10,13 @@ function displayWeek(){
 	clonedWeek.find(".panel-title").text("Semana " + weekCount);
 }
 
+function updateList(){
+	dayCount=0;
+	$(".week").each(function( index ) {
+		$(this).find(".panel-title").text("Semana " + ++index);
+		dayCount++;
+	});
+}
 
 
 $(document).ready(function(){
@@ -20,6 +27,10 @@ $(document).ready(function(){
 			weekCount--;
 			updateList();
 		}
+	});
+	
+	$("#sedeSelectInput").change(function(){
+		alert("lalala");
 	});
 	
 });
