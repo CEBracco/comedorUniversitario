@@ -1,5 +1,7 @@
 package ttps.dao.impl;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -46,6 +48,25 @@ public class ReservaDAOImpl implements ReservaDAO {
 	@Override
 	public Reserva getReserva(long id) {
 		return (Reserva) entityManager.find(Reserva.class, id);
+	}
+
+	@Override
+	public List<Reserva> getReservasActivas(long usuario, long sede) {
+		Query query = entityManager.createQuery("from Reserva r "
+												+ "where r.ticket.comensal.id=" + usuario + " and r.ticket.sede.id="+ sede
+												+ "and r.fecha >= ?1");
+		
+		GregorianCalendar nextMonday= new GregorianCalendar();
+		nextMonday.set(GregorianCalendar.HOUR_OF_DAY, 0);
+		
+		nextMonday.add(GregorianCalendar.DATE, 1);
+		while (nextMonday.get(GregorianCalendar.DAY_OF_WEEK) != GregorianCalendar.MONDAY){
+			nextMonday.add(GregorianCalendar.DATE, 1);
+		}
+		
+		query.setParameter(1, nextMonday.getTime());
+		
+		return (List<Reserva>)query.getResultList();
 	}
 
 }

@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -21,7 +22,8 @@ public class Reserva {
     private Boolean retirado;
     private Date fecha;
     @ManyToOne
-    private Cartilla cartilla;
+    @JoinColumn(name = "ticket_id")
+    private Ticket ticket;
     @ManyToOne
     private Menu menu;
     private Boolean activo;
@@ -32,12 +34,20 @@ public class Reserva {
     	this.setActivo(true);
     }
     
-    public Reserva(Cartilla cartilla, Date fecha, Menu menu) {
+    public Reserva(Ticket ticket, Date fecha, Menu menu) {
     	this();
     	this.setFecha(fecha);
-    	this.setCartilla(cartilla);
+    	this.setTicket(ticket);
     	this.setMenu(menu);
     }
+
+	public Ticket getTicket() {
+		return ticket;
+	}
+
+	public void setTicket(Ticket ticket) {
+		this.ticket = ticket;
+	}
 
 	public Menu getMenu() {
 		return menu;
@@ -89,7 +99,7 @@ public class Reserva {
 	}
 	
 	public Double getMonto(){
-		return this.getCartilla().getPrecio();
+		return this.getTicket().getCartilla().getPrecio();
 	}
 
 	public Date getFecha() {
@@ -98,14 +108,6 @@ public class Reserva {
 
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
-	}
-
-	public Cartilla getCartilla() {
-		return cartilla;
-	}
-
-	public void setCartilla(Cartilla cartilla) {
-		this.cartilla = cartilla;
 	}
 
 }

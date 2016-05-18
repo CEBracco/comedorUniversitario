@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import ttps.dao.CartillaDAO;
@@ -52,18 +51,22 @@ public class TicketController {
 	
 	
 	@RequestMapping("buyTicket")//controlar si el usuario ya compro
-    public ModelAndView buyTicket() {
+    public ModelAndView buyTicket(@RequestParam long sede) {
     	Usuario sessionUser=(Usuario)httpSession.getAttribute("user");
-    	String sesionRole=(String)httpSession.getAttribute("role");
-    	if(sessionUser != null){
+    	String sessionRole=(String)httpSession.getAttribute("role");
+    	if(sessionUser != null && sessionRole.equals("Comensal")){
     		Cartilla cartillaActual=CartillaDAO.getCartillaActual();
-    		List<Sede> sedeList=SedeDAO.getAllSedes();
     		
     		ModelAndView vista= new ModelAndView("buyTicket");
     		vista.addObject("user", sessionUser);
-    		vista.addObject("role", sesionRole);
+    		vista.addObject("role", sessionRole);
     		vista.addObject("cartilla", cartillaActual);
-    		vista.addObject("sedeList", sedeList);
+    		vista.addObject("sede", sede);
+    		
+    		for (Reserva reserva : ReservaDAO.getReservasActivas(sessionUser.getId(), sede)) {
+				System.out.println(reserva.getId());
+			}
+    		
     		return vista;
     	}
     	else{
@@ -77,11 +80,10 @@ public class TicketController {
     	String sessionRole=(String)httpSession.getAttribute("role");
     	if(sessionUser != null  && sessionRole.equals("Comensal")){
     		
-    		Ticket ticket= new Ticket(SedeDAO.getSede(sede), (Comensal)sessionUser); //cambiar el constructor al que es por parametros 
-    		((Comensal)sessionUser).getTickets().add(ticket);
-    		
-  
     		Cartilla cartilla= CartillaDAO.getCartillaActual();
+
+    		Ticket ticket= new Ticket(SedeDAO.getSede(sede), (Comensal)sessionUser, cartilla);
+    		((Comensal)sessionUser).getTickets().add(ticket);
     		
     		GregorianCalendar startWeek= new GregorianCalendar();
     		this.setNextMonday(startWeek);
@@ -90,8 +92,8 @@ public class TicketController {
     			if(idDia != 0){
     				Menu menuElegido= MenuDAO.getMenu(idDia);
 
-    				Reserva reserva=new Reserva(cartilla, startWeek.getTime(), menuElegido);
-    				reserva= ReservaDAO.createReserva(reserva);
+    				Reserva reserva=new Reserva(ticket, startWeek.getTime(), menuElegido);
+    				//reserva= ReservaDAO.createReserva(reserva);
 
     				ticket.addReserva(reserva);
     			}
@@ -107,10 +109,6 @@ public class TicketController {
     	else{
     		return new ModelAndView("redirect:index");
     	}
-	}
-	
-	public @ResponseBody boolean boughtTicket(@RequestParam long sede){//SEGUIIIR con esto, ya me fui a dormir
-		return true;
 	}
 	
 	/**
