@@ -62,6 +62,7 @@
 											</div>
 										</div>
 									</div>
+									<c:if test="${not edit}">
 									<div class="row">
 										<div class="form-group">
 									    	<label for="rol" class="col-md-1 control-label">Rol de Usuario</label>
@@ -82,6 +83,7 @@
 									    	</div>
 									    	<div class="col-md-1"></div>
 									</div>
+									</c:if>
 									
 									<div class="row">
 										<div class="container-fluid">

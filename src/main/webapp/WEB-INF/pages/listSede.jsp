@@ -33,6 +33,7 @@
 								            <th data-column-id="domicilio">Domicilio</th>
 								            <th data-column-id="telefono">Tel&eacute;fono</th>
 								            <th data-column-id="email">Email</th>
+								           
 								            <th data-column-id="link" data-formatter="link" data-sortable="false">Acciones</th>
 								        </tr>
 								    </thead>
@@ -74,6 +75,12 @@
 				            +">"
 							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> Ver"
 							+ "     </button>"
+							
+							+ "<a href='sedeResponsable?idSede="+row.id+"'>"
+							+"<button class='btn btn-raised btn-default btn-sm withoutMargin command'"
+							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> Responsable"
+							+ "</button>"
+							
 							+ "<a href='editSede?id="+ row.id +"'>"
 							+ "<button class='btn btn-raised btn-default btn-sm withoutMargin command'>"
 							+ "<span class='glyphicon glyphicon glyphicon-pencil' aria-hidden='true'></span> Editar"

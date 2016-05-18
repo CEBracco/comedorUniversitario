@@ -1,5 +1,7 @@
 package ttps.controller;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -14,9 +16,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ttps.dao.SedeDAO;
+import unlp.comedor.Responsable;
 import unlp.comedor.Sede;
 import unlp.comedor.Usuario;
-
+import ttps.dao.ResponsableDAO;
 @Controller
 public class SedeController {
 	
@@ -25,6 +28,9 @@ public class SedeController {
 	
 	@Autowired
     private SedeDAO SedeDAO;
+	
+	@Autowired
+    private ResponsableDAO ResponsableDAO;
     
 	
     @RequestMapping("createSede")
@@ -113,5 +119,116 @@ public class SedeController {
     	}else{
     		return "No tiene permisos para realizar esta accion!";
     	}
+    }
+    @RequestMapping("sedeResponsable")
+    public ModelAndView sedeResponsable(@RequestParam long idSede) {
+    	Usuario sessionUser=(Usuario)httpSession.getAttribute("user");
+    	String sesionRole=(String)httpSession.getAttribute("role");
+    	if(sessionUser != null && sesionRole.equals("Administrador")){
+    			Sede sede;
+    			
+    			sede=SedeDAO.getSede(idSede);
+    			ModelAndView vista= new ModelAndView("sedeResponsable", "sedeObject", sede);
+    			Responsable responsable = new Responsable();
+    			for (Responsable respo : sede.getResponsables()){
+					responsable=respo;
+				}
+    			ArrayList<Responsable> responsableSinSedeAsignada = new ArrayList<Responsable>();
+    			List<Responsable> responsableList =ResponsableDAO.getAllResponsables();
+    			for (Responsable responsable2 : responsableList) {
+					if(responsable2.getSedes().isEmpty()){
+						responsableSinSedeAsignada.add(responsable2);
+					}
+				}
+    			
+    			
+        		vista.addObject("user", sessionUser);
+        		vista.addObject("role", sesionRole);
+        		vista.addObject("responsableObject",responsable);
+        		vista.addObject("responsableList",responsableSinSedeAsignada);
+        		return vista;
+    		}
+    		
+    		
+    	else{
+    		 return new ModelAndView ("redirect:index");
+    	}
+    }
+    @RequestMapping("assignResponsableSede")
+    public ModelAndView assignResponsableSede(@RequestParam long idSede,@RequestParam long idResponsable, final RedirectAttributes redirectAttributes) {
+    	Usuario sessionUser=(Usuario)httpSession.getAttribute("user");
+    	String sesionRole=(String)httpSession.getAttribute("role");
+    	if(sessionUser != null && sesionRole.equals("Administrador")){
+    		if(this.responsableCorrecto(idResponsable) && this.sedeCorrecta(idSede)){
+			    	
+			    	Sede sede = SedeDAO.getSede(idSede);
+			    	if(sede.getResponsables().isEmpty()){
+			    		Responsable responsable = ResponsableDAO.getResponsable(idResponsable);
+			    		HashSet<Responsable> responsables = new HashSet<Responsable>();
+			    		responsables.add(responsable);
+			    		sede.setResponsables(responsables);
+			    		
+			    		SedeDAO.updateSede(sede);
+			    		responsable.setSede(SedeDAO.getSede(sede.getId()));
+			    		ResponsableDAO.updateResponsable(responsable);
+			    		redirectAttributes.addFlashAttribute("msj", "¡responsable asignado con exito!");
+			    		return new ModelAndView("redirect:getAllSedes");
+			    		}else{
+			    			 redirectAttributes.addFlashAttribute("msj", "¡Esta sede tiene un responsable asigndo!");
+			    			 return new ModelAndView("redirect:getAllSedes");
+			    		}
+    		}else{
+			    redirectAttributes.addFlashAttribute("msj", "¡Error en los parametros!");
+			    return new ModelAndView("redirect:getAllSedes");
+			   }
+    	}
+        return new ModelAndView ("redirect:index");
+    }
+    @RequestMapping("removeResponsableSede")
+    public ModelAndView removeResponsableSede(@RequestParam long idSede,@RequestParam long idResponsable, final RedirectAttributes redirectAttributes) {
+    	Usuario sessionUser=(Usuario)httpSession.getAttribute("user");
+    	String sesionRole=(String)httpSession.getAttribute("role");
+    	if(sessionUser != null && sesionRole.equals("Administrador")){
+			    if(this.responsableCorrecto(idResponsable) && this.sedeCorrecta(idSede)){	
+			    	Sede sede = SedeDAO.getSede(idSede);
+			    	if(!sede.getResponsables().isEmpty()){
+			    		Responsable responsable = ResponsableDAO.getResponsable(idResponsable);
+			    		
+			    		sede.setResponsables(new HashSet<Responsable>());
+			    		SedeDAO.updateSede(sede);
+			    		responsable.setSedes(new HashSet<Sede>());
+			    		ResponsableDAO.updateResponsable(responsable);
+			    		redirectAttributes.addFlashAttribute("msj", "¡Responsable desvinculado con exito!");
+			    		return new ModelAndView("redirect:getAllSedes");
+			    		}else{
+			    			 redirectAttributes.addFlashAttribute("msj", "¡Esta sede no tiene un responsable asigndo!");
+			    			 return new ModelAndView("redirect:getAllSedes");
+			    		}
+			    }else{
+			    redirectAttributes.addFlashAttribute("msj", "¡Error en los parametros!");
+			    return new ModelAndView("redirect:getAllSedes");
+			    }
+    	}
+        return new ModelAndView ("redirect:index");
+    }
+    private boolean sedeCorrecta(long sede){
+    	HashSet<Long> idSedes = new HashSet<Long>();
+    	
+    	for (Sede sedes : SedeDAO.getAllSedes()) {
+			idSedes.add((sedes.getId()));
+			
+		}
+    	return idSedes.contains(sede);
+    	
+    }
+    private boolean responsableCorrecto(long responsable){
+    	HashSet<Long> idResponsable = new HashSet<Long>();
+    	
+    	for (Responsable responsables : ResponsableDAO.getAllResponsables()) {
+			idResponsable.add((responsables.getId()));
+			
+		}
+    	return idResponsable.contains(responsable);
+    	
     }
 }
