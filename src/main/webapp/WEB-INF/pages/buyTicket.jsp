@@ -4,6 +4,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <t:template>
 	<jsp:attribute name="head">
 		<script src="<c:url value="/resources/js/ticket.js"/>"></script>
@@ -75,46 +76,68 @@
 
 
 									<div id="weekContainer" class="row">
-									
-										<div class="col-md-12 week">
-											<div class="panel panel-danger">
-												<div class="panel-heading clearfix">
-													<h3 class="panel-title pull-left">Semana 1</h3>
-												    <button type="button" class="close">&times;</button>
-												</div>
-												<div class="panel-body without-margin">
-													<table class="table table-striped table-hover ">
-														<thead>
-															<tr>
-																<th>Lunes</th>
-																<th>Martes</th>
-																<th>Miercoles</th>
-																<th>Jueves</th>
-																<th>Viernes</th>
-															</tr>
-														</thead>
-														
-														<tbody>
-															<tr>
-																<c:forEach items="${cartilla.semana}" var="dia">
-																<td>
-																	<div class="form-group reset-margin">
-																	<select class="form-control" name="dias" required>
-																		<option value="0" selected>No Seleccionado</option>
-																		<c:forEach items="${dia.menus}" var="menu">
-																			<option value="${menu.id}">${menu.nombre}</option>
+										
+										<c:choose>
+											<c:when test="${empty reservasPorSemana}">
+												<script>displayWeek();</script>
+											</c:when>
+										
+											<c:otherwise>
+												<script>init('${fn:length(reservasPorSemana)}');</script>
+																				
+												<c:forEach items="${reservasPorSemana}" var="reservas" varStatus="loop">
+												<div class="col-md-12 week">
+													<div class="panel panel-danger">
+														<div class="panel-heading clearfix">
+															<h3 class="panel-title pull-left">Semana ${loop.index + 1}</h3>
+														</div>
+														<div class="panel-body without-margin">
+															<table class="table table-striped table-hover ">
+																<thead>
+																	<tr>
+																		<th>Lunes</th>
+																		<th>Martes</th>
+																		<th>Miercoles</th>
+																		<th>Jueves</th>
+																		<th>Viernes</th>
+																	</tr>
+																</thead>
+																
+																<tbody>
+																	<tr>
+																			
+																		<c:forEach items="${reservas}" var="reserva">
+																		<td>
+																			<div class="form-group reset-margin">
+																			<c:choose>
+																				<c:when test="${reserva.id == '0'}">
+																					<select class="form-control" name="dias" required>
+																						<option value="0" selected>No Seleccionado</option>
+																						<c:forEach items="${reserva.dia.menus}" var="menu">
+																							<option value="${menu.id}">${menu.nombre}</option>
+																						</c:forEach>
+																					</select>
+																				</c:when>
+																				<c:otherwise>
+																					<select class="form-control" name="dias" disabled required>
+																						<option value="0" selected>COMPRADO</option>
+																					</select>
+																				</c:otherwise>
+																			</c:choose>
+																			</div>
+																		</td>
 																		</c:forEach>
-																	</select>
-																	</div>
-																</td>
-																</c:forEach>
-															</tr>
-														
-														</tbody>
-													</table>
+																		
+																	</tr>
+																
+																</tbody>
+															</table>
+														</div>
+													</div>
 												</div>
-											</div>
-										</div>
+												</c:forEach>
+											</c:otherwise>	
+										</c:choose>
 										
 									</div>
 									<div class="row">

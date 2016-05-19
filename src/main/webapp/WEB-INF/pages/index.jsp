@@ -131,12 +131,22 @@
 					</a>
 				</li>
 				</c:if>
+				<c:if test="${role == 'Administrador'}">
 				<li>
 					<a href="menuCartilla" class="animsition-link">
 						<b><spring:message code="page.cartilla"/></b>
 						<span></span><!-- icon -->
 					</a>
 				</li>
+				</c:if>
+				<c:if test="${role == 'Comensal'}">
+				<li>
+					<a href="selectSedeTicket" class="animsition-link">
+						<b><spring:message code="page.compra"/></b>
+						<span></span><!-- icon -->
+					</a>
+				</li>
+				</c:if>
 				<li>
 					<a href="#cd-placeholder-5" class="animsition-link">
 						<b><spring:message code="page.estadistica"/></b>

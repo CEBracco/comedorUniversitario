@@ -26,7 +26,17 @@ public class Reserva {
     private Ticket ticket;
     @ManyToOne
     private Menu menu;
-    private Boolean activo;
+    @ManyToOne
+    private Dia dia;
+    public Dia getDia() {
+		return dia;
+	}
+
+	public void setDia(Dia dia) {
+		this.dia = dia;
+	}
+
+	private Boolean activo;
 
     public Reserva() {
     	this.setVianda(false);

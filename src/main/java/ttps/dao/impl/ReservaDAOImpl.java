@@ -54,7 +54,8 @@ public class ReservaDAOImpl implements ReservaDAO {
 	public List<Reserva> getReservasActivas(long usuario, long sede) {
 		Query query = entityManager.createQuery("from Reserva r "
 												+ "where r.ticket.comensal.id=" + usuario + " and r.ticket.sede.id="+ sede
-												+ "and r.fecha >= ?1");
+												+ "and r.fecha >= ?1 "
+												+ "order by r.fecha");
 		
 		GregorianCalendar nextMonday= new GregorianCalendar();
 		nextMonday.set(GregorianCalendar.HOUR_OF_DAY, 0);

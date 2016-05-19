@@ -1,4 +1,8 @@
-var weekCount=1;
+var weekCount=0;
+
+function init(numOfWeeks){
+	weekCount=numOfWeeks;
+}
 
 function displayWeek(){
 	var defaultWeek=$(".defaultWeek").first();
