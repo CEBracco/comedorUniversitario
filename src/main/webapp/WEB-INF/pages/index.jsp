@@ -118,7 +118,7 @@
 				<c:if test="${role == 'Responsable'}">
 				<li>
 					<b>
-					 <a class="animsition-link" href="createSugerencia" >Enviar Sugerencia</a>
+					 <a class="animsition-link" href="getAllComensalesHabilitados" >Comensales habilitados</a>
 					</b>
   
 				</li>

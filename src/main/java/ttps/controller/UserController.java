@@ -302,4 +302,24 @@ public class UserController {
     	}
     	return new ModelAndView("redirect:index");
     }
+    @RequestMapping("getAllComensalesHabilitados")
+    public ModelAndView getAllComensalesHabilitados() {
+		Usuario sessionUser=(Usuario)httpSession.getAttribute("user");
+    	String sesionRole=(String)httpSession.getAttribute("role");
+    	if(sessionUser != null && sesionRole.equals("Responsable")){
+			
+	        List<Comensal> comenList = comensalDAO.getAllComensalesRegulares();
+	        ModelAndView presentacion= new ModelAndView("listRegularUser");
+	       
+	        presentacion.addObject("comenList",comenList);
+	        
+	        presentacion.addObject("user", sessionUser);
+    		presentacion.addObject("role", sesionRole);
+	        
+    		return presentacion;
+    	}
+    	else{
+    		return new ModelAndView("redirect:index");
+    	}
+    }
 }

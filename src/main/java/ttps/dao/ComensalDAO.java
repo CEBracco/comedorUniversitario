@@ -12,5 +12,5 @@ public interface ComensalDAO {
     public List<Comensal> getAllComensales();
     public Comensal getComensal(long id);
     public Comensal getComensal(Integer documento, String password);
-	
+	public List<Comensal> getAllComensalesRegulares();
 }

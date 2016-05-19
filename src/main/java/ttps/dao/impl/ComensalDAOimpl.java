@@ -43,6 +43,11 @@ public class ComensalDAOimpl implements ComensalDAO{
 		Query query = entityManager.createQuery("SELECT e FROM Comensal e where activo=1");
 		return (List<Comensal>)query.getResultList();
 	}
+	@Override
+	public List<Comensal> getAllComensalesRegulares() {
+		Query query = entityManager.createQuery("SELECT e FROM Comensal e where activo=1 and regular=1");
+		return (List<Comensal>)query.getResultList();
+	}
 
 	@Override
 	public Comensal getComensal(long id) {
