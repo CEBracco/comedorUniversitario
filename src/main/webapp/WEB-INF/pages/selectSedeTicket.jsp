@@ -18,11 +18,8 @@
 						<div class="row">
 							<div class="container-fluid">
 								<div class="row">
-									<div class="col-md-6">
+									<div class="col-md-12">
 										<h3>Listado de Sedes</h3>
-									</div>
-									<div class="col-md-6">
-										<a href="createSede" class="btn btn-raised btn-danger btn-sm withoutMargin marginTop pull-right animsition-link">Agregar Sede</a>
 									</div>
 								</div>
 								<table id="grid-data-api" class="table table-condensed table-hover table-striped">
