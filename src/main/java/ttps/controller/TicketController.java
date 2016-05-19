@@ -99,34 +99,40 @@ public class TicketController {
 	}
 	
 	@RequestMapping("saveTicket")
-    public ModelAndView saveTicket(@RequestParam long sede, @RequestParam long[] dias) {//controlar si ya compre para esa sede 
+    public ModelAndView saveTicket(@RequestParam long sede, @RequestParam long[] dias) { 
     	Usuario sessionUser=(Usuario)httpSession.getAttribute("user");
     	String sessionRole=(String)httpSession.getAttribute("role");
     	if(sessionUser != null  && sessionRole.equals("Comensal")){
     		
+    		Comensal sessionComensal=(Comensal)sessionUser;
     		Cartilla cartilla= CartillaDAO.getCartillaActual();
-
-    		Ticket ticket= new Ticket(SedeDAO.getSede(sede), (Comensal)sessionUser, cartilla);
-    		((Comensal)sessionUser).getTickets().add(ticket);
     		
-    		GregorianCalendar startWeek= new GregorianCalendar();
-    		this.setNextMonday(startWeek);
-    		
-    		for (long idDia : dias) {//fijarse si puedo sacar el index del dia con el index del foreach
-    			if(idDia != 0){
-    				Menu menuElegido= MenuDAO.getMenu(idDia);
-
-    				Reserva reserva=new Reserva(ticket, startWeek.getTime(), menuElegido);
-
-    				ticket.addReserva(reserva);
-    			}
-    			startWeek.add(GregorianCalendar.DATE, 1);
-    			this.controlGregorianCalendar(startWeek);
-			}
-    		
-    		TicketDAO.createTicket(ticket);
-    		//UserDAO.updateUser(sessionUser);
-    		
+    		if(sessionComensal.getSaldo() >= (dias.length*cartilla.getPrecio())){ //controlo si me alcanza el saldo
+	
+	    		Ticket ticket= new Ticket(SedeDAO.getSede(sede), (Comensal)sessionUser, cartilla);
+	    		sessionComensal.getTickets().add(ticket);
+	    		
+	    		GregorianCalendar startWeek= new GregorianCalendar();
+	    		this.setNextMonday(startWeek);
+	    		
+	    		for (long idDia : dias) {
+	    			if(idDia != 0){
+	    				Menu menuElegido= MenuDAO.getMenu(idDia);
+	
+	    				Reserva reserva=new Reserva(ticket, startWeek.getTime(), menuElegido);
+	
+	    				if(!this.existReserva(reserva, sede)){
+	    					ticket.addReserva(reserva);
+	    				}
+	    			}
+	    			startWeek.add(GregorianCalendar.DATE, 1);
+	    			this.controlGregorianCalendar(startWeek);
+				}
+	    		sessionComensal.setSaldo(sessionComensal.getSaldo() - ticket.getMonto());
+	    		TicketDAO.createTicket(ticket);
+	    		UserDAO.updateUser(sessionUser);
+    		}
+	    		
     		return new ModelAndView("redirect:buyTicket");
     	}
     	else{
@@ -222,7 +228,7 @@ public class TicketController {
 	/**
 	 * Compara fechas sin tener en cuenta el time
 	 */
-	private boolean compareDates(Date date1, Date date2){
+	private Boolean compareDates(Date date1, Date date2){
 		return this.getZeroTimeDate(date1).compareTo(this.getZeroTimeDate(date2)) == 0;
 	}
 	
@@ -244,5 +250,20 @@ public class TicketController {
 	    return res;
 	}
 
+	/**
+	 * Retorna si ya existe una reserva para un dia determinado
+	 */
+	public Boolean existReserva(Reserva reserva, long sede){
+		Usuario sessionUser=(Usuario)httpSession.getAttribute("user");
+		List<Reserva> reservasActivas= ReservaDAO.getReservasActivas(sessionUser.getId(), sede);
+		
+		for (Reserva reservaActiva : reservasActivas) {
+			if(this.compareDates(reserva.getFecha(), reservaActiva.getFecha())){
+				return true;
+			}
+		}
+		
+		return false;
+	}
 	
 }

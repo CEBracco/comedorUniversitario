@@ -19,7 +19,8 @@
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-md-12">
-										<h3>Listado de Sedes</h3>
+										<h3>Compra de ticket</h3>
+										<h4>Seleccion de Sede</h4>
 									</div>
 								</div>
 								<table id="grid-data-api" class="table table-condensed table-hover table-striped">

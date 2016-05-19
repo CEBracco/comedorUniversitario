@@ -23,7 +23,7 @@ public class Comensal extends Usuario {
     private Boolean intolerante;
     private Boolean diabetico;
     private Boolean regular;
-    private Integer saldo;
+    private Double saldo;
     private String mail;
     private String domicilio;
     private String cargo;
@@ -54,6 +54,7 @@ public class Comensal extends Usuario {
     	this.intolerante=false;
     	this.vegetariano=false;
     	this.sugerencias=new HashSet<Sugerencia>();
+    	this.setSaldo(0.0);
     }
 
 	public Boolean getVegetariano() {
@@ -116,12 +117,12 @@ public class Comensal extends Usuario {
 	}
 
 
-	public Integer getSaldo() {
+	public Double getSaldo() {
 		return saldo;
 	}
 
 
-	public void setSaldo(Integer saldo) {
+	public void setSaldo(Double saldo) {
 		this.saldo = saldo;
 	}
 
