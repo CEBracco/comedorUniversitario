@@ -42,7 +42,7 @@ public class HelloController {
 	private Integer responsableUserDni=12345;
 	private String responsablePassword="responsable";
 	
-	private String comensalUserName="Bracco";
+	private String comensalUserName="Braccoc";
 	private Integer comensalUserDni=1234;
 	private String comensalPassword="root";
 	
@@ -87,6 +87,10 @@ public class HelloController {
     		Administrador defaultUser=new Administrador();
     		Responsable responsableUser=new Responsable();
     		Comensal comensalUser=new Comensal();
+    		Comensal comensalUser2=new Comensal();
+    		Comensal comensalUser3=new Comensal();
+    		Comensal comensalUser4=new Comensal();
+    		
     		Sede sede = new Sede();
     		sede.setActivo(activo);
     		sede.setDomicilio(domicilio);
@@ -103,13 +107,61 @@ public class HelloController {
     		responsableUser.setNombre(responsableUserName);
     		responsableUser.setPassword(responsablePassword);
     		responsableUser.setSede(SedeDAO.getSede(1));
+    		
+    		
+    		
     		comensalUser.setDni(comensalUserDni);
     		comensalUser.setNombre(comensalUserName);
     		comensalUser.setPassword(comensalPassword);
+    		comensalUser.setApellido("Bracco");
+    		comensalUser.setCeliaco(false);
+    		comensalUser.setDiabetico(false);
+    		comensalUser.setHipertenso(false);
+    		comensalUser.setIntolerante(true);
+    		comensalUser.setRegular(true);
+    		
+    		
+    		comensalUser2.setDni(36172193);
+    		comensalUser2.setApellido("Martin");
+    		comensalUser2.setNombre("Jony");
+    		comensalUser2.setPassword("root");
+    		comensalUser2.setCeliaco(false);
+    		comensalUser2.setDiabetico(false);
+    		comensalUser2.setHipertenso(false);
+    		comensalUser2.setIntolerante(true);
+    		comensalUser2.setRegular(false);
+
+    		
+    		comensalUser3.setDni(123456);
+    		comensalUser3.setApellido("Cuevas");
+    		comensalUser3.setNombre("Lucas");
+    		comensalUser3.setPassword("36717139");
+    		comensalUser3.setCeliaco(false);
+    		comensalUser3.setDiabetico(true);
+    		comensalUser3.setHipertenso(false);
+    		comensalUser3.setIntolerante(true);
+    		comensalUser3.setRegular(true);
+
+    		
+    		comensalUser4.setDni(1212311341);
+    		comensalUser4.setNombre("cristian");
+    		comensalUser4.setApellido("alvarado");
+    		comensalUser4.setPassword("albareitor");
+    		comensalUser4.setCeliaco(false);
+    		comensalUser4.setDiabetico(false);
+    		comensalUser4.setHipertenso(false);
+    		comensalUser4.setIntolerante(true);
+    		comensalUser4.setRegular(true);
+
+    		
+    		
     		
     		AdministradorDAO.createAdministrador(defaultUser);
     		ResponsableDAO.createResponsable(responsableUser);
     		Comensal.createComensal(comensalUser);
+    		Comensal.createComensal(comensalUser2);
+    		Comensal.createComensal(comensalUser3);
+    		Comensal.createComensal(comensalUser4);
     		
     		System.out.println("Se creo el usuario default");
     	}
