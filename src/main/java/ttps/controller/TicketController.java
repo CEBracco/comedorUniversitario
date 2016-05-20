@@ -265,7 +265,5 @@ public class TicketController {
 		
 		return false;
 	}
-
-	
 	
 }

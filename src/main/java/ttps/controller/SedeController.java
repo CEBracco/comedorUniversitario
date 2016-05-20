@@ -16,15 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ttps.dao.SedeDAO;
-import ttps.dao.TicketDAO;
 import unlp.comedor.Responsable;
 import unlp.comedor.Sede;
 import unlp.comedor.Usuario;
 import ttps.dao.ResponsableDAO;
 @Controller
 public class SedeController {
-	@Autowired
-    private TicketDAO TicketDAO;
 	
 	@Autowired
 	private HttpSession httpSession;
@@ -233,30 +230,5 @@ public class SedeController {
 		}
     	return idResponsable.contains(responsable);
     	
-    }
-    @RequestMapping("getAllTicketsSedes")
-    public ModelAndView getAllTicketsSedes( final RedirectAttributes redirectAttributes) {
-    	Usuario sessionUser=(Usuario)httpSession.getAttribute("user");
-    	String sesionRole=(String)httpSession.getAttribute("role");
-    	if(sessionUser != null && sesionRole.equals("Responsable")){
-    		Responsable responsable = (Responsable)sessionUser;
-    		if(!responsable.getSedes().isEmpty()){
-    			List<Sede> sedeList = new ArrayList<Sede>(responsable.getSedes());
-        		Sede sede = sedeList.get(0);
-        		
-        		ModelAndView viewListado= new ModelAndView("listTicketSede", "ticketList", TicketDAO.getAllTicketsSede(sede.getId()));
-        		viewListado.addObject("sedeObject", sede);
-        		viewListado.addObject("user", sessionUser);
-        		viewListado.addObject("role", sesionRole);
-        		return viewListado;
-    		}else{
-    			redirectAttributes.addFlashAttribute("msj", "¡este responsable no tiene una sede asignada!");
-    			return new ModelAndView("redirect:index");
-    		}
-    		
-    	}
-    	else{
-    		return new ModelAndView("redirect:index");
-    	}
     }
 }

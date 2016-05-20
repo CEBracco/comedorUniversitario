@@ -10,5 +10,4 @@ public interface TicketDAO {
     public void deleteTicket(long id);
     public List<Ticket> getAllTickets();
     public Ticket getTicket(long id);
-    public List<Ticket> getAllTicketsSede(long idSede);
 }

@@ -34,12 +34,7 @@ public class Sede {
     
     @ManyToMany(mappedBy="sedes", fetch = FetchType.EAGER)
     private Set<Responsable> responsables;
-    
    
-   
-
-	
-	
 
 	private Boolean activo;
     
@@ -48,7 +43,6 @@ public class Sede {
     	this.setCartillas(new HashSet<Cartilla>());
     	this.setActivo(true);
     	this.sugerencias = new HashSet<Sugerencia>();
-    	
     }
     /**
    	 * @return the sugerencias

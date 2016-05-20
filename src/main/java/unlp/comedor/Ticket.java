@@ -5,7 +5,6 @@ import java.util.*;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -20,7 +19,7 @@ public class Ticket {
 	@Id @GeneratedValue
 	@Column(name="id")
     private Long id;
-    @OneToMany(mappedBy="ticket", cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+    @OneToMany(mappedBy="ticket", cascade=CascadeType.ALL)
     private Set<Reserva> reservas;
     private Date fecha;
     private Double monto;
