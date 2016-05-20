@@ -45,5 +45,12 @@ public class TicketDAOImpl implements TicketDAO {
 	public Ticket getTicket(long id) {
 		return (Ticket) entityManager.find(Ticket.class, id);
 	}
+	
+	public List<Ticket> getAllTicketsSede(long idSede) {
+		Query query = entityManager.createQuery("SELECT e FROM Ticket e where sede_id=:idSede");
+		query.setParameter("idSede", idSede);
+		return (List<Ticket>)query.getResultList();
+	}
+	
 
 }
