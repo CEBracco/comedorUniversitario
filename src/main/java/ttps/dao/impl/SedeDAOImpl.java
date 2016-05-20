@@ -45,7 +45,6 @@ public class SedeDAOImpl implements SedeDAO {
 		return (List<Sede>)query.getResultList();
 	}
 
-	
 	@Override
 	public Sede getSede(long id) {
 		return (Sede) entityManager.find(Sede.class, id);
