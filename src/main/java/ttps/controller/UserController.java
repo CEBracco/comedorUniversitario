@@ -302,6 +302,7 @@ public class UserController {
     	}
     	return new ModelAndView("redirect:index");
     }
+    
     @RequestMapping("getAllComensalesHabilitados")
     public ModelAndView getAllComensalesHabilitados() {
 		Usuario sessionUser=(Usuario)httpSession.getAttribute("user");
@@ -322,4 +323,21 @@ public class UserController {
     		return new ModelAndView("redirect:index");
     	}
     }
+    
+	@RequestMapping("creditCharge")
+	public ModelAndView creditCharge() {
+		Usuario sessionUser=(Usuario)httpSession.getAttribute("user");
+    	String sesionRole=(String)httpSession.getAttribute("role");
+    	if(sessionUser != null && (sesionRole.equals("Administrador") || sesionRole.equals("Responsable"))){
+    		ModelAndView view= new ModelAndView("creditCharge");
+    		
+    		view.addObject("user", sessionUser);
+    		view.addObject("role", sesionRole);
+    		
+    		return view;
+    	}
+    	else{
+    		return new ModelAndView("redirect:index");
+    	}
+	}
 }

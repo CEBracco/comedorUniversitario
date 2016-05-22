@@ -1,7 +1,16 @@
 var weekCount=0;
+var catalogPrice;
+var userCredits;
+var currentPurchase;
 
-function init(numOfWeeks){
+function initWeeks(numOfWeeks){
 	weekCount=numOfWeeks;
+}
+
+function initMoney(price,credits){
+	catalogPrice=parseFloat(price);
+	userCredits=parseFloat(credits);
+	currentPurchase=0;
 }
 
 function displayWeek(){
@@ -31,6 +40,44 @@ $(document).ready(function(){
 			weekCount--;
 			updateList();
 		}
+	});
+	
+	$(".menuSelect").focus(function(){
+		var value=$(this).val();
+		
+		$(this).change(function(){
+			if($(this).val() != 0 && value == 0){
+				currentPurchase=currentPurchase + catalogPrice;
+				userCredits=userCredits - catalogPrice;
+				if(userCredits < 0){
+					$("#price").css('color', 'red');
+					$("#submitTicket").attr("disabled", true);
+				}
+			}
+			else{
+				if($(this).val() == 0 && value != 0){
+					currentPurchase=currentPurchase - catalogPrice;
+					userCredits=userCredits + catalogPrice;
+					if(userCredits >= 0){
+						$("#price").css('color', 'black');
+						$("#submitTicket").attr("disabled", false);
+					}
+				}
+			}
+			
+			$("#price").text("$" + currentPurchase);
+			if(userCredits >= 0){
+				$("#credits").text(userCredits);
+			}
+			else{
+				$("#credits").text(0);
+			}
+			value=$(this).val();
+		});
+	});
+	
+	$(".menuSelect").focusout(function(){
+		$(".menuSelect").unbind("change");
 	});
 	
 });

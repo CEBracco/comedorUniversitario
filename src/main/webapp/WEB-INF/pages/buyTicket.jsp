@@ -8,6 +8,9 @@
 <t:template>
 	<jsp:attribute name="head">
 		<script src="<c:url value="/resources/js/ticket.js"/>"></script>
+		<script>
+			initMoney("${cartilla.precio}","${user.saldo}");
+		</script>
 	</jsp:attribute>
 	<jsp:body>
     	<div class="container-fluid">
@@ -51,7 +54,7 @@
 														<c:forEach items="${cartilla.semana}" var="dia">
 														<td>
 															<div class="form-group reset-margin">
-															<select class="form-control" name="dias" required>
+															<select class="form-control menuSelect" name="dias" required>
 																<option value="0" selected>No Seleccionado</option>
 																<c:forEach items="${dia.menus}" var="menu">
 																	<option value="${menu.id}">${menu.nombre}</option>
@@ -83,7 +86,7 @@
 											</c:when>
 										
 											<c:otherwise>
-												<script>init('${fn:length(reservasPorSemana)}');</script>
+												<script>initWeeks('${fn:length(reservasPorSemana)}');</script>
 																				
 												<c:forEach items="${reservasPorSemana}" var="reservas" varStatus="loop">
 												<div class="col-md-12 week">
@@ -111,7 +114,7 @@
 																			<div class="form-group reset-margin">
 																			<c:choose>
 																				<c:when test="${reserva.id == '0'}">
-																					<select class="form-control" name="dias" required>
+																					<select class="form-control menuSelect" name="dias" readonly required>
 																						<option value="0" selected>No Seleccionado</option>
 																						<c:forEach items="${reserva.dia.menus}" var="menu">
 																							<option value="${menu.id}">${menu.nombre}</option>
@@ -119,9 +122,13 @@
 																					</select>
 																				</c:when>
 																				<c:otherwise>
-																					<select class="form-control" name="dias" disabled required>
+																					<!-- <select class="form-control" name="dias" required>
 																						<option value="0" selected>COMPRADO</option>
-																					</select>
+																					</select> -->
+																					<input type="hidden" value="0" name="dias">
+																					<div class="padding-10">
+																						<p>COMPRADO</p>
+																					</div>
 																				</c:otherwise>
 																			</c:choose>
 																			</div>
@@ -142,11 +149,19 @@
 									</div>
 									<div class="row">
 										<div class="col-md-12">
-											<input type="submit" class="btn btn-danger btn-lg btn-block btn-raised" value="Aceptar Compra">
+											<input id="submitTicket" type="submit" class="btn btn-danger btn-lg btn-block btn-raised" value="Aceptar Compra">
 										</div>
 									</div>
 								</form>
-								
+								<hr>
+								<div class="row">
+										<div class="col-md-12 text-center">
+											<p>Total acumulado en la compra</p>
+											<h3 class="innerTitle"><b><span id="price">$0</span></b></h3>
+											<h4 class="innerTitle">Saldo actual: $<span id="credits">${user.saldo}</span></h4>
+											<h6>(Luego de efectuada la compra)</h6>
+										</div>
+								</div>
 							</div>
 						</div>
 					</div>

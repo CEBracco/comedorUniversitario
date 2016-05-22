@@ -58,3 +58,9 @@ a:focus{
 	padding-bottom: initial;
 	margin: initial
 }
+.padding-10{
+	padding-top:10px;
+}
+.innerTitle{
+	margin-top: 1px;
+}
