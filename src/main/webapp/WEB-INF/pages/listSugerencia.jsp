@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <t:template>
 	<jsp:attribute name="head">
@@ -20,12 +20,12 @@
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-md-6">
-										<h3>Listado de Sugerencias</h3>
+										<h3><spring:message code="listSugerencia.head"/></h3>
 									</div>
 									
 									<c:if test="${role == 'Comensal'}">
 										<div class="col-md-6">
-											<a href="createSugerencia" class="btn btn-raised btn-danger btn-sm withoutMargin marginTop pull-right animsition-link">Enviar Sugerencia</a>
+											<a href="createSugerencia" class="btn btn-raised btn-danger btn-sm withoutMargin marginTop pull-right animsition-link"><spring:message code="listSugerencia.eviarSugerencia"/></a>
 										</div>
 									</c:if>
 								</div>
@@ -33,10 +33,10 @@
 								    <thead>
 								        <tr>
 								        	
-								            <th data-column-id="Tipo" data-order="asc">Tipo</th>
+								            <th data-column-id="Tipo" data-order="asc"><spring:message code="listSugerencia.tipo"/></th>
 								            <th data-column-id="usuario">Dni Usuario</th>
 								           
-								  			<th data-column-id="link" data-formatter="link" data-sortable="false">Acciones</th>
+								  			<th data-column-id="link" data-formatter="link" data-sortable="false"><spring:message code="table.acciones"/></th>
 								        </tr>
 								    </thead>
 								    <tbody>
@@ -49,7 +49,6 @@
 												<td><c:out value="${sugerencia.tipo}" /></td>
 												<td><c:out value="${sugerencia.usuario.dni}" /></td>
 
-												<td><a href="verSugerencia?id=${sugerencia.id}" class="btn btn-raised btn-default btn-sm withoutMargin command"> <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span>Ver</a></td>
 												
 											</tr>
 										
@@ -58,6 +57,7 @@
 										    </c:when>    
 										    <c:otherwise>
 										        <h3>no hay Sugerencias registradas</h3>
+										        <
 										    </c:otherwise>
 										</c:choose>
 									
@@ -76,8 +76,29 @@
 		</div>
 		
 		<script src="<c:url value="/resources/libs/jquery.bootgrid/jquery.bootgrid.js" />"></script>
-		<script src="<c:url value="/resources/js/borrar.js" />"></script>
+	
 		
-		
+		<script>
+		var grid=$("#grid-data-api").bootgrid({
+					navigation: 2,
+					rowCount: 6,
+				    formatters: {
+				        "link": function(column, row)
+				        {
+				           
+							
+							return "<a  href='"+verSugerencia?id=${sugerencia.id}+"'>"
+							+"<button class='btn btn-raised btn-default btn-sm withoutMargin command'"
+							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span>"+"<spring:message code="table.ver"/>"
+							+ "</button>"
+							
+						;
+				        }
+				    }
+				}).on("loaded.rs.jquery.bootgrid", function(){
+				        /* Executes after data is loaded and rendered */
+				     
+				});
+		</script>
 	</jsp:body>
 </t:template>
