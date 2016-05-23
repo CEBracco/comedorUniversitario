@@ -1,6 +1,7 @@
 <%@tag description="Overall Page template" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@attribute name="head" fragment="true" %>
 
 <!DOCTYPE html>
@@ -10,7 +11,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, user-scalable=no">
 	
-	<title>Comedor Universitario</title>
+	<title><spring:message code="page.titulo"/></title>
 
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/libs/bootstrap/css/bootstrap.min.css"/>">
 	<link rel="stylesheet" href="<c:url value="/resources/libs/header/css/style.css"/>">
@@ -72,7 +73,7 @@
 			<a id="login-btn" data-toggle="modal" href="#signIn" class="cd-btn is-hidden slide-in front">Iniciar sesi&oacute;n</a>
 	    </c:when>
 	    <c:otherwise>
-			<p class="cd-btn is-hidden withoutBG slide-in front">¡Bienvenid@, ${user.nombre}! (<a href="goodbye" class="animsition-link">Salir</a>)</p>	    	
+			<p class="cd-btn is-hidden withoutBG slide-in front">¡<spring:message code="page.bienvenida"/>!, ${user.nombre}! (<a href="goodbye" class="animsition-link"><spring:message code="page.salir"/></a>)</p>	    	
 	    </c:otherwise>
 	</c:choose>
 
