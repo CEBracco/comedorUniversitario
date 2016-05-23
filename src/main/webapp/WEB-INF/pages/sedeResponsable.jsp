@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <t:template>
 	<jsp:attribute name="head">
@@ -37,15 +37,15 @@
 							<c:choose>
 							    <c:when test="${not empty responsableObject.dni}">
 							       	<div class="col-md-8 col-sm-9 col-xs-5">
-										<h3>Responsable Asignado</h3>
+										<h3><spring:message code="sedeResponsable.asignado"/></h3>
 									</div>
 									<div class="col-md-4 col-sm-3 col-xs-7">
-										<a href="removeResponsableSede?idSede=${sedeObject.id}&idResponsable=${responsableObject.id}" class="btn btn-raised btn-danger btn-sm withoutMargin marginTop animsition-link"><span class='glyphicon glyphicon glyphicon-pencil'></span>Desvincular</a>
+										<a href="removeResponsableSede?idSede=${sedeObject.id}&idResponsable=${responsableObject.id}" class="btn btn-raised btn-danger btn-sm withoutMargin marginTop animsition-link"><span class='glyphicon glyphicon glyphicon-pencil'></span><spring:message code="sedeResponsable.quitar"/></a>
 									</div>
 							    </c:when>    
 							    <c:otherwise>
 							        <div class="col-md-8 col-sm-9 col-xs-5">
-										<h3>Asignar Responsable</h3>
+										<h3><spring:message code="sedeResponsable.asignar"/></h3>
 									</div>
 									
 							    </c:otherwise>
@@ -58,15 +58,15 @@
 					   <c:choose>
 						    <c:when test="${not empty responsableObject.dni}">
 						        <div class="row">
-									<div class="col-xs-6"><p><b>Nombre</b></p></div>
+									<div class="col-xs-6"><p><b><spring:message code="sedeResponsable.nombre"/></b></p></div>
 									<div class="col-xs-6"><p>${responsableObject.nombre}</p></div>
 								</div>
 								<div class="row">
-									<div class="col-xs-6"><p><b>Apellido</b></p></div>
+									<div class="col-xs-6"><p><b><spring:message code="sedeResponsable.apellido"/></b></p></div>
 									<div class="col-xs-6"><p>${responsableObject.apellido}</p></div>
 								</div>
 								<div class="row">
-									<div class="col-xs-6"><p><b>Documento</b></p></div>
+									<div class="col-xs-6"><p><b><spring:message code="sedeResponsable.documento"/></b></p></div>
 									<div class="col-xs-6"><p>${responsableObject.dni}</p></div>
 								</div>
 						    </c:when>    
@@ -76,9 +76,9 @@
 								        <tr>
 								       		 <th data-column-id="id" data-visible="false" data-visible-in-selection="false">Id</th>
 								            
-								        	<th data-column-id="dni" data-order="asc">Dni Responsable</th>
-								            <th data-column-id="nombre">nombre</th>
-								            <th data-column-id="link" data-formatter="link" data-sortable="false">Acciones</th>
+								        	<th data-column-id="dni" data-order="asc"><spring:message code="sedeResponsable.documentoResponsable"/></th>
+								            <th data-column-id="nombre"><spring:message code="sedeResponsable.nombre"/></th>
+								            <th data-column-id="link" data-formatter="link" data-sortable="false"><spring:message code="sedeResponsable.acciones"/></th>
 								        </tr>
 								    </thead>
 								    <tbody>
@@ -91,7 +91,7 @@
 												<td><c:out value="${responsable.dni}" /></td>
 												<td><c:out value="${responsable.nombre}" /></td>
 
-												<td><a href="#" class="btn btn-raised btn-default btn-sm withoutMargin command"> <span ></span>Asignar</a></td>
+												<td><a href="#" class="btn btn-raised btn-default btn-sm withoutMargin command"> <span ></span><spring:message code="sedeResponsable.asignar"/></a></td>
 												
 											</tr>
 										
@@ -165,7 +165,7 @@
 							
 							return "<a href='assignResponsableSede?idSede="+${sedeObject.id}+"&idResponsable="+row.id+"'>"
 							+"<button class='btn btn-raised btn-default btn-sm withoutMargin command'"
-							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span>Asignar Responsable"
+							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span>"+<spring:message code="sedeResponsable.documento"/>""
 							+ "</button>"
 							
 						;
