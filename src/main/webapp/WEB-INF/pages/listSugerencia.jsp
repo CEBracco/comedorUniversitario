@@ -32,9 +32,9 @@
 								<table id="grid-data-api" class="table table-condensed table-hover table-striped">
 								    <thead>
 								        <tr>
-								        	
+								        	<th data-column-id="id" data-visible="false" data-visible-in-selection="false">Id</th>
 								            <th data-column-id="Tipo" data-order="asc"><spring:message code="listSugerencia.tipo"/></th>
-								            <th data-column-id="usuario">Dni Usuario</th>
+								            <th data-column-id="usuario"><spring:message code="table.documento"/></th>
 								           
 								  			<th data-column-id="link" data-formatter="link" data-sortable="false"><spring:message code="table.acciones"/></th>
 								        </tr>
@@ -45,7 +45,7 @@
 										       
 										 <c:forEach items="${sugerenciaList}" var="sugerencia">
 					                    	<tr>
-					                    		
+					                    		<td><c:out value="${sugerencia.id}" /></td>
 												<td><c:out value="${sugerencia.tipo}" /></td>
 												<td><c:out value="${sugerencia.usuario.dni}" /></td>
 
@@ -87,7 +87,7 @@
 				        {
 				           
 							
-							return "<a  href='"+verSugerencia?id=${sugerencia.id}+"'>"
+							return "<a  href='verSugerencia?id="+row.id+"'>"
 							+"<button class='btn btn-raised btn-default btn-sm withoutMargin command'"
 							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span>"+"<spring:message code="table.ver"/>"
 							+ "</button>"
