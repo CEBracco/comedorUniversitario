@@ -19,11 +19,23 @@
 						<form:form id="recargaRegisterForm" modelAttribute="recarga" method="post" action="saveRecarga" autocomplete="off">
 							<input type="hidden" name="idComensal" value="${comensal.id}" required="required"/>
 							
+							<div class="row">
+								<div class="container-fluid">
+									<h4>Datos del Comensal</h4>
+									<ul type="none">
+										<li><b>Nombre: </b>${comensal.nombre}</li>
+										<li><b>Apellido: </b>${comensal.apellido}</li>
+										<li><b>Documento: </b>${comensal.dni}</li>
+										<li><b>Saldo Actual: </b>$${comensal.saldo}</li>
+									</ul>
+								</div>
+							</div>
+							
 							<c:choose>
 								<c:when test="${role == 'Administrador'}">
 								<div class="row">
 									<div class="container-fluid">
-										<div class="form-group">
+										<div class="form-group reset-margin">
 											<label class="control-label" for="sede">Sede donde se realiza el pago</label>
 											<select class="form-control" id="sede" name="idSede" required>
 												<option value="0" selected disabled>No Seleccionado</option>
