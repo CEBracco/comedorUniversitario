@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
@@ -37,6 +38,10 @@ public class UserController {
 	private AdministradorDAO administradorDAO;
 	@Autowired
 	private ComensalDAO comensalDAO;
+	@Autowired
+	private RecargaDAO RecargaDAO;
+	@Autowired
+	private SedeDAO SedeDAO;
 	
 	@RequestMapping("createUsuario")
 	public ModelAndView createUsuario(@ModelAttribute Usuario usuario) {
@@ -324,20 +329,77 @@ public class UserController {
     	}
     }
     
-	@RequestMapping("creditCharge")
-	public ModelAndView creditCharge() {
+	@RequestMapping("creditCharge/select")
+	public ModelAndView creditChargeSelect() {
 		Usuario sessionUser=(Usuario)httpSession.getAttribute("user");
     	String sesionRole=(String)httpSession.getAttribute("role");
     	if(sessionUser != null && (sesionRole.equals("Administrador") || sesionRole.equals("Responsable"))){
-    		ModelAndView view= new ModelAndView("creditCharge");
+    		ModelAndView view= new ModelAndView("selectComensal");
     		
     		view.addObject("user", sessionUser);
     		view.addObject("role", sesionRole);
+    		view.addObject("comenList", comensalDAO.getAllComensales());
     		
     		return view;
     	}
     	else{
     		return new ModelAndView("redirect:index");
     	}
+	}
+	
+	@RequestMapping("creditCharge")
+	public ModelAndView creditCharge(@RequestParam Long idComensal, @ModelAttribute Recarga recarga) {
+		Usuario sessionUser=(Usuario)httpSession.getAttribute("user");
+    	String sesionRole=(String)httpSession.getAttribute("role");
+    	if(sessionUser != null && (sesionRole.equals("Administrador") || sesionRole.equals("Responsable"))){
+    		Comensal comensal=comensalDAO.getComensal(idComensal);
+    		if(comensal != null){
+    			ModelAndView view= new ModelAndView("creditCharge");
+    			
+    			view.addObject("user", sessionUser);
+    			view.addObject("role", sesionRole);
+    			view.addObject("comensal", comensal);
+    			view.addObject("sedeList", SedeDAO.getAllSedes());
+    			
+    			return view;
+    		}
+    		else{
+        		return new ModelAndView("redirect:index");
+        	}
+    		
+    	}
+    	else{
+    		return new ModelAndView("redirect:index");
+    	}
+	}
+	
+	@RequestMapping("saveRecarga")
+	public ModelAndView saveRecarga(@ModelAttribute Recarga recarga, @RequestParam Long idComensal, @RequestParam Long idSede, final RedirectAttributes redirectAttributes) {
+		Usuario sessionUser=(Usuario)httpSession.getAttribute("user");
+    	String sesionRole=(String)httpSession.getAttribute("role");
+    	if(sessionUser != null && (sesionRole.equals("Administrador") || sesionRole.equals("Responsable"))){
+    		Sede sede=null;
+    		if(sesionRole.equals("Responsable")){
+    			Set<Sede> sedeSet=((Responsable)sessionUser).getSedes();
+    			sede=(Sede)sedeSet.toArray()[0];
+    		}
+    		else{
+    			sede=SedeDAO.getSede(idSede);
+    		}
+    		Comensal comensal=comensalDAO.getComensal(idComensal);
+    		
+    		recarga.setComensal(comensal);
+    		recarga.setSede(sede);
+    		RecargaDAO.createRecarga(recarga);
+    		
+    		comensal.setSaldo(comensal.getSaldo() + recarga.getMonto());
+    		comensalDAO.updateComensal(comensal);
+    		
+    		redirectAttributes.addFlashAttribute("msj", "¡Recarga realizada con exito!");
+    		
+    		return new ModelAndView("redirect:creditCharge/select");
+    	}
+    	
+		return new ModelAndView("redirect:index");
 	}
 }
