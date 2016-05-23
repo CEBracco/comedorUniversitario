@@ -20,21 +20,21 @@
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-md-6">
-										<h3>Listado de Usuarios</h3>
+										<h3><spring:message code="listUser.head"/></h3>
 									</div>
 									<div class="col-md-6">
-										<a href="createUsuario" class="btn btn-raised btn-danger btn-sm withoutMargin marginTop pull-right animsition-link">Agregar Usuario</a>
+										<a href="createUsuario" class="btn btn-raised btn-danger btn-sm withoutMargin marginTop pull-right animsition-link"><spring:message code="listUser.addButton"/></a>
 									</div>
 								</div>
 								<table id="grid-data-api" class="table table-condensed table-hover table-striped">
 								    <thead>
 								        <tr>
 								        	<th data-column-id="id" data-visible="false" data-visible-in-selection="false">Id</th>
-								            <th data-column-id="apellido" data-order="asc">Apellido</th>
-								            <th data-column-id="nombre">Nombre</th>
-								            <th data-column-id="documento">Documento</th>
-								            <th data-column-id="rol">Rol</th>
-								            <th data-column-id="link" data-formatter="link" data-sortable="false">Acciones</th>
+								            <th data-column-id="apellido" data-order="asc"><spring:message code="table.apellido"/></th>
+								            <th data-column-id="nombre"><spring:message code="table.nombre"/></th>
+								            <th data-column-id="documento"><spring:message code="table.documento"/></th>
+								            <th data-column-id="rol"><spring:message code="table.rol"/></th>
+								            <th data-column-id="link" data-formatter="link" data-sortable="false"><spring:message code="table.acciones"/></th>
 								        </tr>
 								    </thead>
 								    <tbody>
