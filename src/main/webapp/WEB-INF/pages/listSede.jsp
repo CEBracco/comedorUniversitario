@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <t:template>
 	<jsp:attribute name="head">
@@ -19,22 +20,22 @@
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-md-6">
-										<h3>Listado de Sedes</h3>
+										<h3><spring:message code="listSede.head"/></h3>
 									</div>
 									<div class="col-md-6">
-										<a href="createSede" class="btn btn-raised btn-danger btn-sm withoutMargin marginTop pull-right animsition-link">Agregar Sede</a>
+										<a href="createSede" class="btn btn-raised btn-danger btn-sm withoutMargin marginTop pull-right animsition-link"><spring:message code="listSede.addButton"/></a>
 									</div>
 								</div>
 								<table id="grid-data-api" class="table table-condensed table-hover table-striped">
 								    <thead>
 								        <tr>
 								        	<th data-column-id="id" data-visible="false" data-visible-in-selection="false">Id</th>
-								            <th data-column-id="nombre" data-order="asc">Nombre</th>
-								            <th data-column-id="domicilio">Domicilio</th>
-								            <th data-column-id="telefono">Tel&eacute;fono</th>
-								            <th data-column-id="email">Email</th>
+								            <th data-column-id="nombre" data-order="asc"><spring:message code="table.nombre"/></th>
+								            <th data-column-id="domicilio"><spring:message code="table.domicilio"/></th>
+								            <th data-column-id="telefono"><spring:message code="table.telefono"/></th>
+								            <th data-column-id="email"><spring:message code="table.email"/></th>
 								           
-								            <th data-column-id="link" data-formatter="link" data-sortable="false">Acciones</th>
+								            <th data-column-id="link" data-formatter="link" data-sortable="false"><spring:message code="table.acciones"/></th>
 								        </tr>
 								    </thead>
 								    <tbody>
@@ -73,17 +74,17 @@
 				            + "data-row-email='"+ row.email + "'"
             
 				            +">"
-							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> Ver"
+							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> <spring:message code="table.ver"/>"
 							+ "     </button>"
 							
 							+ "<a href='sedeResponsable?idSede="+row.id+"'>"
-							+"<button class='btn btn-raised btn-default btn-sm withoutMargin command'"
-							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> Responsable"
+							+"<button class='btn btn-raised btn-default btn-sm withoutMargin command'>"
+							+ "       <span class='glyphicon glyphicon glyphicon-plus' aria-hidden='true'></span> <spring:message code="page.responsable"/>"
 							+ "</button>"
 							
 							+ "<a href='editSede?id="+ row.id +"'>"
 							+ "<button class='btn btn-raised btn-default btn-sm withoutMargin command'>"
-							+ "<span class='glyphicon glyphicon glyphicon-pencil' aria-hidden='true'></span> Editar"
+							+ "<span class='glyphicon glyphicon glyphicon-pencil' aria-hidden='true'></span> <spring:message code="table.editar"/>"
 							+ "</button>"
 							+"</a>"
 							+ "<a href='#'>"
@@ -93,7 +94,7 @@
 							+"data-row-id='"+row.id+"'"
 							+"data-row-link='deleteSede'>"
 							
-							+ "<span class='glyphicon glyphicon glyphicon-trash' aria-hidden='true'></span> Borrar"
+							+ "<span class='glyphicon glyphicon glyphicon-trash' aria-hidden='true'></span> <spring:message code="table.eliminar"/>"
 							+ "</button>"
 							+"</a>";
 				        }
