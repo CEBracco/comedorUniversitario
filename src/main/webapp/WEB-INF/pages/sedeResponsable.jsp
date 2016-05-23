@@ -165,7 +165,7 @@
 							
 							return "<a href='assignResponsableSede?idSede="+${sedeObject.id}+"&idResponsable="+row.id+"'>"
 							+"<button class='btn btn-raised btn-default btn-sm withoutMargin command'"
-							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span>"+<spring:message code="sedeResponsable.documento"/>""
+							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span>"+"<spring:message code="sedeResponsable.asignar"/>"
 							+ "</button>"
 							
 						;
