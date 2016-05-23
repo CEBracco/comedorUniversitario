@@ -21,7 +21,7 @@
 									<div class="col-md-10">
 											<div class="col-md-4"></div>
 											<div class="col-md-6">
-												<h3>Ver Sugerencia</h3>
+												<h3><spring:message code="verSugerencia.head"/></h3>
 											</div>
 									</div>
 									
@@ -30,7 +30,7 @@
 											<div class="panel panel-primary">
 									
 												<div class="panel-heading">
-										    		<h4 class="panel-title">Sugerencia</h4>
+										    		<h4 class="panel-title"><spring:message code="verSugerencia.sugerencia"/></h4>
 										  		</div>
 										 		<div class="panel-body">
 										 	  		 <p>${sugerencia.sugerencia}</p>
@@ -49,15 +49,15 @@
 													<form:hidden path="id" value="${sugerencia.id}" />
 											
 															<div class="form-group label-floating">
-																<label class="control-label" for="respuesta">Respuesta</label>
+																<label class="control-label" for="respuesta"><spring:message code="verSugerencia.respuesta"/></label>
 																<form:textarea type="text" cssClass="form-control" path="respuesta" required="required" />
-																<p class="help-block">Ingrese su Respuesta</p>	
+																<p class="help-block"><spring:message code="verSugerencia.ingRespuesta"/></p>	
 															</div>
 												
 															<div class="row">
 																	<div class="container-fluid">
 													
-																		<input class="btn btn-block btn-danger btn-raised" type="submit" value="Responder" id="saveRespuesta">
+																		<input class="btn btn-block btn-danger btn-raised" type="submit" value="<spring:message code="verSugerencia.responder"/>" id="saveRespuesta">
 											
 																	</div>
 															</div>
