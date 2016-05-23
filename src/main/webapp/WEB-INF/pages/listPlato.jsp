@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <t:template>
 	<jsp:attribute name="head">
@@ -19,23 +20,23 @@
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-md-6">
-										<h3>Listado de Platos</h3>
+										<h3><spring:message code="listPlato.head"/></h3>
 									</div>
 									<div class="col-md-6">
-										<a href="createPlato" class="btn btn-raised btn-danger btn-sm withoutMargin marginTop pull-right animsition-link">Agregar Plato</a>
+										<a href="createPlato" class="btn btn-raised btn-danger btn-sm withoutMargin marginTop pull-right animsition-link"><spring:message code="listPlato.addButton"/></a>
 									</div>
 								</div>
 								<table id="grid-data-api" class="table table-condensed table-hover table-striped">
 								    <thead>
 								        <tr>
 								        	<th data-column-id="id" data-visible="false" data-visible-in-selection="false">Id</th>
-								            <th data-column-id="nombre" data-order="asc">Nombre</th>
-								            <th data-column-id="vegetariano" data-visible="false">Vegetariano</th>
-    										<th data-column-id="celiaco" data-visible="false">Celíaco</th>
-										    <th data-column-id="hipertenso" data-visible="false">Hipertenso</th>
-										    <th data-column-id="intolerante" data-visible="false">Intolerante a la Lactosa</th>
-										    <th data-column-id="diabetico" data-visible="false">Diabetico</th>
-								            <th data-column-id="link" data-formatter="link" data-sortable="false">Acciones</th>
+								            <th data-column-id="nombre" data-order="asc"><spring:message code="table.nombre"/></th>
+								            <th data-column-id="vegetariano" data-visible="false"><spring:message code="table.vegetariano"/></th>
+    										<th data-column-id="celiaco" data-visible="false"><spring:message code="table.celiaco"/></th>
+										    <th data-column-id="hipertenso" data-visible="false"><spring:message code="table.hipertenso"/></th>
+										    <th data-column-id="intolerante" data-visible="false"><spring:message code="table.intolerante"/></th>
+										    <th data-column-id="diabetico" data-visible="false"><spring:message code="table.diabetico"/></th>
+								            <th data-column-id="link" data-formatter="link" data-sortable="false"><spring:message code="table.acciones"/></th>
 								        </tr>
 								    </thead>
 								    <tbody>
@@ -44,11 +45,11 @@
 					                    <tr>
 					                    	<td><c:out value="${plato.id}" /></td>
 											<td><c:out value="${plato.nombre}" /></td>
-											<td><c:out value="${plato.vegetariano ? 'Si' : 'No' }" /></td>
-											<td><c:out value="${plato.celiaco ? 'Si' : 'No' }" /></td>
-											<td><c:out value="${plato.hipertenso ? 'Si' : 'No' }" /></td>
-											<td><c:out value="${plato.intolerante ? 'Si' : 'No' }" /></td>
-											<td><c:out value="${plato.diabetico ? 'Si' : 'No' }" /></td>
+											<td><c:out value="${plato.vegetariano ? '<spring:message code="table.si"/>' : '<spring:message code="table.no"/>' }" /></td>
+											<td><c:out value="${plato.celiaco ? '<spring:message code="table.si"/>' : '<spring:message code="table.no"/>' }" /></td>
+											<td><c:out value="${plato.hipertenso ? '<spring:message code="table.si"/>' : '<spring:message code="table.no"/>' }" /></td>
+											<td><c:out value="${plato.intolerante ? '<spring:message code="table.si"/>' : '<spring:message code="table.no"/>' }" /></td>
+											<td><c:out value="${plato.diabetico ? '<spring:message code="table.si"/>' : '<spring:message code="table.no"/>' }" /></td>
 										</tr>
 					                    </c:forEach>
 
