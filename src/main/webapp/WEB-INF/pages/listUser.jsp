@@ -44,7 +44,7 @@
 											<td><c:out value="${admin.apellido}" /></td>
 											<td><c:out value="${admin.nombre}" /></td>
 											<td><c:out value="${admin.dni}" /></td>
-											<td>Administrador</td>
+											<td><spring:message code="page.administrador"/></td>
 										</tr>
 					                    </c:forEach>
 					                    <c:forEach items="${respList}" var="resp">
@@ -53,7 +53,7 @@
 											<td><c:out value="${resp.apellido}" /></td>
 											<td><c:out value="${resp.nombre}" /></td>
 											<td><c:out value="${resp.dni}" /></td>
-											<td>Responsable</td>
+											<td><spring:message code="page.responsable"/></td>
 										</tr>
 					                    </c:forEach>
 					                    <c:forEach items="${comenList}" var="comen">
@@ -62,7 +62,7 @@
 											<td><c:out value="${comen.apellido}" /></td>
 											<td><c:out value="${comen.nombre}" /></td>
 											<td><c:out value="${comen.dni}" /></td>
-											<td>Comensal</td>
+											<td><spring:message code="page.comensal"/></td>
 										</tr>
 					                    </c:forEach>
 								    </tbody>
@@ -88,11 +88,11 @@
 				            + "data-row-rol='"+ row.rol + "'"
             
 				            +">"
-							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> Ver"
+							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> <spring:message code="table.ver"/>"
 							+ "     </button>"
 							+ "<a href='editUsuario?id="+ row.id +"'>"
 							+"<button class='btn btn-raised btn-default btn-sm withoutMargin command'>"
-							+ "<span class='glyphicon glyphicon glyphicon-pencil' aria-hidden='true'></span> Editar"
+							+ "<span class='glyphicon glyphicon glyphicon-pencil' aria-hidden='true'></span> <spring:message code="table.editar"/>"
 							+ "</button>"
 							+ "</a>"
 							+ "<a href='#'>"
@@ -102,7 +102,7 @@
 							+"data-row-id='"+row.id+"'"
 							+"data-row-link='deleteUsuario'>"
 							
-							+ "<span class='glyphicon glyphicon glyphicon-trash' aria-hidden='true'></span> Borrar"
+							+ "<span class='glyphicon glyphicon glyphicon-trash' aria-hidden='true'></span> <spring:message code="table.eliminar"/>"
 							+ "</button>"
 							+"</a>";
 				        }
