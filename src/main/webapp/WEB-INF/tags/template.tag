@@ -4,6 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@attribute name="head" fragment="true" %>
 
+
 <!DOCTYPE html>
 <html class="animsition">
 <head>
@@ -70,7 +71,7 @@
  -->
 	<c:choose>
 	    <c:when test="${empty user.nombre}">
-			<a id="login-btn" data-toggle="modal" href="#signIn" class="cd-btn is-hidden slide-in front">Iniciar sesi&oacute;n</a>
+			<a id="login-btn" data-toggle="modal" href="#signIn" class="cd-btn is-hidden slide-in front"><spring:message code="page.ingresar"/></a>
 	    </c:when>
 	    <c:otherwise>
 			<p class="cd-btn is-hidden withoutBG slide-in front">¡<spring:message code="page.bienvenida"/>!, ${user.nombre}! (<a href="goodbye" class="animsition-link"><spring:message code="page.salir"/></a>)</p>	    	
@@ -79,44 +80,64 @@
 
 	<div class="cd-secondary-nav is-fixed animate-children">
 		<div id="cd-logo2" class="is-hidden slide-in front"><a href="index" class="animsition-link"><img src="<c:url value="/resources/libs/img/logo2.png"/>" alt="Logo"></a></div>
-		<a href="#0" class="cd-secondary-nav-trigger">Menu<span></span></a> <!-- button visible on small devices -->
+		<a href="#0" class="cd-secondary-nav-trigger"><spring:message code="page.menu"/><span></span></a> <!-- button visible on small devices -->
 		<nav>
 			<ul>
 				<li>
 					<a href="index" class="animsition-link">
-						<b>Inicio</b>
+						<b><spring:message code="page.inicio"/></b>
 						<span></span><!-- icon -->
 					</a>
 				</li>
 				<c:if test="${role == 'Administrador'}">
 				<li>
 					<a href="getAllUsuarios" class="animsition-link">
-						<b>Usuarios</b>
+						<b><spring:message code="page.usuarios"/></b>
 						<span></span><!-- icon -->
 					</a>
 				</li>
 				<li>
 					<a href="getAllSedes" class="animsition-link">
-						<b>Sedes</b>
+						<b><spring:message code="page.sedes"/></b>
+						<span></span><!-- icon -->
+					</a>
+				</li>
+				</c:if>
+				<c:if test="${role == 'Responsable'}">
+				<li>
+					<b>
+					 <a class="animsition-link" href="getAllComensalesHabilitados" >Comensales habilitados</a>
+					</b>
+  
+				</li>
+				</c:if>
+				<c:if test="${not empty role}">
+				<li>
+					<a href="getAllSugerencias" class="animsition-link">
+						<b><spring:message code="page.sugerencia"/></b>
+						<span></span><!-- icon -->
+					</a>
+				</li>
+				</c:if>
+				<c:if test="${role == 'Administrador'}">
+				<li>
+					<a href="menuCartilla" class="animsition-link">
+						<b><spring:message code="page.cartilla"/></b>
+						<span></span><!-- icon -->
+					</a>
+				</li>
+				</c:if>
+				<c:if test="${role == 'Comensal'}">
+				<li>
+					<a href="selectSedeTicket" class="animsition-link">
+						<b><spring:message code="page.compra"/></b>
 						<span></span><!-- icon -->
 					</a>
 				</li>
 				</c:if>
 				<li>
-					<a href="#cd-placeholder-3" class="animsition-link">
-						<b>Sugerencias</b>
-						<span></span><!-- icon -->
-					</a>
-				</li>
-				<li>
-					<a href="menuCartilla" class="animsition-link">
-						<b>Cartilla</b>
-						<span></span><!-- icon -->
-					</a>
-				</li>
-				<li>
 					<a href="#cd-placeholder-5" class="animsition-link">
-						<b>Estadisticas</b>
+						<b><spring:message code="page.estadistica"/></b>
 						<span></span><!-- icon -->
 					</a>
 				</li>
@@ -140,27 +161,27 @@
 		<img src="<c:url value="/resources/libs/img/UNLP-logo.png"/>">
 
 		<p class="footer-links">
-			<a href="#">Inicio</a>
+			<a href="#"><spring:message code="page.footer.inicio"/></a>
 			
-			<a href="#">Servicios</a>
+			<a href="#"><spring:message code="page.footer.Servicios"/></a>
 			
-			<a href="#">Sedes</a>
+			<a href="#"><spring:message code="page.footer.Sedes"/></a>
 			
-			<a href="#">+Info</a>
+			<a href="#"><spring:message code="page.footer.info"/></a>
 			
-			<a href="#">Faq</a>
+			<a href="#"><spring:message code="page.footer.faq"/></a>
 			
-			<a href="#">Contacto</a>
+			<a href="#"><spring:message code="page.footer.contacto"/></a>
 		</p>
 
-		<p class="footer-company-name">Comedor Universitario &copy; 2015</p>
+		<p class="footer-company-name"><spring:message code="page.titulo"/> &copy; 2015</p>
 	</div>
 
 	<div class="footer-center">
 
 		<div>
 			<i class="fa fa-map-marker"></i>
-			<p><span>Ver ubicacion de sedes</span> La Plata, Argentina</p>
+			<p><span><spring:message code="page.Sedesubicacion"/></span> La Plata, Argentina</p>
 
 		</div>
 
@@ -179,8 +200,8 @@
 	<div class="footer-right">
 
 		<p class="footer-company-about">
-			<span>Acerca de nosotros</span>
-			Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+			<span><spring:message code="page.quienesSomos"/></span>
+			<spring:message code="page.quienesSomos.parrafo"/>
 		</p>
 
 		<div class="footer-icons">
@@ -244,10 +265,10 @@ $(document).ready(function() {
         	<div class="container-fluid">
 	        	<div class="row">
 		        	<div class="col-md-6">
-		        		<button class="btn btn-default btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+		        		<button class="btn btn-default btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> <spring:message code="page.login.cancelar"/></button>
 		        	</div>
 		        	<div class="col-md-6">
-		        		<p>¿No recuerda su <a href="#">Contraseña?</a></p>
+		        		<p><spring:message code="page.login.noRecuerda"/> <a href="#"><spring:message code="page.login.password"/></a>?</p>
 		        	</div>
 	        	</div>
         	</div>
