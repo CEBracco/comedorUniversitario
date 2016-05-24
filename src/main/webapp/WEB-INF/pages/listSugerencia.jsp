@@ -40,33 +40,17 @@
 								        </tr>
 								    </thead>
 								    <tbody>
-									<c:choose>
-   										 <c:when test="${not empty sugerenciaList}">
-										       
-										 <c:forEach items="${sugerenciaList}" var="sugerencia">
-					                    	<tr>
-					                    		<td><c:out value="${sugerencia.id}" /></td>
-												<td><c:out value="${sugerencia.tipo}" /></td>
-												<td><c:out value="${sugerencia.usuario.dni}" /></td>
+											<c:forEach items="${sugerenciaList}" var="sugerencia">
+					                    		<tr>
+						                    		<td><c:out value="${sugerencia.id}" /></td>
+													<td><c:out value="${sugerencia.tipo}" /></td>
+													<td><c:out value="${sugerencia.usuario.dni}" /></td>
 
 												
-											</tr>
+												</tr>
 										
-					                    </c:forEach>
-										       
-										    </c:when>    
-										    <c:otherwise>
-										        <h3>no hay Sugerencias registradas</h3>
-										        <
-										    </c:otherwise>
-										</c:choose>
-									
-									
-									
-									
-								       	
-
-								    </tbody>
+					                    	</c:forEach>
+									 </tbody>
 								</table>
 							</div>
 						</div>
@@ -80,8 +64,7 @@
 		
 		<script>
 		var grid=$("#grid-data-api").bootgrid({
-					navigation: 2,
-					rowCount: 6,
+					
 				    formatters: {
 				        "link": function(column, row)
 				        {
@@ -95,10 +78,7 @@
 						;
 				        }
 				    }
-				}).on("loaded.rs.jquery.bootgrid", function(){
-				        /* Executes after data is loaded and rendered */
-				     
-				});
+				})
 		</script>
 	</jsp:body>
 </t:template>

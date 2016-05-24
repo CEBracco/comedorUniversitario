@@ -67,6 +67,8 @@
 				            + "data-row-nombre='"+ row.dni + "'"
 				            + "data-row-documento='"+ row.fecha + "'"
 							+">"
+							+ "  <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> <spring:message code="table.ver"/>"
+							+ "</button>"
 							;
 				        }
 				    }
@@ -79,7 +81,7 @@
 				        		  message:  "<div class='well'><p><b>Nombre: </b>"+$(this).data("row-nombre").toString()+"</p>"+
 				        		  			"<p><b>Apellido: </b>"+$(this).data("row-apellido").toString()+"</p>"+
 				        		  			"<p><b>Documento: </b>"+$(this).data("row-documento").toString()+"</p>"+
-				        		  			"<p><b>Rol: </b>"+$(this).data("row-rol").toString()+"</p></div>"
+				        		  			"</div>"
 				        	});
 				        })
 				});
