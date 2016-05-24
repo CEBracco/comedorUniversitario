@@ -17,9 +17,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ttps.dao.SedeDAO;
 import ttps.dao.TicketDAO;
+import unlp.comedor.Recarga;
 import unlp.comedor.Responsable;
 import unlp.comedor.Sede;
 import unlp.comedor.Usuario;
+import ttps.dao.RecargaDAO;
 import ttps.dao.ResponsableDAO;
 @Controller
 public class SedeController {
@@ -35,6 +37,8 @@ public class SedeController {
 	@Autowired
     private ResponsableDAO ResponsableDAO;
     
+	@Autowired
+	private RecargaDAO RecargaDAO;
 	
     @RequestMapping("createSede")
     public ModelAndView createSede(@ModelAttribute Sede sede) {
@@ -254,6 +258,28 @@ public class SedeController {
     			return new ModelAndView("redirect:index");
     		}
     		
+    	}
+    	else{
+    		return new ModelAndView("redirect:index");
+    	}
+    }
+    
+    @RequestMapping("getAllPagos")
+    public ModelAndView getAllPagos() {
+    	Usuario sessionUser=(Usuario)httpSession.getAttribute("user");
+    	String sesionRole=(String)httpSession.getAttribute("role");
+    	if(sessionUser != null && sesionRole.equals("Responsable")){
+    		Responsable responsable = (Responsable)httpSession.getAttribute("user");
+    		List<Sede> sedes = new ArrayList<Sede>(responsable.getSedes());
+    		long idSede= sedes.get(0).getId();
+    		List<Recarga> recargaList = RecargaDAO.getAllRecargasSede(idSede);
+    		
+    
+    		ModelAndView viewListado= new ModelAndView("listPagos", "pagoList", recargaList);
+    		viewListado.addObject("user", sessionUser);
+    		viewListado.addObject("role", sesionRole);
+    		
+    		return viewListado;
     	}
     	else{
     		return new ModelAndView("redirect:index");

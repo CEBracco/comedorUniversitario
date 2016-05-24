@@ -10,4 +10,5 @@ public interface RecargaDAO {
     public void deleteRecarga(long id);
     public List<Recarga> getAllRecargas();
     public Recarga getRecarga(long id);
+    public List<Recarga> getAllRecargasSede(long idSede);
 }

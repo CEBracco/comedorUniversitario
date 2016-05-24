@@ -122,6 +122,12 @@
 					</b>
   
 				</li>
+				<li>
+					<b>
+					 <a class="animsition-link" href="getAllPagos">Pagos registrados</a>
+					</b>
+  
+				</li>
 				</c:if>
 				<c:if test="${not empty role}">
 				<li>

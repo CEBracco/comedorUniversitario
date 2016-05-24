@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ttps.dao.RecargaDAO;
 import unlp.comedor.Recarga;
+import unlp.comedor.Reserva;
 
 @Repository
 @Transactional
@@ -46,6 +47,11 @@ public class RecargaDAOImpl implements RecargaDAO {
 	public Recarga getRecarga(long id) {
 		return (Recarga) entityManager.find(Recarga.class, id);
 	}
-
+	@Override
+	 public List<Recarga> getAllRecargasSede(long idSede){
+		Query query = entityManager.createQuery("SELECT e FROM Recarga e where sede_id=:id");
+		query.setParameter("id", idSede);
+		return (List<Recarga>)query.getResultList();
+	 }
 
 }
