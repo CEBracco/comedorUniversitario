@@ -270,10 +270,13 @@ public class SedeController {
     	String sesionRole=(String)httpSession.getAttribute("role");
     	if(sessionUser != null && sesionRole.equals("Responsable")){
     		Responsable responsable = (Responsable)httpSession.getAttribute("user");
-    		List<Sede> sedes = new ArrayList<Sede>(responsable.getSedes());
-    		long idSede= sedes.get(0).getId();
-    		List<Recarga> recargaList = RecargaDAO.getAllRecargasSede(idSede);
     		
+    		List<Recarga> recargaList = new ArrayList<Recarga>();
+    		if(!responsable.getSedes().isEmpty()){
+	    		List<Sede> sedes = new ArrayList<Sede>(responsable.getSedes());
+	    		long idSede= sedes.get(0).getId();
+	    		recargaList = RecargaDAO.getAllRecargasSede(idSede);
+    		}
     
     		ModelAndView viewListado= new ModelAndView("listPagos", "pagoList", recargaList);
     		viewListado.addObject("user", sessionUser);
