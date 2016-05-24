@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <t:template>
 	<jsp:attribute name="head">
@@ -19,23 +20,23 @@
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-md-6">
-										<h3>Listado de Menus</h3>
+										<h3><spring:message code="listMenu.head"/></h3>
 									</div>
 									<div class="col-md-6">
-										<a href="createMenu" class="btn btn-raised btn-danger btn-sm withoutMargin marginTop pull-right animsition-link">Agregar Menu</a>
+										<a href="createMenu" class="btn btn-raised btn-danger btn-sm withoutMargin marginTop pull-right animsition-link"><spring:message code="listMenu.addButton"/></a>
 									</div>
 								</div>
 								<table id="grid-data-api" class="table table-condensed table-hover table-striped">
 								    <thead>
 								        <tr>
 								        	<th data-column-id="id" data-visible="false" data-visible-in-selection="false">Id</th>
-								            <th data-column-id="nombre" data-order="asc">Nombre</th>
-								            <th data-column-id="vegetariano" data-visible="false">Vegetariano</th>
-    										<th data-column-id="celiaco" data-visible="false">Celíaco</th>
-										    <th data-column-id="hipertenso" data-visible="false">Hipertenso</th>
-										    <th data-column-id="intolerante" data-visible="false">Intolerante a la Lactosa</th>
-										    <th data-column-id="diabetico" data-visible="false">Diabetico</th>
-								            <th data-column-id="link" data-formatter="link" data-sortable="false">Acciones</th>
+								            <th data-column-id="nombre" data-order="asc"><spring:message code="table.nombre"/></th>
+								            <th data-column-id="vegetariano" data-visible="false"><spring:message code="table.vegetariano"/></th>
+    										<th data-column-id="celiaco" data-visible="false"><spring:message code="table.celiaco"/></th>
+										    <th data-column-id="hipertenso" data-visible="false"><spring:message code="table.hipertenso"/></th>
+										    <th data-column-id="intolerante" data-visible="false"><spring:message code="table.intolerante"/></th>
+										    <th data-column-id="diabetico" data-visible="false"><spring:message code="table.diabetico"/></th>
+								            <th data-column-id="link" data-formatter="link" data-sortable="false"><spring:message code="table.acciones"/></th>
 								        </tr>
 								    </thead>
 								    <tbody>
@@ -44,11 +45,56 @@
 					                    <tr>
 					                    	<td><c:out value="${menu.id}" /></td>
 											<td><c:out value="${menu.nombre}" /></td>
-											<td><c:out value="${menu.vegetariano ? 'Si' : 'No' }" /></td>
-											<td><c:out value="${menu.celiaco ? 'Si' : 'No' }" /></td>
-											<td><c:out value="${menu.hipertenso ? 'Si' : 'No' }" /></td>
-											<td><c:out value="${menu.intolerante ? 'Si' : 'No' }" /></td>
-											<td><c:out value="${menu.diabetico ? 'Si' : 'No' }" /></td>
+											<td>
+												<c:choose>
+													<c:when test="${menu.vegetariano}">
+														<spring:message code="table.si"/>
+													</c:when>
+													<c:otherwise>
+														<spring:message code="table.no"/>
+													</c:otherwise>
+												</c:choose>
+											</td>
+											<td>
+												<c:choose>
+													<c:when test="${menu.celiaco}">
+														<spring:message code="table.si"/>
+													</c:when>
+													<c:otherwise>
+														<spring:message code="table.no"/>
+													</c:otherwise>
+												</c:choose>
+											</td>
+											<td>
+												<c:choose>
+													<c:when test="${menu.hipertenso}">
+														<spring:message code="table.si"/>
+													</c:when>
+													<c:otherwise>
+														<spring:message code="table.no"/>
+													</c:otherwise>
+												</c:choose>
+											</td>
+											<td>
+												<c:choose>
+													<c:when test="${menu.intolerante}">
+														<spring:message code="table.si"/>
+													</c:when>
+													<c:otherwise>
+														<spring:message code="table.no"/>
+													</c:otherwise>
+												</c:choose>
+											</td>
+											<td>
+												<c:choose>
+													<c:when test="${menu.diabetico}">
+														<spring:message code="table.si"/>
+													</c:when>
+													<c:otherwise>
+														<spring:message code="table.no"/>
+													</c:otherwise>
+												</c:choose>
+											</td>
 										</tr>
 					                    </c:forEach>
 
@@ -73,11 +119,11 @@
 				            + "data-row-nombre='"+ row.nombre + "'"
             
 				            +">"
-							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> Ver"
+							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> <spring:message code="table.ver"/>"
 							+ "     </button>"
 							+ "<a href='editMenu?id="+ row.id +"'>"
 							+ "<button class='btn btn-raised btn-default btn-sm withoutMargin command'>"
-							+ "<span class='glyphicon glyphicon glyphicon-pencil' aria-hidden='true'></span> Editar"
+							+ "<span class='glyphicon glyphicon glyphicon-pencil' aria-hidden='true'></span> <spring:message code="table.editar"/>"
 							+ "</button>"
 							+"</a>"
 							+ "<a href='#'>"
@@ -85,7 +131,7 @@
     						+"data-row-nombre='"+row.nombre+"'"
 							+"data-row-id='"+row.id+"'"
 							+"data-row-link='deleteMenu'>"
-							+ "<span class='glyphicon glyphicon glyphicon-trash' aria-hidden='true'></span> Borrar"
+							+ "<span class='glyphicon glyphicon glyphicon-trash' aria-hidden='true'></span> <spring:message code="table.eliminar"/>"
 							+ "</button>"
 							+"</a>";
 				        }
