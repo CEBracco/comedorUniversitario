@@ -4,6 +4,8 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <t:template>
 	<jsp:body>
     	<div class="container-fluid">
@@ -15,10 +17,10 @@
 							<div class="container-fluid">
 								<c:choose>
 								    <c:when test="${edit}">
-								    	<h3>Editar usuario</h3>
+								    	<h3><spring:message code="altaUser.headEditar"/></h3>
 								    </c:when>
 								    <c:otherwise>
-										<h3>Alta de nuevo usuario</h3>
+										<h3><spring:message code="altaSede.headAlta"/></h3>
 								    </c:otherwise>	
 								</c:choose>
 								<form:form id="usuarioRegisterForm" modelAttribute="usuario" method="post" action="saveUsuario" autocomplete="off">
@@ -33,39 +35,39 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group label-floating">
-												<label class="control-label" for="nombre">Nombre</label>
+												<label class="control-label" for="nombre"><spring:message code="table.nombre"/></label>
 												<form:input cssClass="form-control" id="nombre" type="text" path="nombre" value="${usuarioObject.nombre}" required="required"/>
-												<p class="help-block">Ingrese Nombre del nuevo Usuario</p>
+												<p class="help-block"><spring:message code="altaUser.formHelpNombre"/></p>
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group label-floating">
-												<label class="control-label" for="apellido">Apellido</label>
+												<label class="control-label" for="apellido"><spring:message code="table.apellido"/></label>
 												<form:input cssClass="form-control" id="apellido" type="text" path="apellido" value="${usuarioObject.apellido}" required="required"/>
-												<p class="help-block">Ingrese el Apellido del nuevo Usuario</p>	
+												<p class="help-block"><spring:message code="altaUser.formHelpApellidoe"/></p>	
 											</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group label-floating">
-												<label class="control-label" for="documento">Documento</label>
+												<label class="control-label" for="documento"><spring:message code="table.documento"/></label>
 												<form:input cssClass="form-control" id="documento" type="number" path="dni" value="${usuarioObject.dni}" required="required"/>
-												<p class="help-block">Ingrese numero de documento del nuevo Usuario</p>
+												<p class="help-block"><spring:message code="altaUser.formHelpDocumento"/></p>
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group label-floating">
-												<label class="control-label" for="password">Contraseña</label>
+												<label class="control-label" for="password"><spring:message code="altaUser.formContrasenia"/></label>
 												<form:input cssClass="form-control" id="password" type="password" path="password" value="${usuarioObject.password}" required="required"/>
-												<p class="help-block">Ingrese la contraseña del nuevo Usuario</p>	
+												<p class="help-block"><spring:message code="altaUser.formHelpContrasenia"/></p>	
 											</div>
 										</div>
 									</div>
 									<c:if test="${not edit}">
 									<div class="row">
 										<div class="form-group">
-									    	<label for="rol" class="col-md-1 control-label">Rol de Usuario</label>
+									    	<label for="rol" class="col-md-1 control-label"><spring:message code="altaUser.formRol"/></label>
 										    <div class="col-md-11">
 											    <form:select cssClass="form-control" path="rol" required="required">
 											    	<c:choose>
@@ -87,7 +89,7 @@
 									
 									<div class="row">
 										<div class="container-fluid">
-										<input class="btn btn-block btn-danger btn-raised" type="submit" value="Registrar">
+										<input class="btn btn-block btn-danger btn-raised" type="submit" value="<spring:message code="form.submit"/>">
 										</div>
 									</div>
 								</form:form>
