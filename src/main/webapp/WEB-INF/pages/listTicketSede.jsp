@@ -3,6 +3,8 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <t:template>
 	<jsp:attribute name="head">
 		<link rel="stylesheet" type="text/css" href="<c:url value="/resources/libs/jquery.bootgrid/jquery.bootgrid.min.css" />">
@@ -19,7 +21,7 @@
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-md-6">
-										<h3>Listado de Tickets sede <b>${sedeObject.nombre}</b></h3>
+										<h3><spring:message code="listTicketSede.head"/> <b>${sedeObject.nombre}</b></h3>
 									</div>
 									
 								</div>
@@ -27,12 +29,12 @@
 								    <thead>
 								        <tr>
 								        	<th data-column-id="id" data-visible="false" data-visible-in-selection="false">Id</th>
-								        	<th data-column-id="dni" data-order="asc">Dni comensal </th>
-								            <th data-column-id="nombre" data-order="asc">Nombre comensal </th>
+								        	<th data-column-id="dni" data-order="asc"><spring:message code="listTicketSede.listDniComensal"/></th>
+								            <th data-column-id="nombre" data-order="asc"><spring:message code="listTicketSede.listNombreComensal"/></th>
 								            
-								            <th data-column-id="reservas" data-order="asc">Cant reserva </th>
+								            <th data-column-id="reservas" data-order="asc"><spring:message code="listTicketSede.listReservas"/></th>
 								           
-								            <th data-column-id="monto">Monto </th>
+								            <th data-column-id="monto"><spring:message code="listTicketSede.listMonto"/></th>
 								     		
 								        </tr>
 								    </thead>
@@ -75,20 +77,11 @@
 				            + "data-row-email='"+ row.email + "'"
             
 				            +">"
-							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> Ver"
+							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> <spring:message code="table.ver"/>"
 							+ "     </button>"
 							;
 				        }
 				    }
-				}).on("loaded.rs.jquery.bootgrid", function(){
-				        /* Executes after data is loaded and rendered */
-				        grid.find(".command").on("click", function(e){
-				        	
-				        	bootbox.dialog({
-				        		  title: "Detalles de la sede",
-				        		  message:  "<div class='well'><p><b>Nombre: </b>"+$(this).data("row-nombre").toString()+"</p></div>"
-				        	});
-				        })
 				});
 		</script>
 	</jsp:body>
