@@ -120,11 +120,11 @@
 				            + "data-row-nombre='"+ row.nombre + "'"
             
 				            +">"
-							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> Ver"
+							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> <spring:message code="table.ver"/>"
 							+ "     </button>"
 							+ "<a href='editPlato?id="+ row.id +"'>"
 							+ "<button class='btn btn-raised btn-default btn-sm withoutMargin command'>"
-							+ "<span class='glyphicon glyphicon glyphicon-pencil' aria-hidden='true'></span> Editar"
+							+ "<span class='glyphicon glyphicon glyphicon-pencil' aria-hidden='true'></span> <spring:message code="table.editar"/>"
 							+ "</button>"
 							+"</a>"
 							+ "<a href='#'>"
@@ -134,7 +134,7 @@
 							+"data-row-id='"+row.id+"'"
 							+"data-row-link='deletePlato'>"
 							
-							+ "<span class='glyphicon glyphicon glyphicon-trash' aria-hidden='true'></span> Borrar"
+							+ "<span class='glyphicon glyphicon glyphicon-trash' aria-hidden='true'></span> <spring:message code="table.eliminar"/>"
 							+ "</button>"
 							+"</a>";
 							/* falta eliminar */

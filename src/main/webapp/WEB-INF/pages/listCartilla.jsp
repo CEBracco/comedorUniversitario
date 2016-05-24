@@ -3,6 +3,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <t:template>
 	<jsp:attribute name="head">
@@ -20,19 +21,19 @@
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-md-6">
-										<h3>Listado de Cartillas</h3>
+										<h3><spring:message code="listCartilla.head"/></h3>
 									</div>
 									<div class="col-md-6">
-										<a href="createCartilla" class="btn btn-raised btn-danger btn-sm withoutMargin marginTop pull-right animsition-link">Agregar Cartilla</a>
+										<a href="createCartilla" class="btn btn-raised btn-danger btn-sm withoutMargin marginTop pull-right animsition-link"><spring:message code="listCartilla.addButton"/></a>
 									</div>
 								</div>
 								<table id="grid-data-api" class="table table-condensed table-hover table-striped">
 								    <thead>
 								        <tr>
 								        	<th data-column-id="id" data-visible="false" data-visible-in-selection="false">Id</th>
-								            <th data-column-id="initDate" data-order="asc">Fecha de Inicio</th>
-								            <th data-column-id="finalDate" data-order="asc">Fecha de Vencimiento</th>
-								            <th data-column-id="link" data-formatter="link" data-sortable="false">Acciones</th>
+								            <th data-column-id="initDate" data-order="asc"><spring:message code="table.inicio"/></th>
+								            <th data-column-id="finalDate" data-order="asc"><spring:message code="table.fin"/></th>
+								            <th data-column-id="link" data-formatter="link" data-sortable="false"><spring:message code="table.acciones"/></th>
 								        </tr>
 								    </thead>
 								    <tbody>
@@ -66,11 +67,11 @@
 				            + "data-row-nombre='"+ row.nombre + "'"
             
 				            +">"
-							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> Ver"
+							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> <spring:message code="table.ver"/>"
 							+ "     </button>"
 							+ "<a href='editCartilla?id="+ row.id +"'>"
 							+ "<button class='btn btn-raised btn-default btn-sm withoutMargin command'>"
-							+ "<span class='glyphicon glyphicon glyphicon-pencil' aria-hidden='true'></span> Editar"
+							+ "<span class='glyphicon glyphicon glyphicon-pencil' aria-hidden='true'></span> <spring:message code="table.editar"/>"
 							+ "</button>"
 							+"</a>"
 							+ "<a href='#'>"
@@ -79,7 +80,7 @@
 							+"data-row-id='"+row.id+"'"
 							+"data-row-link='deleteCartilla'>"
 							
-							+ "<span class='glyphicon glyphicon glyphicon-trash' aria-hidden='true'></span> Borrar"
+							+ "<span class='glyphicon glyphicon glyphicon-trash' aria-hidden='true'></span> <spring:message code="table.eliminar"/>"
 							+ "</button>"
 							+"</a>";
 				        }
@@ -89,8 +90,8 @@
 				        grid.find(".command").on("click", function(e){
 				        	
 				        	bootbox.dialog({
-				        		  title: "Detalles del cartilla",
-				        		  message:  "<div class='well'><p><b>Nombre: </b>"+$(this).data("row-nombre").toString()+"</p>"+
+				        		  title: "<spring:message code="listCartilla.detalles"/>",
+				        		  message:  "<div class='well'><p><b><spring:message code="table.nombre"/>: </b>"+$(this).data("row-nombre").toString()+"</p>"+
 				        		  			"</div>"
 				        	});
 				        })
