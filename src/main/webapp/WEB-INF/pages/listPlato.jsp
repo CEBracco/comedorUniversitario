@@ -45,11 +45,57 @@
 					                    <tr>
 					                    	<td><c:out value="${plato.id}" /></td>
 											<td><c:out value="${plato.nombre}" /></td>
-											<td><c:out value="${plato.vegetariano ? '<spring:message code="table.si"/>' : '<spring:message code="table.no"/>' }" /></td>
-											<td><c:out value="${plato.celiaco ? '<spring:message code="table.si"/>' : '<spring:message code="table.no"/>' }" /></td>
-											<td><c:out value="${plato.hipertenso ? '<spring:message code="table.si"/>' : '<spring:message code="table.no"/>' }" /></td>
-											<td><c:out value="${plato.intolerante ? '<spring:message code="table.si"/>' : '<spring:message code="table.no"/>' }" /></td>
-											<td><c:out value="${plato.diabetico ? '<spring:message code="table.si"/>' : '<spring:message code="table.no"/>' }" /></td>
+												
+											<td>
+												<c:choose>
+													<c:when test="${plato.vegetariano}">
+														<spring:message code="table.si"/>
+													</c:when>
+													<c:otherwise>
+														<spring:message code="table.no"/>
+													</c:otherwise>
+												</c:choose>
+											</td>
+											<td>
+												<c:choose>
+													<c:when test="${plato.celiaco}">
+														<spring:message code="table.si"/>
+													</c:when>
+													<c:otherwise>
+														<spring:message code="table.no"/>
+													</c:otherwise>
+												</c:choose>
+											</td>
+											<td>
+												<c:choose>
+													<c:when test="${plato.hipertenso}">
+														<spring:message code="table.si"/>
+													</c:when>
+													<c:otherwise>
+														<spring:message code="table.no"/>
+													</c:otherwise>
+												</c:choose>
+											</td>
+											<td>
+												<c:choose>
+													<c:when test="${plato.intolerante}">
+														<spring:message code="table.si"/>
+													</c:when>
+													<c:otherwise>
+														<spring:message code="table.no"/>
+													</c:otherwise>
+												</c:choose>
+											</td>
+											<td>
+												<c:choose>
+													<c:when test="${plato.diabetico}">
+														<spring:message code="table.si"/>
+													</c:when>
+													<c:otherwise>
+														<spring:message code="table.no"/>
+													</c:otherwise>
+												</c:choose>
+											</td>
 										</tr>
 					                    </c:forEach>
 
