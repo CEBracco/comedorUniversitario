@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <t:template>
 	<jsp:attribute name="head">
@@ -19,7 +20,7 @@
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-md-12">
-										<h3>Compra de ticket</h3>
+										<h3><spring:message code="selectSedeTicket.head"/></h3>
 										<h4>Seleccion de Sede</h4>
 									</div>
 								</div>
@@ -27,12 +28,12 @@
 								    <thead>
 								        <tr>
 								        	<th data-column-id="id" data-visible="false" data-visible-in-selection="false">Id</th>
-								            <th data-column-id="nombre" data-order="asc">Nombre</th>
-								            <th data-column-id="domicilio">Domicilio</th>
-								            <th data-column-id="telefono" data-visible="false">Tel&eacute;fono</th>
-								            <th data-column-id="email">Email</th>
+								            <th data-column-id="nombre" data-order="asc"><spring:message code="table.nombre"/></th>
+								            <th data-column-id="domicilio"><spring:message code="table.domicilio"/></th>
+								            <th data-column-id="telefono" data-visible="false"><spring:message code="table.telefono"/></th>
+								            <th data-column-id="email"><spring:message code="table.email"/></th>
 								           
-								            <th data-column-id="link" data-formatter="link" data-sortable="false">Acciones</th>
+								            <th data-column-id="link" data-formatter="link" data-sortable="false"><spring:message code="table.acciones"/></th>
 								        </tr>
 								    </thead>
 								    <tbody>
@@ -64,7 +65,7 @@
 				        {
 				            return "<a href='buyTicket?sede="+row.id+"'>"
 							+"<button class='btn btn-raised btn-default btn-sm withoutMargin'>"
-							+ "       <span class='glyphicon glyphicon-ok-circle' aria-hidden='true'></span> Seleccionar"
+							+ "       <span class='glyphicon glyphicon-ok-circle' aria-hidden='true'></span> <spring:message code="table.seleccionar"/>"
 							+ "</button>"
 							+ "</a>"
 				            
@@ -76,7 +77,7 @@
 				            + "data-row-email='"+ row.email + "'"
             
 				            +">"
-							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> Ver"
+							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> <spring:message code="table.ver"/>"
 							+ "     </button>";
 							
 
@@ -87,11 +88,11 @@
 				        grid.find(".command").on("click", function(e){
 				        	
 				        	bootbox.dialog({
-				        		  title: "Detalles de la sede",
-				        		  message:  "<div class='well'><p><b>Nombre: </b>"+$(this).data("row-nombre").toString()+"</p>"+
-				        		  			"<p><b>Domicilio: </b>"+$(this).data("row-domicilio").toString()+"</p>"+
-				        		  			"<p><b>Tel&eacute;fono: </b>"+$(this).data("row-telefono").toString()+"</p>"+
-				        		  			"<p><b>Email: </b>"+$(this).data("row-email").toString()+"</p></div>"
+				        		  title: "<spring:message code="listSede.modalTitle"/>",
+				        		  message:  "<div class='well'><p><b><spring:message code="table.nombre"/>: </b>"+$(this).data("row-nombre").toString()+"</p>"+
+				        		  			"<p><b><spring:message code="table.domicilio"/>: </b>"+$(this).data("row-domicilio").toString()+"</p>"+
+				        		  			"<p><b><spring:message code="table.telefono"/>: </b>"+$(this).data("row-telefono").toString()+"</p>"+
+				        		  			"<p><b><spring:message code="table.email"/>: </b>"+$(this).data("row-email").toString()+"</p></div>"
 				        	});
 				        })
 				});
