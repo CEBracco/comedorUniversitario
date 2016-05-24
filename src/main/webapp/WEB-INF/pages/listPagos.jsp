@@ -20,7 +20,7 @@
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-md-6">
-										<h3>Listado de Pagos</h3>
+										<h3><spring:message code="listPagos.head"/></h3>
 									</div>
 									
 								</div>
@@ -77,7 +77,7 @@
 				        grid.find(".command").on("click", function(e){
 				        	
 				        	bootbox.dialog({
-				        		  title: "Detalles del usuario",
+				        		  title: "<spring:message code="listPagos.detalles"/>",
 				        		  message:  "<div class='well'><p><b>Nombre: </b>"+$(this).data("row-nombre").toString()+"</p>"+
 				        		  			"<p><b>Apellido: </b>"+$(this).data("row-apellido").toString()+"</p>"+
 				        		  			"<p><b>Documento: </b>"+$(this).data("row-documento").toString()+"</p>"+
