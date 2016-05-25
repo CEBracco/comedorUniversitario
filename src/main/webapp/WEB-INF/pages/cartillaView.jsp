@@ -20,15 +20,15 @@
 								<hr>
 								<div class="row">
 									<div class="col-md-4 text-center">
-										<a href="getAllPlatos" class="btn btn-primary btn-fab big animsition-link">P</a>
+										<a href="getAllPlatos" class="btn btn-primary btn-fab big animsition-link"><spring:message code="cartillaView.platoLetra"/></a>
 										<h4><spring:message code="cartillaView.platos"/></h4>
 									</div>
 									<div class="col-md-4 text-center">
-										<a href="getAllCartillas" class="btn btn-danger btn-fab big animsition-link">C</a>
+										<a href="getAllCartillas" class="btn btn-danger btn-fab big animsition-link"><spring:message code="cartillaView.cartillaLetra"/></a>
 										<h4><spring:message code="cartillaView.cartillas"/></h4>
 									</div>
 									<div class="col-md-4 text-center">
-										<a href="getAllMenus" class="btn btn-success btn-fab big animsition-link">M</a>
+										<a href="getAllMenus" class="btn btn-success btn-fab big animsition-link"><spring:message code="cartillaView.menuLetra"/></a>
 										<h4><spring:message code="cartillaView.menus"/></h4>
 									</div>
 								</div>
