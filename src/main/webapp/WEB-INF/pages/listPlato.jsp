@@ -146,7 +146,7 @@
 				        	
 				        	bootbox.dialog({
 				        		  title: "Detalles del plato",
-				        		  message:  "<div class='well'><p><b>Nombre: </b>"+$(this).data("row-nombre").toString()+"</p>"+
+				        		  message:  "<div class='well'><p><b><spring:message code="table.nombre"/>: </b>"+$(this).data("row-nombre").toString()+"</p>"+
 				        		  			"</div>"
 				        	});
 				        })

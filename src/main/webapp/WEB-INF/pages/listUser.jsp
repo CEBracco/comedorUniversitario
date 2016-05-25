@@ -112,11 +112,11 @@
 				        grid.find(".command").on("click", function(e){
 				        	
 				        	bootbox.dialog({
-				        		  title: "Detalles del usuario",
-				        		  message:  "<div class='well'><p><b>Nombre: </b>"+$(this).data("row-nombre").toString()+"</p>"+
-				        		  			"<p><b>Apellido: </b>"+$(this).data("row-apellido").toString()+"</p>"+
-				        		  			"<p><b>Documento: </b>"+$(this).data("row-documento").toString()+"</p>"+
-				        		  			"<p><b>Rol: </b>"+$(this).data("row-rol").toString()+"</p></div>"
+				        		  title: "<spring:message code="listUser.showUser"/>",
+				        		  message:  "<div class='well'><p><b><spring:message code="table.nombre"/>: </b>"+$(this).data("row-nombre").toString()+"</p>"+
+				        		  			"<p><b><spring:message code="table.apellido"/>: </b>"+$(this).data("row-apellido").toString()+"</p>"+
+				        		  			"<p><b><spring:message code="table.documento"/>: </b>"+$(this).data("row-documento").toString()+"</p>"+
+				        		  			"<p><b><spring:message code="table.rol"/>: </b>"+$(this).data("row-rol").toString()+"</p></div>"
 				        	});
 				        })
 				});

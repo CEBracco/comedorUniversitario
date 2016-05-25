@@ -104,11 +104,11 @@
 				        grid.find(".command").on("click", function(e){
 				        	
 				        	bootbox.dialog({
-				        		  title: "Detalles de la sede",
-				        		  message:  "<div class='well'><p><b>Nombre: </b>"+$(this).data("row-nombre").toString()+"</p>"+
-				        		  			"<p><b>Domicilio: </b>"+$(this).data("row-domicilio").toString()+"</p>"+
-				        		  			"<p><b>Tel&eacute;fono: </b>"+$(this).data("row-telefono").toString()+"</p>"+
-				        		  			"<p><b>Email: </b>"+$(this).data("row-email").toString()+"</p></div>"
+				        		  title: "<spring:message code="listSede.modalTitle"/>",
+				        		  message:  "<div class='well'><p><b><spring:message code="table.nombre"/>: </b>"+$(this).data("row-nombre").toString()+"</p>"+
+				        		  			"<p><b><spring:message code="table.domicilio"/>: </b>"+$(this).data("row-domicilio").toString()+"</p>"+
+				        		  			"<p><b><spring:message code="table.telefono"/>: </b>"+$(this).data("row-telefono").toString()+"</p>"+
+				        		  			"<p><b><spring:message code="table.email"/>: </b>"+$(this).data("row-email").toString()+"</p></div>"
 				        	});
 				        })
 				});
