@@ -2,6 +2,7 @@ var weekCount=0;
 var catalogPrice;
 var userCredits;
 var currentPurchase;
+var currentDate;
 
 function initWeeks(numOfWeeks){
 	weekCount=numOfWeeks;
@@ -11,6 +12,7 @@ function initMoney(price,credits){
 	catalogPrice=parseFloat(price);
 	userCredits=parseFloat(credits);
 	currentPurchase=0;
+	refreshDates();
 }
 
 function displayWeek(){
@@ -21,6 +23,7 @@ function displayWeek(){
 	clonedWeek.addClass("week");
 	weekCount++;
 	clonedWeek.find(".panel-title").text("Semana " + weekCount);
+	refreshDates();
 }
 
 function updateList(){
@@ -28,6 +31,34 @@ function updateList(){
 	$(".week").each(function( index ) {
 		$(this).find(".panel-title").text("Semana " + ++index);
 		dayCount++;
+	});
+}
+
+function initDate(){
+	currentDate=new Date();
+	currentDate.setDate(currentDate.getDate() + 1);
+	while(currentDate.getDay() != 1){
+		currentDate.setDate(currentDate.getDate() + 1);
+	}
+}
+
+function nextDate(){
+	currentDate.setDate(currentDate.getDate() + 1);
+	if(currentDate.getDay() == 0 || currentDate.getDay() == 6){
+		while(currentDate.getDay() != 1){
+			currentDate.setDate(currentDate.getDate() + 1);
+		}
+	}
+}
+
+function refreshDates(){
+	initDate();
+	$("#weekContainer").find('thead').each(function(i,el){
+		var ths=$(this).find('th');
+		for(i=0; i < 5; i++){
+			ths.eq(i).find('.date').text(currentDate.getDate());
+			nextDate();
+		}
 	});
 }
 
@@ -39,6 +70,7 @@ $(document).ready(function(){
 			$(this).parents(".week").remove();
 			weekCount--;
 			updateList();
+			refreshDates();
 		}
 	});
 	

@@ -12,6 +12,9 @@
 		<script src="<c:url value="/resources/js/ticket.js"/>"></script>
 		<script>
 			initMoney("${cartilla.precio}","${user.saldo}");
+			window.onload = function() {
+				refreshDates();
+			}
 		</script>
 	</jsp:attribute>
 	<jsp:body>
@@ -43,11 +46,11 @@
 											<table class="table table-striped table-hover ">
 												<thead>
 													<tr>
-														<th><spring:message code="buyTicket.lunes"/></th>
-														<th><spring:message code="buyTicket.martes"/></th>
-														<th><spring:message code="buyTicket.miercoles"/></th>
-														<th><spring:message code="buyTicket.jueves"/></th>
-														<th><spring:message code="buyTicket.viernes"/></th>
+														<th><spring:message code="buyTicket.lunes"/> <span class="date"></span></th>
+														<th><spring:message code="buyTicket.martes"/> <span class="date"></span></th>
+														<th><spring:message code="buyTicket.miercoles"/> <span class="date"></span></th>
+														<th><spring:message code="buyTicket.jueves"/> <span class="date"></span></th>
+														<th><spring:message code="buyTicket.viernes"/> <span class="date"></span></th>
 													</tr>
 												</thead>
 												
@@ -100,11 +103,11 @@
 															<table class="table table-striped table-hover ">
 																<thead>
 																	<tr>
-																		<th><spring:message code="buyTicket.lunes"/></th>
-																		<th><spring:message code="buyTicket.martes"/></th>
-																		<th><spring:message code="buyTicket.miercoles"/></th>
-																		<th><spring:message code="buyTicket.jueves"/></th>
-																		<th><spring:message code="buyTicket.viernes"/></th>
+																		<th><spring:message code="buyTicket.lunes"/> <span class="date"></span></th>
+																		<th><spring:message code="buyTicket.martes"/> <span class="date"></span></th>
+																		<th><spring:message code="buyTicket.miercoles"/> <span class="date"></span></th>
+																		<th><spring:message code="buyTicket.jueves"/> <span class="date"></span></th>
+																		<th><spring:message code="buyTicket.viernes"/> <span class="date"></span></th>
 																	</tr>
 																</thead>
 																
