@@ -5,6 +5,8 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <t:template>
 	<jsp:attribute name="head">
 		<script src="<c:url value="/resources/js/ticket.js"/>"></script>
@@ -23,10 +25,10 @@
 								
 								<div class="row">
 									<div class="col-md-6">
-										<h3>Compra de tickets</h3>
+										<h3><spring:message code="buyTicket.head"/></h3>
 									</div>
 									<div class="col-md-6">
-										<a onclick="displayWeek()" href="javascript:void(0)" class="btn btn-raised btn-danger btn-sm withoutMargin marginTop pull-right">Añadir Semana</a>
+										<a onclick="displayWeek()" href="javascript:void(0)" class="btn btn-raised btn-danger btn-sm withoutMargin marginTop pull-right"><spring:message code="buyTicket.addWeek"/></a>
 									</div>
 								</div>
 								
@@ -34,18 +36,18 @@
 								<div class="col-md-12 defaultWeek hide">
 									<div class="panel panel-danger">
 										<div class="panel-heading clearfix">
-											<h3 class="panel-title pull-left">Semana</h3>
+											<h3 class="panel-title pull-left"><spring:message code="buyTicket.week"/></h3>
 										    <button type="button" class="close">&times;</button>
 										</div>
 										<div class="panel-body">
 											<table class="table table-striped table-hover ">
 												<thead>
 													<tr>
-														<th>Lunes</th>
-														<th>Martes</th>
-														<th>Miercoles</th>
-														<th>Jueves</th>
-														<th>Viernes</th>
+														<th><spring:message code="buyTicket.lunes"/></th>
+														<th><spring:message code="buyTicket.martes"/></th>
+														<th><spring:message code="buyTicket.miercoles"/></th>
+														<th><spring:message code="buyTicket.jueves"/></th>
+														<th><spring:message code="buyTicket.viernes"/></th>
 													</tr>
 												</thead>
 												
@@ -55,7 +57,7 @@
 														<td>
 															<div class="form-group reset-margin">
 															<select class="form-control menuSelect" name="dias" required>
-																<option value="0" selected>No Seleccionado</option>
+																<option value="0" selected><spring:message code="buyTicket.noSeleccionado"/></option>
 																<c:forEach items="${dia.menus}" var="menu">
 																	<option value="${menu.id}">${menu.nombre}</option>
 																</c:forEach>
@@ -92,17 +94,17 @@
 												<div class="col-md-12 week">
 													<div class="panel panel-danger">
 														<div class="panel-heading clearfix">
-															<h3 class="panel-title pull-left">Semana ${loop.index + 1}</h3>
+															<h3 class="panel-title pull-left"><spring:message code="buyTicket.week"/> ${loop.index + 1}</h3>
 														</div>
 														<div class="panel-body without-margin">
 															<table class="table table-striped table-hover ">
 																<thead>
 																	<tr>
-																		<th>Lunes</th>
-																		<th>Martes</th>
-																		<th>Miercoles</th>
-																		<th>Jueves</th>
-																		<th>Viernes</th>
+																		<th><spring:message code="buyTicket.lunes"/></th>
+																		<th><spring:message code="buyTicket.martes"/></th>
+																		<th><spring:message code="buyTicket.miercoles"/></th>
+																		<th><spring:message code="buyTicket.jueves"/></th>
+																		<th><spring:message code="buyTicket.viernes"/></th>
 																	</tr>
 																</thead>
 																
@@ -114,20 +116,17 @@
 																			<div class="form-group reset-margin">
 																			<c:choose>
 																				<c:when test="${reserva.id == '0'}">
-																					<select class="form-control menuSelect" name="dias" readonly required>
-																						<option value="0" selected>No Seleccionado</option>
+																					<select class="form-control menuSelect" name="dias" required>
+																						<option value="0" selected><spring:message code="buyTicket.noSeleccionado"/></option>
 																						<c:forEach items="${reserva.dia.menus}" var="menu">
 																							<option value="${menu.id}">${menu.nombre}</option>
 																						</c:forEach>
 																					</select>
 																				</c:when>
 																				<c:otherwise>
-																					<!-- <select class="form-control" name="dias" required>
-																						<option value="0" selected>COMPRADO</option>
-																					</select> -->
 																					<input type="hidden" value="0" name="dias">
 																					<div class="padding-10">
-																						<p>COMPRADO</p>
+																						<p><spring:message code="buyTicket.comprado"/></p>
 																					</div>
 																				</c:otherwise>
 																			</c:choose>
@@ -149,17 +148,17 @@
 									</div>
 									<div class="row">
 										<div class="col-md-12">
-											<input id="submitTicket" type="submit" class="btn btn-danger btn-lg btn-block btn-raised" value="Aceptar Compra">
+											<input id="submitTicket" type="submit" class="btn btn-danger btn-lg btn-block btn-raised" value="<spring:message code="buyTicket.aceptar"/>">
 										</div>
 									</div>
 								</form>
 								<hr>
 								<div class="row">
 										<div class="col-md-12 text-center">
-											<p>Total acumulado en la compra</p>
+											<p><spring:message code="buyTicket.total"/></p>
 											<h3 class="innerTitle"><b><span id="price">$0</span></b></h3>
-											<h4 class="innerTitle">Saldo actual: $<span id="credits">${user.saldo}</span></h4>
-											<h6>(Luego de efectuada la compra)</h6>
+											<h4 class="innerTitle"><spring:message code="buyTicket.saldo"/>: $<span id="credits">${user.saldo}</span></h4>
+											<h6><spring:message code="buyTicket.aclaration"/></h6>
 										</div>
 								</div>
 							</div>
