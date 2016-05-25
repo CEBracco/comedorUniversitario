@@ -4,6 +4,9 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
+
 <t:template>
 	<jsp:body>
     	<div class="container-fluid">
@@ -13,7 +16,7 @@
 					<div class="well">
 						<div class="row">
 							<div class="container-fluid">
-								<h3>Carga de Saldo</h3>
+								<h3><spring:message code="creditCharge.head"/></h3>
 							</div>	
 						</div>
 						<form:form id="recargaRegisterForm" modelAttribute="recarga" method="post" action="saveRecarga" autocomplete="off">
@@ -21,12 +24,12 @@
 							
 							<div class="row">
 								<div class="container-fluid">
-									<h4>Datos del Comensal</h4>
+									<h4><spring:message code="creditCharge.formHead"/></h4>
 									<ul type="none">
-										<li><b>Nombre: </b>${comensal.nombre}</li>
-										<li><b>Apellido: </b>${comensal.apellido}</li>
-										<li><b>Documento: </b>${comensal.dni}</li>
-										<li><b>Saldo Actual: </b>$${comensal.saldo}</li>
+										<li><b><spring:message code="table.nombre"/>: </b>${comensal.nombre}</li>
+										<li><b><spring:message code="table.apellido"/>: </b>${comensal.apellido}</li>
+										<li><b><spring:message code="table.documento"/>: </b>${comensal.dni}</li>
+										<li><b><spring:message code="creditCharge.formSaldo"/>: </b>$${comensal.saldo}</li>
 									</ul>
 								</div>
 							</div>
@@ -36,7 +39,7 @@
 								<div class="row">
 									<div class="container-fluid">
 										<div class="form-group reset-margin">
-											<label class="control-label" for="sede">Sede donde se realiza el pago</label>
+											<label class="control-label" for="sede"><spring:message code="creditCharge.formSedePago"/></label>
 											<select class="form-control" id="sede" name="idSede" required>
 												<option value="0" selected disabled>No Seleccionado</option>
 												<c:forEach items="${sedeList}" var="sede">
@@ -56,16 +59,16 @@
 							<div class="row">
 								<div class="container-fluid">
 									<div class="form-group label-floating">
-										<label class="control-label" for="documento">Importe a Cargar</label>
+										<label class="control-label" for="documento"><spring:message code="creditCharge.formCarga"/></label>
 										<form:input type="number" cssClass="form-control" path="monto" required="required"/>
-										<p class="help-block">Ingrese monto en pesos a recargar enla cuenta del usuario</p>
+										<p class="help-block"><spring:message code="creditCharge.formCargaHelp"/></p>
 									</div>
 								</div>	
 							</div>
 							
 							<div class="row">
 								<div class="container-fluid">
-									<input class="btn btn-block btn-danger btn-raised" type="submit" value="Aceptar" id="saveRecarga">
+									<input class="btn btn-block btn-danger btn-raised" type="submit" value="<spring:message code="form.submit"/>" id="saveRecarga">
 								</div>
 							</div>
 						</form:form>
