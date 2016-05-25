@@ -21,7 +21,7 @@
 								<div class="row">
 									<div class="col-md-12">
 										<h3><spring:message code="selectSedeTicket.head"/></h3>
-										<h4>Seleccion de Sede</h4>
+										<h4><spring:message code="selectSedeTicket.subtitulo"/></h4>
 									</div>
 								</div>
 								<table id="grid-data-api" class="table table-condensed table-hover table-striped">
