@@ -4,6 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <t:template>
 	<jsp:attribute name="head">
@@ -25,15 +26,15 @@
 									<div class="col-md-6">
 									<c:choose>
 									    <c:when test="${edit}">
-									    	<h3>Editar cartilla</h3>
+									    	<h3><spring:message code="altaCartilla.head.editar"/></h3>
 									    </c:when>
 									    <c:otherwise>
-											<h3>Nueva cartilla</h3>
+											<h3><spring:message code="altaCartilla.head.nueva"/></h3>
 									    </c:otherwise>	
 									</c:choose>
 									</div>
 									<div class="col-md-6">
-										<a href="javascript:void(0)" onclick="displayDay()" class="btn btn-raised btn-danger btn-sm withoutMargin marginTop pull-right">Agregar Dia</a>
+										<a href="javascript:void(0)" onclick="displayDay()" class="btn btn-raised btn-danger btn-sm withoutMargin marginTop pull-right"><spring:message code="altaCartilla.addDia"/></a>
 									</div>
 								</div>
 								
@@ -47,29 +48,30 @@
 									    </c:otherwise>
 									</c:choose>
 									
+									<spring:message code="language" var="lang"/>
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group label-floating">
-												<label class="control-label" for="initDate">Fecha de inicio</label>
+												<label class="control-label" for="initDate"><spring:message code="table.inicio"/></label>
 												<fmt:formatDate value="${cartillaObject.inicio}" var="initDateString" pattern="dd/MM/yyyy" />
-												<form:input cssClass="form-control" path="inicio" value="${initDateString}" required="required" data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-language="es"/>
-												<p class="help-block">Ingrese fecha de inicio de la cartilla</p>
+												<form:input cssClass="form-control" path="inicio" value="${initDateString}" required="required" data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-language="${lang}" />
+												<p class="help-block"><spring:message code="altaCartilla.helpBlock.inicio"/></p>
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group label-floating">
-												<label class="control-label" for="finalDate">Fecha de vencimiento</label>
+												<label class="control-label" for="finalDate"><spring:message code="table.inicio"/></label>
 												<fmt:formatDate value="${cartillaObject.fin}" var="finalDateString" pattern="dd/MM/yyyy" />
-												<form:input cssClass="form-control" path="fin" value="${finalDateString}" required="required" data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-language="es"/>
-												<p class="help-block">Ingrese fecha de vencimiento de la cartilla</p>	
+												<form:input cssClass="form-control" path="fin" value="${finalDateString}" required="required" data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-language="${lang}" />
+												<p class="help-block"><spring:message code="altaCartilla.helpBlock.fin"/></p>	
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group label-floating">
-												<label class="control-label" for="nombre">Precio</label>
+												<label class="control-label" for="nombre"><spring:message code="altaCartilla.precio"/></label>
 												<fmt:formatNumber value="${cartillaObject.precio}" var="precioCartilla" maxFractionDigits="2"/>
 												<form:input type="number" cssClass="form-control" path="precio" value="${precioCartilla}" required="required"/>
-												<p class="help-block">Ingrese el precio de los menús de la cartilla</p>
+												<p class="help-block"><spring:message code="altaCartilla.helpBlock.precio"/></p>
 											</div>
 										</div>
 									</div>
@@ -79,7 +81,7 @@
 									<div class="form-group selectMenuDefault hide">
 										<div class="input-group">
 											<select name="idMenusDefault" class="form-control">
-												<option selected="selected" value="" disabled>Seleccionar Menú...</option>
+												<option selected="selected" value="" disabled><spring:message code="altaCartilla.selectMenuDefault"/></option>
 												<c:forEach items="${menuList}" var="menu">
 												<option value="${menu.id}" label="${menu.nombre}"/>
 												</c:forEach>
@@ -107,7 +109,7 @@
 												<div class="row">
 													<div class="col-md-4"></div>
 													<div class="col-md-4">
-														<button type="button" class="btn btn-block btn-danger btn-raised addMenu">Añadir Menú</button>
+														<button type="button" class="btn btn-block btn-danger btn-raised addMenu"><spring:message code="altaCartilla.addMenu"/></button>
 													</div>
 													<div class="col-md-4"></div>
 												</div>
@@ -115,7 +117,7 @@
 										</div>
 									</div>
 									
-									<h4>Días Asociados</h4>
+									<h4><spring:message code="altaCartilla.diasAsociados"/></h4>
 									<div id="daysContainer" class="row">
 										
 										<c:forEach items="${diaList}" var="dia">
@@ -133,7 +135,7 @@
 														<div class="form-group selectMenu">
 															<div class="input-group">
 																<select name="idMenus" class="form-control">
-																	<option value="" disabled>Seleccionar Menú...</option>
+																	<option value="" disabled><spring:message code="altaCartilla.selectMenuDefault"/></option>
 																	<c:forEach items="${menuList}" var="menu">
 																	<c:choose>
 																		<c:when test="${menu.id == menuDelDia.id}">
@@ -160,7 +162,7 @@
 													<div class="row">
 														<div class="col-md-4"></div>
 														<div class="col-md-4">
-															<button type="button" class="btn btn-block btn-danger btn-raised addMenu">Añadir Menú</button>
+															<button type="button" class="btn btn-block btn-danger btn-raised addMenu"><spring:message code="altaCartilla.addMenu"/></button>
 														</div>
 														<div class="col-md-4"></div>
 													</div>
@@ -173,7 +175,7 @@
 									
 									<div class="row">
 										<div class="container-fluid">
-										<input class="btn btn-block btn-danger btn-raised" type="submit" value="Registrar" id="saveCartilla">
+										<input class="btn btn-block btn-danger btn-raised" type="submit" value="<spring:message code="form.submit"/>" id="saveCartilla">
 										</div>
 									</div>
 								</form:form>
