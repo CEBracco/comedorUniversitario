@@ -1,10 +1,8 @@
 package ttps.controller;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -72,6 +70,21 @@ public class HelloController {
     	String sesionRole=(String)httpSession.getAttribute("role");
     	if(sessionUser != null && sesionRole.equals("Administrador")){
     		ModelAndView vista= new ModelAndView("cartillaView");
+    		vista.addObject("user", sessionUser);
+    		vista.addObject("role", sesionRole);
+    		return vista;
+    	}
+    	else{
+    		return new ModelAndView("redirect:index");
+    	}
+	}
+	
+	@RequestMapping(value={"menuInformes"})
+	public ModelAndView menuInformes(){
+    	Usuario sessionUser=(Usuario)httpSession.getAttribute("user");
+    	String sesionRole=(String)httpSession.getAttribute("role");
+    	if(sessionUser != null && sesionRole.equals("Responsable")){
+    		ModelAndView vista= new ModelAndView("reportsView");
     		vista.addObject("user", sessionUser);
     		vista.addObject("role", sesionRole);
     		return vista;

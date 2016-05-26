@@ -16,8 +16,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.hibernate.Session;
-import org.hibernate.mapping.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -30,7 +28,6 @@ import ttps.dao.SugerenciaDAO;
 
 import unlp.comedor.Sede;
 import unlp.comedor.Sugerencia;
-import unlp.comedor.Usuario;
 
 @Controller
 public class SugerenciaController {

@@ -105,15 +105,23 @@
 				</c:if>
 				<c:if test="${role == 'Responsable'}">
 				<li>
-					<b>
-					 <a class="animsition-link" href="getAllComensalesHabilitados" >Comensales habilitados</a>
-					</b>
-  
+					<a href="getAllComensalesHabilitados" class="animsition-link">
+						<b><spring:message code="page.comensales"/></b>
+						<span></span><!-- icon -->
+					</a>
 				</li>
 				</c:if>
-				<c:if test="${not empty role}">
+				<c:if test="${role == 'Administrador' && role == 'Responsable'}">
 				<li>
 					<a href="getAllSugerencias" class="animsition-link">
+						<b><spring:message code="page.sugerencia"/></b>
+						<span></span><!-- icon -->
+					</a>
+				</li>
+				</c:if>
+				<c:if test="${role == 'Comensal'}">
+				<li>
+					<a href="createSugerencia" class="animsition-link">
 						<b><spring:message code="page.sugerencia"/></b>
 						<span></span><!-- icon -->
 					</a>
@@ -135,12 +143,14 @@
 					</a>
 				</li>
 				</c:if>
+				<c:if test="${role == 'Responsable'}">
 				<li>
-					<a href="#cd-placeholder-5" class="animsition-link">
-						<b><spring:message code="page.estadistica"/></b>
+					<a href="menuInformes" class="animsition-link">
+						<b><spring:message code="page.informes"/></b>
 						<span></span><!-- icon -->
 					</a>
 				</li>
+				</c:if>
 			</ul>
 		</nav>
 	</div> <!-- .cd-secondary-nav -->

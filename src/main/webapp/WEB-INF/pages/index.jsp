@@ -66,8 +66,8 @@
 				</c:choose>
 				<li><a href="#0"><spring:message code="page.noticia"/></a></li>
 				<li><a href="#0"><spring:message code="page.contacto"/></a></li>
-				<li><a href="?language=es_AR">Español</a></li>
-				<li><a href="?language=en_CA">Ingles</a></li>
+				<li><a href="?language=es" class="animsition-link"><spring:message code="page.spanish"/></a></li>
+				<li><a href="?language=en" class="animsition-link"><spring:message code="page.english"/></a></li>
 			</ul>
 		</nav> <!-- cd-primary-nav -->
 	</div>
@@ -88,6 +88,7 @@
 							<h4><spring:message code="page.responsable"/></h4>
 					    </c:when>
 					    <c:otherwise>
+					    	<h4><spring:message code="page.comensal"/></h4>
 					    </c:otherwise>	
 					</c:choose>
 					<p>(<a href="goodbye" class="animsition-link"><spring:message code="page.salir"/></a>)</p>
@@ -117,19 +118,13 @@
 				</c:if>
 				<c:if test="${role == 'Responsable'}">
 				<li>
-					<b>
-					 <a class="animsition-link" href="getAllComensalesHabilitados" >Comensales habilitados</a>
-					</b>
-  
-				</li>
-				<li>
-					<b>
-					 <a class="animsition-link" href="getAllPagos">Pagos registrados</a>
-					</b>
-  
+					<a href="getAllComensalesHabilitados" class="animsition-link">
+						<b><spring:message code="page.comensales"/></b>
+						<span></span><!-- icon -->
+					</a>
 				</li>
 				</c:if>
-				<c:if test="${not empty role}">
+				<c:if test="${role == 'Administrador' && role == 'Responsable'}">
 				<li>
 					<a href="getAllSugerencias" class="animsition-link">
 						<b><spring:message code="page.sugerencia"/></b>
@@ -145,6 +140,14 @@
 					</a>
 				</li>
 				</c:if>
+				<c:if test="${role == 'Responsable'}">
+				<li>
+					<a href="menuInformes" class="animsition-link">
+						<b><spring:message code="page.informes"/></b>
+						<span></span><!-- icon -->
+					</a>
+				</li>
+				</c:if>
 				<c:if test="${role == 'Comensal'}">
 				<li>
 					<a href="selectSedeTicket" class="animsition-link">
@@ -152,13 +155,13 @@
 						<span></span><!-- icon -->
 					</a>
 				</li>
-				</c:if>
 				<li>
-					<a href="#cd-placeholder-5" class="animsition-link">
-						<b><spring:message code="page.estadistica"/></b>
+					<a href="createSugerencia" class="animsition-link">
+						<b><spring:message code="page.sugerencia"/></b>
 						<span></span><!-- icon -->
 					</a>
 				</li>
+				</c:if>
 			</ul>
 		</nav>
 	</div> <!-- .cd-secondary-nav -->
