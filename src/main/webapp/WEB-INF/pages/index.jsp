@@ -61,7 +61,7 @@
 						<li><a data-toggle="modal" href="#signIn"><spring:message code="page.ingresar"/></a></li>
 				    </c:when>
 				    <c:otherwise>
-				    	<li><a href="#0"><spring:message code="page.perfil"/></a></li>
+				    	<li><a href="showProfile"><spring:message code="page.perfil"/></a></li>
 				    </c:otherwise>	
 				</c:choose>
 				<li><a href="#0"><spring:message code="page.noticia"/></a></li>
@@ -92,7 +92,7 @@
 					    </c:otherwise>	
 					</c:choose>
 					<p>(<a href="goodbye" class="animsition-link"><spring:message code="page.salir"/></a>)</p>
-					<p class="cd-btn is-hidden withoutBG">¡<spring:message code="page.bienvenida"/>!, ${user.nombre}! (<a href="goodbye" class="animsition-link"><spring:message code="page.salir"/></a>)</p>	    	
+					<p class="cd-btn is-hidden withoutBG"><spring:message code="page.bienvenida"/>, <a href="showProfile" class="animsition-link">${user.nombre}</a> (<a href="goodbye" class="animsition-link"><spring:message code="page.salir"/></a>)</p>	    	
 			    </c:otherwise>
 			</c:choose>
 		</div>

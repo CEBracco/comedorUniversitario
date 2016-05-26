@@ -56,9 +56,11 @@
 		<nav class="cd-primary-nav">
 			<ul>
 				<!-- inser more links here -->
-				<li><a href="#0">Ingresar</a></li>
-				<li><a href="#0">Noticias</a></li>
-				<li><a href="#0">Contacto</a></li>
+				<c:if test="${empty user.nombre}">
+				<li><a href="#0"><spring:message code="page.ingresar"/></a></li>
+				</c:if>
+				<li><a href="#0"><spring:message code="page.noticia"/></a></li>
+				<li><a href="#0"><spring:message code="page.contacto"/></a></li>
 			</ul>
 		</nav> <!-- cd-primary-nav -->
 		<div id="cd-logo" class="is-hidden slide-in front"><a href="index" class="animsition-link"><img src="<c:url value="/resources/libs/img/logo2.png"/>" alt="Logo"></a></div>
@@ -74,7 +76,7 @@
 			<a id="login-btn" data-toggle="modal" href="#signIn" class="cd-btn is-hidden slide-in front"><spring:message code="page.ingresar"/></a>
 	    </c:when>
 	    <c:otherwise>
-			<p class="cd-btn is-hidden withoutBG slide-in front">¡<spring:message code="page.bienvenida"/>!, ${user.nombre}! (<a href="goodbye" class="animsition-link"><spring:message code="page.salir"/></a>)</p>	    	
+			<p class="cd-btn is-hidden withoutBG slide-in front"><spring:message code="page.bienvenida"/>, <a href="showProfile" class="animsition-link">${user.nombre}</a> (<a href="goodbye" class="animsition-link"><spring:message code="page.salir"/></a>)</p>	    	
 	    </c:otherwise>
 	</c:choose>
 
