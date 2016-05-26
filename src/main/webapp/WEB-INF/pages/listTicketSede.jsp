@@ -77,7 +77,7 @@
 				            + "data-row-email='"+ row.email + "'"
             
 				            +">"
-							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> <spring:message code="table.ver"/>"
+							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> <span class='hidden-xs hidden-sm'><spring:message code="table.ver"/></span>"
 							+ "     </button>"
 							;
 				        }

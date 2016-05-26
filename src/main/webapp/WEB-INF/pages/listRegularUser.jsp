@@ -32,7 +32,7 @@
 								            <th data-column-id="nombre"><spring:message code="table.nombre"/></th>
 								            <th data-column-id="documento"><spring:message code="table.documento"/></th>
 								            
-								            <th data-column-id="link" data-formatter="link" data-sortable="false"><spring:message code="table.acciones"/></th>
+								            <th data-column-id="link" data-formatter="link" data-sortable="false" data-width="30%"><spring:message code="table.acciones"/></th>
 								        </tr>
 								    </thead>
 								    <tbody>
@@ -70,7 +70,7 @@
 				            + "data-row-rol='"+ row.rol + "'"
             
 				            +">"
-							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> <spring:message code="table.ver"/>"
+							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> <span class='hidden-xs hidden-sm'><spring:message code="table.ver"/></span>"
 							+ "     </button>"
 							
 				        }

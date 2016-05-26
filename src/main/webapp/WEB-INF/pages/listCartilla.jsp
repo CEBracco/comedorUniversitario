@@ -33,7 +33,7 @@
 								        	<th data-column-id="id" data-visible="false" data-visible-in-selection="false">Id</th>
 								            <th data-column-id="initDate" data-order="asc"><spring:message code="table.inicio"/></th>
 								            <th data-column-id="finalDate" data-order="asc"><spring:message code="table.fin"/></th>
-								            <th data-column-id="link" data-formatter="link" data-sortable="false"><spring:message code="table.acciones"/></th>
+								            <th data-column-id="link" data-formatter="link" data-sortable="false" data-width="30%"><spring:message code="table.acciones"/></th>
 								        </tr>
 								    </thead>
 								    <tbody>
@@ -67,11 +67,11 @@
 				            + "data-row-nombre='"+ row.nombre + "'"
             
 				            +">"
-							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> <spring:message code="table.ver"/>"
+							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> <span class='hidden-xs hidden-sm'><spring:message code="table.ver"/></span>"
 							+ "     </button>"
 							+ "<a href='editCartilla?id="+ row.id +"'>"
 							+ "<button class='btn btn-raised btn-default btn-sm withoutMargin command'>"
-							+ "<span class='glyphicon glyphicon glyphicon-pencil' aria-hidden='true'></span> <spring:message code="table.editar"/>"
+							+ "<span class='glyphicon glyphicon glyphicon-pencil' aria-hidden='true'></span> <span class='hidden-xs hidden-sm'><spring:message code="table.editar"/></span>"
 							+ "</button>"
 							+"</a>"
 							+ "<a href='#'>"
@@ -80,7 +80,7 @@
 							+"data-row-id='"+row.id+"'"
 							+"data-row-link='deleteCartilla'>"
 							
-							+ "<span class='glyphicon glyphicon glyphicon-trash' aria-hidden='true'></span> <spring:message code="table.eliminar"/>"
+							+ "<span class='glyphicon glyphicon glyphicon-trash' aria-hidden='true'></span> <span class='hidden-xs hidden-sm'><spring:message code="table.eliminar"/></span>"
 							+ "</button>"
 							+"</a>";
 				        }

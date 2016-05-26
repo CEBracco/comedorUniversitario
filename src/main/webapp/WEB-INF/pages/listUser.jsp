@@ -23,7 +23,8 @@
 										<h3><spring:message code="listUser.head"/></h3>
 									</div>
 									<div class="col-md-6">
-										<a href="createUsuario" class="btn btn-raised btn-danger btn-sm withoutMargin marginTop pull-right animsition-link"><spring:message code="listUser.addButton"/></a>
+										<a href="createUsuario" class="btn btn-raised btn-danger btn-sm withoutMargin marginTop marginLeft pull-right animsition-link"><span class="glyphicon glyphicon-plus"></span> <spring:message code="listUser.addButton"/></a>
+										<a href="creditCharge/select" class="btn btn-raised btn-danger btn-sm withoutMargin marginTop marginLeft pull-right animsition-link"><span class="glyphicon glyphicon-usd"></span> <spring:message code="listUser.chargeButton"/></a>
 									</div>
 								</div>
 								<table id="grid-data-api" class="table table-condensed table-hover table-striped">
@@ -34,7 +35,7 @@
 								            <th data-column-id="nombre"><spring:message code="table.nombre"/></th>
 								            <th data-column-id="documento"><spring:message code="table.documento"/></th>
 								            <th data-column-id="rol"><spring:message code="table.rol"/></th>
-								            <th data-column-id="link" data-formatter="link" data-sortable="false"><spring:message code="table.acciones"/></th>
+								            <th data-column-id="link" data-formatter="link" data-sortable="false" data-width="30%"><spring:message code="table.acciones"/></th>
 								        </tr>
 								    </thead>
 								    <tbody>
@@ -88,11 +89,11 @@
 				            + "data-row-rol='"+ row.rol + "'"
             
 				            +">"
-							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> <spring:message code="table.ver"/>"
+							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> <span class='hidden-xs hidden-sm'><spring:message code="table.ver"/></span>"
 							+ "     </button>"
 							+ "<a href='editUsuario?id="+ row.id +"'>"
 							+"<button class='btn btn-raised btn-default btn-sm withoutMargin command'>"
-							+ "<span class='glyphicon glyphicon glyphicon-pencil' aria-hidden='true'></span> <spring:message code="table.editar"/>"
+							+ "<span class='glyphicon glyphicon glyphicon-pencil' aria-hidden='true'></span> <span class='hidden-xs hidden-sm'><spring:message code="table.editar"/></span>"
 							+ "</button>"
 							+ "</a>"
 							+ "<a href='#'>"
@@ -102,7 +103,7 @@
 							+"data-row-id='"+row.id+"'"
 							+"data-row-link='deleteUsuario'>"
 							
-							+ "<span class='glyphicon glyphicon glyphicon-trash' aria-hidden='true'></span> <spring:message code="table.eliminar"/>"
+							+ "<span class='glyphicon glyphicon glyphicon-trash' aria-hidden='true'></span> <span class='hidden-xs hidden-sm'><spring:message code="table.eliminar"/></span>"
 							+ "</button>"
 							+"</a>";
 				        }

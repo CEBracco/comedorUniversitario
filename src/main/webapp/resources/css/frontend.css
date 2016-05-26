@@ -73,6 +73,10 @@
 	margin-top: 20px;
 }
 
+.marginLeft{
+	margin-left: 1px;
+}
+
 body{
 	background:url(../libs/img/bg/2.jpg) 50% 0 no-repeat fixed;
 	background-size: cover;

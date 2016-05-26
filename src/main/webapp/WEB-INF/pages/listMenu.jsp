@@ -36,7 +36,7 @@
 										    <th data-column-id="hipertenso" data-visible="false"><spring:message code="table.hipertenso"/></th>
 										    <th data-column-id="intolerante" data-visible="false"><spring:message code="table.intolerante"/></th>
 										    <th data-column-id="diabetico" data-visible="false"><spring:message code="table.diabetico"/></th>
-								            <th data-column-id="link" data-formatter="link" data-sortable="false"><spring:message code="table.acciones"/></th>
+								            <th data-column-id="link" data-formatter="link" data-sortable="false" data-width="30%"><spring:message code="table.acciones"/></th>
 								        </tr>
 								    </thead>
 								    <tbody>
@@ -119,11 +119,11 @@
 				            + "data-row-nombre='"+ row.nombre + "'"
             
 				            +">"
-							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> <spring:message code="table.ver"/>"
+							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> <span class='hidden-xs hidden-sm'><spring:message code="table.ver"/></span>"
 							+ "     </button>"
 							+ "<a href='editMenu?id="+ row.id +"'>"
 							+ "<button class='btn btn-raised btn-default btn-sm withoutMargin command'>"
-							+ "<span class='glyphicon glyphicon glyphicon-pencil' aria-hidden='true'></span> <spring:message code="table.editar"/>"
+							+ "<span class='glyphicon glyphicon glyphicon-pencil' aria-hidden='true'></span> <span class='hidden-xs hidden-sm'><spring:message code="table.editar"/></span>"
 							+ "</button>"
 							+"</a>"
 							+ "<a href='#'>"
@@ -131,7 +131,7 @@
     						+"data-row-nombre='"+row.nombre+"'"
 							+"data-row-id='"+row.id+"'"
 							+"data-row-link='deleteMenu'>"
-							+ "<span class='glyphicon glyphicon glyphicon-trash' aria-hidden='true'></span> <spring:message code="table.eliminar"/>"
+							+ "<span class='glyphicon glyphicon glyphicon-trash' aria-hidden='true'></span> <span class='hidden-xs hidden-sm'><spring:message code="table.eliminar"/></span>"
 							+ "</button>"
 							+"</a>";
 				        }

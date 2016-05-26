@@ -35,7 +35,7 @@
 								            <th data-column-id="telefono"><spring:message code="table.telefono"/></th>
 								            <th data-column-id="email"><spring:message code="table.email"/></th>
 								           
-								            <th data-column-id="link" data-formatter="link" data-sortable="false"><spring:message code="table.acciones"/></th>
+								            <th data-column-id="link" data-formatter="link" data-sortable="false" data-width="30%"><spring:message code="table.acciones"/></th>
 								        </tr>
 								    </thead>
 								    <tbody>
@@ -74,17 +74,17 @@
 				            + "data-row-email='"+ row.email + "'"
             
 				            +">"
-							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> <spring:message code="table.ver"/>"
+							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> <span class='hidden-xs hidden-sm'><spring:message code="table.ver"/></span>"
 							+ "     </button>"
 							
 							+ "<a href='sedeResponsable?idSede="+row.id+"'>"
 							+"<button class='btn btn-raised btn-default btn-sm withoutMargin command'>"
-							+ "       <span class='glyphicon glyphicon glyphicon-plus' aria-hidden='true'></span> <spring:message code="page.responsable"/>"
+							+ "       <span class='glyphicon glyphicon glyphicon-plus' aria-hidden='true'></span> <span class='hidden-xs hidden-sm'><spring:message code="page.responsable"/></span>"
 							+ "</button>"
 							
 							+ "<a href='editSede?id="+ row.id +"'>"
 							+ "<button class='btn btn-raised btn-default btn-sm withoutMargin command'>"
-							+ "<span class='glyphicon glyphicon glyphicon-pencil' aria-hidden='true'></span> <spring:message code="table.editar"/>"
+							+ "<span class='glyphicon glyphicon glyphicon-pencil' aria-hidden='true'></span> <span class='hidden-xs hidden-sm'><spring:message code="table.editar"/></span>"
 							+ "</button>"
 							+"</a>"
 							+ "<a href='#'>"
@@ -94,7 +94,7 @@
 							+"data-row-id='"+row.id+"'"
 							+"data-row-link='deleteSede'>"
 							
-							+ "<span class='glyphicon glyphicon glyphicon-trash' aria-hidden='true'></span> <spring:message code="table.eliminar"/>"
+							+ "<span class='glyphicon glyphicon glyphicon-trash' aria-hidden='true'></span> <span class='hidden-xs hidden-sm'><spring:message code="table.eliminar"/></span>"
 							+ "</button>"
 							+"</a>";
 				        }
