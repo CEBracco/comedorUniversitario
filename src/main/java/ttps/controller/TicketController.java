@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ttps.dao.CartillaDAO;
 import ttps.dao.MenuDAO;
@@ -55,7 +56,7 @@ public class TicketController {
 	
 	
 	@RequestMapping("selectSedeTicket")//controlar si el usuario ya compro
-    public ModelAndView buyTicket() {
+    public ModelAndView selectSedeTicket() {
 		Usuario sessionUser=(Usuario)httpSession.getAttribute("user");
     	String sessionRole=(String)httpSession.getAttribute("role");
     	if(sessionUser != null && sessionRole.equals("Comensal")){
@@ -74,10 +75,16 @@ public class TicketController {
 	
 	
 	@RequestMapping("buyTicket")//controlar si el usuario ya compro
-    public ModelAndView buyTicket(@RequestParam(required=false) Long sede) {
+    public ModelAndView buyTicket(@RequestParam(required=false) Long sede, final RedirectAttributes redirectAttributes) {
     	Usuario sessionUser=(Usuario)httpSession.getAttribute("user");
     	String sessionRole=(String)httpSession.getAttribute("role");
     	if(sessionUser != null && sessionRole.equals("Comensal") && sede != null){
+    		
+    		if(!((Comensal)sessionUser).getRegular()){
+    			redirectAttributes.addFlashAttribute("msj", "¡No estas habilitado para comprar tickets!");
+    			return new ModelAndView("redirect:selectSedeTicket");
+    		}
+    		
     		Cartilla cartillaActual=CartillaDAO.getCartillaActual();
     		
     		ModelAndView vista= new ModelAndView("buyTicket");

@@ -79,7 +79,7 @@
 					<a id="login-btn" class="cd-btn" data-toggle="modal" href="#signIn"><spring:message code="page.ingresar"/></a>
 			    </c:when>
 			    <c:otherwise>
-					<h1><spring:message code="page.bienvenida"/>, ${user.nombre}!</h1>
+					<h1><spring:message code="page.bienvenida"/>, ${user.nombre}</h1>
 					<c:choose>
 					    <c:when test="${role == 'Administrador'}">
 							<h4><spring:message code="page.administrador"/></h4>
@@ -238,7 +238,7 @@
 			<a href="#"><spring:message code="page.footer.contacto"/></a>
 		</p>
 
-		<p class="footer-company-name"><spring:message code="page.titulo"/> &copy; 2015</p>
+		<p class="footer-company-name"><spring:message code="page.titulo"/> &copy; 2016</p>
 	</div>
 
 	<div class="footer-center">
@@ -354,40 +354,5 @@ $(window).load(function(){
     </div>
   </div> 
 </c:if>
- <div class="modal fade" id="sugerenciaModal" role="dialog">
-    <div class="modal-dialog">
-      <!-- Modal content -->
-      <div class="modal-content">
-        <div class="modal-header">
-        	<button type="button" class="close" data-dismiss="modal">&times;</button>
-        	<h3 style="color:white"><span> Sugerencia </span></h3>
-        	<br>
-        </div>
-        <div class="modal-body">
-        	<form:form id="UserLoginForm" modelAttribute="usuario" method="post" action="login">
-	        	<label class="control-label" for="sugerencia"> ingrese su sugerencia</label>
-					<form:textarea cssClass="form-control" id="sugerencia" path="nombre" rows="10" cols="30" />	
-					<p class="help-block">Escriba una sugerencia para el comedor univeristario</p>
-				</div>
-				<div class="container-fluid">
-					<input class="btn btn-block btn-danger btn-raised" type="submit" value="Enviar" id="saveUser">
-				</div>
-			</form:form>
-        </div>
-        <div class="modal-footer">
-        	<div class="container-fluid">
-	        	<div class="row">
-		        	<div class="col-md-6">
-		        		<button class="btn btn-default btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> <spring:message code="page.login.cancelar"/></button>
-		        	</div>
-		        	<div class="col-md-6">
-		        		<p><spring:message code="page.login.noRecuerda"/> <a href="#"><spring:message code="page.login.password"/></a>?</p>
-		        	</div>
-	        	</div>
-        	</div>
-        </div>
-      </div>
-    </div>
-  </div>
 
 </html>
