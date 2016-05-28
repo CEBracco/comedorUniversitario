@@ -35,7 +35,8 @@
 									</div>
 								</div>
 								
-																
+								${fn:length(semanas)}
+								<c:forEach items="${semanas}" var="semana">								
 								<div class="col-md-12 defaultWeek hide">
 									<div class="panel panel-danger">
 										<div class="panel-heading clearfix">
@@ -56,14 +57,16 @@
 												
 												<tbody>
 													<tr>
-														<c:forEach items="${cartilla.semana}" var="dia">
+														<c:forEach items="${semana}" var="dia">
 														<td>
 															<div class="form-group reset-margin">
 															<select class="form-control menuSelect" name="dias" required>
 																<option value="0" selected><spring:message code="buyTicket.noSeleccionado"/></option>
+																<c:if test="${not empty dia.menus}">
 																<c:forEach items="${dia.menus}" var="menu">
 																	<option value="${menu.id}">${menu.nombre}</option>
 																</c:forEach>
+																</c:if>
 															</select>
 															</div>
 														</td>
@@ -75,6 +78,7 @@
 										</div>
 									</div>
 								</div>
+								</c:forEach>
 								
 								<br>
 									
@@ -115,6 +119,7 @@
 																	<tr>
 																			
 																		<c:forEach items="${reservas}" var="reserva">
+																		<c:if test="${not empty reserva.dia}">
 																		<td>
 																			<div class="form-group reset-margin">
 																			<c:choose>
@@ -135,6 +140,7 @@
 																			</c:choose>
 																			</div>
 																		</td>
+																		</c:if>
 																		</c:forEach>
 																		
 																	</tr>

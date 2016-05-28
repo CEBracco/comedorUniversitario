@@ -66,7 +66,7 @@
 				            +">"
 							+ "       <span class='glyphicon glyphicon glyphicon-search' aria-hidden='true'></span> <spring:message code="table.ver"/>"
 							+ "     </button>"
-							+ "<a href='../creditCharge?idComensal="+ row.id +"'>"
+							+ "<a href='creditCharge?idComensal="+ row.id +"'>"
 							+"<button class='btn btn-raised btn-default btn-sm withoutMargin command'>"
 							+ "<span class='glyphicon glyphicon glyphicon-pencil' aria-hidden='true'></span> <spring:message code="selectComensal.cargarSaldo"/>"
 							+ "</button>"

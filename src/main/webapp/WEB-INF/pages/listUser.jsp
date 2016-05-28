@@ -24,7 +24,7 @@
 									</div>
 									<div class="col-md-6">
 										<a href="createUsuario" class="btn btn-raised btn-danger btn-sm withoutMargin marginTop marginLeft pull-right animsition-link"><span class="glyphicon glyphicon-plus"></span> <spring:message code="listUser.addButton"/></a>
-										<a href="creditCharge/select" class="btn btn-raised btn-danger btn-sm withoutMargin marginTop marginLeft pull-right animsition-link"><span class="glyphicon glyphicon-usd"></span> <spring:message code="listUser.chargeButton"/></a>
+										<a href="creditChargeSelect" class="btn btn-raised btn-danger btn-sm withoutMargin marginTop marginLeft pull-right animsition-link"><span class="glyphicon glyphicon-usd"></span> <spring:message code="listUser.chargeButton"/></a>
 									</div>
 								</div>
 								<table id="grid-data-api" class="table table-condensed table-hover table-striped">

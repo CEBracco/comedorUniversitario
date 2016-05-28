@@ -22,7 +22,9 @@
 									<div class="col-md-6">
 										<h3><spring:message code="listRegular.head"/></h3>
 									</div>
-									
+									<div class="col-md-6">
+										<a href="creditChargeSelect" class="btn btn-raised btn-danger btn-sm withoutMargin marginTop marginLeft pull-right animsition-link"><span class="glyphicon glyphicon-usd"></span> <spring:message code="listUser.chargeButton"/></a>
+									</div>
 								</div>
 								<table id="grid-data-api" class="table table-condensed table-hover table-striped">
 								    <thead>

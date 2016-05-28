@@ -46,7 +46,7 @@
 									
 									<div class="row item">
 										<div class="col-md-10">
-											<h4><spring:message code="altaMenu.formPatos"/></h4>
+											<h4><spring:message code="altaMenu.formPlatos"/></h4>
 										</div>
 										<div class="col-md-2">
 											<button type="button" onclick="displaySelect()" class="btn btn-sm btn-danger btn-raised pull-right"><spring:message code="altaMenu.formPlato"/></button>

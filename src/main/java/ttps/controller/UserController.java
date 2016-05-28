@@ -329,7 +329,7 @@ public class UserController {
     	}
     }
     
-	@RequestMapping("creditCharge/select")
+	@RequestMapping("creditChargeSelect")
 	public ModelAndView creditChargeSelect() {
 		Usuario sessionUser=(Usuario)httpSession.getAttribute("user");
     	String sesionRole=(String)httpSession.getAttribute("role");
@@ -397,7 +397,7 @@ public class UserController {
     		
     		redirectAttributes.addFlashAttribute("msj", "¡Recarga realizada con exito!");
     		
-    		return new ModelAndView("redirect:creditCharge/select");
+    		return new ModelAndView("redirect:creditChargeSelect");
     	}
     	
 		return new ModelAndView("redirect:index");

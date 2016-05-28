@@ -91,11 +91,13 @@ public class TicketController {
     		vista.addObject("user", sessionUser);
     		vista.addObject("role", sessionRole);
     		vista.addObject("cartilla", cartillaActual);
+    		vista.addObject("semanas", this.cutDaysOfWeek(cartillaActual.getSemana()));
     		vista.addObject("sede", sede);
     		
     		List<Reserva> reservasVigentes=this.getFullDaysReservations(sessionUser, sede);
     		if(!reservasVigentes.isEmpty()){
     			vista.addObject("reservasPorSemana", this.cutWeek(reservasVigentes));
+    			System.out.println(this.cutWeek(reservasVigentes).size());
     		}
     		
     		return vista;
@@ -114,7 +116,11 @@ public class TicketController {
     		Comensal sessionComensal=(Comensal)sessionUser;
     		Cartilla cartilla= CartillaDAO.getCartillaActual();
     		
-    		if(sessionComensal.getSaldo() >= (dias.length*cartilla.getPrecio())){ //controlo si me alcanza el saldo
+    		if(cartilla == null){
+    			return new ModelAndView("redirect:index");
+    		}
+    		
+    		if(sessionComensal.getSaldo() >= (this.calculatePrice(dias,cartilla.getPrecio()))){ //controlo si me alcanza el saldo
 	
 	    		Ticket ticket= new Ticket(SedeDAO.getSede(sede), (Comensal)sessionUser, cartilla);
 	    		sessionComensal.getTickets().add(ticket);
@@ -149,6 +155,10 @@ public class TicketController {
 	
 	private List<Reserva> getFullDaysReservations(Usuario user, long sede){
 		List<Reserva> activeReservations= ReservaDAO.getReservasActivas(user.getId(), sede);
+		List<Dia> semana=CartillaDAO.getCartillaActual().getSemana();
+		
+		System.out.println(activeReservations.size());
+		
 		GregorianCalendar nextMonday=new GregorianCalendar();
 		this.setNextMonday(nextMonday);
 		
@@ -172,6 +182,8 @@ public class TicketController {
 			}
 			
 			while(this.getDay(fullDaysReservation.get(fullDaysReservation.size() - 1).getFecha()) != GregorianCalendar.FRIDAY){
+			//while((fullDaysReservation.size() % semana.size()) != 0){
+				System.out.println("lalala");
 				Reserva mockReservation=new Reserva();
 				mockReservation.setFecha(nextMonday.getTime());
 				mockReservation.setId((long)0);
@@ -181,7 +193,6 @@ public class TicketController {
 			}
 		}
 		
-		List<Dia> semana=CartillaDAO.getCartillaActual().getSemana();
 		ListIterator<Dia> semanaIterator=semana.listIterator();
 		for (Reserva reserva : fullDaysReservation) {
 			if(!semanaIterator.hasNext()){
@@ -193,13 +204,52 @@ public class TicketController {
 		return fullDaysReservation;
 	}
 	
+	private Double calculatePrice(long[] dias, Double price){
+		Integer menus=0;
+		for (long l : dias) {
+			if(l != 0){
+				menus++;
+			}
+		}
+		
+		return menus*price;
+	}
+	
+	
 	private List<List<Reserva>> cutWeek(List<Reserva> reservas){
 		List<List<Reserva>> weeks = new ArrayList<List<Reserva>>();
 		
-		int numOfWeeks=reservas.size() / 5;
+		int numOfWeeks=(int)Math.floor(reservas.size() / 5);
 		
-		for (int i = 0; i < numOfWeeks; i++) {
-			weeks.add(reservas.subList(i*5, (i+1)*5));
+		if(numOfWeeks > 1){
+			for (int i = 0; i < numOfWeeks; i++) {
+				weeks.add(reservas.subList(i*5, (i+1)*5));
+			}
+		}
+		else{
+			weeks.add(reservas);
+		}
+		
+		return weeks;
+	}
+	
+	private List<List<Dia>> cutDaysOfWeek(List<Dia> dias){
+		List<List<Dia>> weeks = new ArrayList<List<Dia>>();
+		
+		int numOfWeeks=(int) (Math.ceil(new Double(dias.size()) / 5));
+		if(numOfWeeks > 1){
+			for (int i = 0; i < numOfWeeks; i++) {
+				weeks.add(new ArrayList<Dia>(dias.subList(i*5, ((i+1)*5)-1)));
+			}
+		}
+		else{
+			weeks.add(dias);
+		}
+		
+		for (List<Dia> daysInWeeks : weeks) {
+			while(daysInWeeks.size() < 5){
+				daysInWeeks.add(new Dia());
+			}
 		}
 		
 		return weeks;
