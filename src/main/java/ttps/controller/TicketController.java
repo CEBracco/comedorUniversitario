@@ -97,7 +97,6 @@ public class TicketController {
     		List<Reserva> reservasVigentes=this.getFullDaysReservations(sessionUser, sede);
     		if(!reservasVigentes.isEmpty()){
     			vista.addObject("reservasPorSemana", this.cutWeek(reservasVigentes));
-    			System.out.println(this.cutWeek(reservasVigentes).size());
     		}
     		
     		return vista;
@@ -157,8 +156,6 @@ public class TicketController {
 		List<Reserva> activeReservations= ReservaDAO.getReservasActivas(user.getId(), sede);
 		List<Dia> semana=CartillaDAO.getCartillaActual().getSemana();
 		
-		System.out.println(activeReservations.size());
-		
 		GregorianCalendar nextMonday=new GregorianCalendar();
 		this.setNextMonday(nextMonday);
 		
@@ -182,8 +179,6 @@ public class TicketController {
 			}
 			
 			while(this.getDay(fullDaysReservation.get(fullDaysReservation.size() - 1).getFecha()) != GregorianCalendar.FRIDAY){
-			//while((fullDaysReservation.size() % semana.size()) != 0){
-				System.out.println("lalala");
 				Reserva mockReservation=new Reserva();
 				mockReservation.setFecha(nextMonday.getTime());
 				mockReservation.setId((long)0);
@@ -191,6 +186,10 @@ public class TicketController {
 				fullDaysReservation.add(mockReservation);
 				nextMonday.add(GregorianCalendar.DATE, 1);
 			}
+		}
+		
+		while((semana.size() % 5) != 0){
+			semana.add(new Dia());
 		}
 		
 		ListIterator<Dia> semanaIterator=semana.listIterator();
@@ -236,20 +235,18 @@ public class TicketController {
 	private List<List<Dia>> cutDaysOfWeek(List<Dia> dias){
 		List<List<Dia>> weeks = new ArrayList<List<Dia>>();
 		
+		while((dias.size() % 5) != 0){
+			dias.add(new Dia());
+		}
+		
 		int numOfWeeks=(int) (Math.ceil(new Double(dias.size()) / 5));
 		if(numOfWeeks > 1){
 			for (int i = 0; i < numOfWeeks; i++) {
-				weeks.add(new ArrayList<Dia>(dias.subList(i*5, ((i+1)*5)-1)));
+				weeks.add(new ArrayList<Dia>(dias.subList(i*5, (i+1)*5)));
 			}
 		}
 		else{
 			weeks.add(dias);
-		}
-		
-		for (List<Dia> daysInWeeks : weeks) {
-			while(daysInWeeks.size() < 5){
-				daysInWeeks.add(new Dia());
-			}
 		}
 		
 		return weeks;

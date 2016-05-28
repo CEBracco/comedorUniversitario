@@ -35,7 +35,7 @@
 									</div>
 								</div>
 								
-								${fn:length(semanas)}
+								
 								<c:forEach items="${semanas}" var="semana">								
 								<div class="col-md-12 defaultWeek hide">
 									<div class="panel panel-danger">
@@ -119,7 +119,6 @@
 																	<tr>
 																			
 																		<c:forEach items="${reservas}" var="reserva">
-																		<c:if test="${not empty reserva.dia}">
 																		<td>
 																			<div class="form-group reset-margin">
 																			<c:choose>
@@ -140,7 +139,6 @@
 																			</c:choose>
 																			</div>
 																		</td>
-																		</c:if>
 																		</c:forEach>
 																		
 																	</tr>

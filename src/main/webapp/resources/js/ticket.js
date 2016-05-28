@@ -1,11 +1,20 @@
 var weekCount=0;
 var catalogPrice;
+var actualWeekNumber=-1;
 var userCredits;
 var currentPurchase;
 var currentDate;
 
 function initWeeks(numOfWeeks){
 	weekCount=numOfWeeks;
+}
+
+function getNextWeekNumber(){
+	actualWeekNumber++;
+	if(actualWeekNumber == $(".defaultWeek").size()){
+		actualWeekNumber=0;
+	}
+	return actualWeekNumber;
 }
 
 function initMoney(price,credits){
@@ -16,7 +25,7 @@ function initMoney(price,credits){
 }
 
 function displayWeek(){
-	var defaultWeek=$(".defaultWeek").first();
+	var defaultWeek=$(".defaultWeek").eq(getNextWeekNumber());
 	var clonedWeek=defaultWeek.clone(true).appendTo("#weekContainer");
 	clonedWeek.removeClass("hide");
 	clonedWeek.removeClass("defaultWeek");
