@@ -13,6 +13,7 @@
 		<script>
 			initMoney("${cartilla.precio}","${user.saldo}");
 			window.onload = function() {
+				initWeekNumber();
 				refreshDates();
 			}
 		</script>

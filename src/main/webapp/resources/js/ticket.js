@@ -9,11 +9,23 @@ function initWeeks(numOfWeeks){
 	weekCount=numOfWeeks;
 }
 
+function initWeekNumber(){
+	actualWeekNumber=($(".week").size() % $(".defaultWeek").size()) - 1;
+}
+
 function getNextWeekNumber(){
 	actualWeekNumber++;
 	if(actualWeekNumber == $(".defaultWeek").size()){
 		actualWeekNumber=0;
 	}
+	return actualWeekNumber;
+}
+
+function setPreviousWeekNumber(){
+	if(actualWeekNumber < 0){
+		actualWeekNumber= $(".defaultWeek").size() - 1;
+	}
+	actualWeekNumber--;
 	return actualWeekNumber;
 }
 
@@ -25,6 +37,13 @@ function initMoney(price,credits){
 }
 
 function displayWeek(){
+	if($(".defaultWeek").size() > 1){
+		$('.week').find('.close').each(function(){
+				$(this).hide();
+			}
+		);
+	}
+	
 	var defaultWeek=$(".defaultWeek").eq(getNextWeekNumber());
 	var clonedWeek=defaultWeek.clone(true).appendTo("#weekContainer");
 	clonedWeek.removeClass("hide");
@@ -80,6 +99,11 @@ $(document).ready(function(){
 			weekCount--;
 			updateList();
 			refreshDates();
+			
+			if($(".defaultWeek").size() > 1){
+				$('.week').find('.close').last().show();
+				setPreviousWeekNumber();
+			}
 		}
 	});
 	
