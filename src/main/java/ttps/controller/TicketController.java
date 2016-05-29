@@ -55,7 +55,7 @@ public class TicketController {
     private SedeDAO SedeDAO;
 	
 	
-	@RequestMapping("selectSedeTicket")//controlar si el usuario ya compro
+	@RequestMapping("selectSedeTicket")
     public ModelAndView selectSedeTicket() {
 		Usuario sessionUser=(Usuario)httpSession.getAttribute("user");
     	String sessionRole=(String)httpSession.getAttribute("role");
@@ -74,7 +74,7 @@ public class TicketController {
 	}
 	
 	
-	@RequestMapping("buyTicket")//controlar si el usuario ya compro
+	@RequestMapping("buyTicket")
     public ModelAndView buyTicket(@RequestParam(required=false) Long sede, final RedirectAttributes redirectAttributes) {
     	Usuario sessionUser=(Usuario)httpSession.getAttribute("user");
     	String sessionRole=(String)httpSession.getAttribute("role");
@@ -86,6 +86,11 @@ public class TicketController {
     		}
     		
     		Cartilla cartillaActual=CartillaDAO.getCartillaActual();
+    		
+    		if(cartillaActual == null){
+    			redirectAttributes.addFlashAttribute("msj", "¡Aún no existen cartillas cargadas para la sede!");
+    			return new ModelAndView("redirect:selectSedeTicket");
+    		}
     		
     		ModelAndView vista= new ModelAndView("buyTicket");
     		vista.addObject("user", sessionUser);
