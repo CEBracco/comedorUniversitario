@@ -112,7 +112,7 @@ public class TicketController {
 	}
 	
 	@RequestMapping("saveTicket")
-    public ModelAndView saveTicket(@RequestParam long sede, @RequestParam long[] dias) { 
+    public ModelAndView saveTicket(@RequestParam long sede, @RequestParam long[] dias, final RedirectAttributes redirectAttributes) { 
     	Usuario sessionUser=(Usuario)httpSession.getAttribute("user");
     	String sessionRole=(String)httpSession.getAttribute("role");
     	if(sessionUser != null  && sessionRole.equals("Comensal")){
@@ -132,25 +132,39 @@ public class TicketController {
 	    		GregorianCalendar startWeek= new GregorianCalendar();
 	    		this.setNextMonday(startWeek);
 	    		
+	    		String msjReservaCartillaVencida="";
+	    		
 	    		for (long idDia : dias) {
 	    			if(idDia != 0){
-	    				Menu menuElegido= MenuDAO.getMenu(idDia);
-	
-	    				Reserva reserva=new Reserva(ticket, startWeek.getTime(), menuElegido);
-	
-	    				if(!this.existReserva(reserva, sede)){
-	    					ticket.addReserva(reserva);
+	    				if(startWeek.getTime().before(cartilla.getFin())){
+		    				Menu menuElegido= MenuDAO.getMenu(idDia);
+		
+		    				Reserva reserva=new Reserva(ticket, startWeek.getTime(), menuElegido);
+		
+		    				if(!this.existReserva(reserva, sede)){
+		    					ticket.addReserva(reserva);
+		    				}
+	    				}
+	    				else{
+	    					msjReservaCartillaVencida=", Se seleccionaron dias que no son validos para la cartilla actual";
 	    				}
 	    			}
 	    			startWeek.add(GregorianCalendar.DATE, 1);
 	    			this.controlGregorianCalendar(startWeek);
 				}
-	    		sessionComensal.setSaldo(sessionComensal.getSaldo() - ticket.getMonto());
-	    		TicketDAO.createTicket(ticket);
-	    		UserDAO.updateUser(sessionUser);
-    		}
 	    		
-    		return new ModelAndView("redirect:buyTicket");
+	    		if(ticket.getReservas().size() > 0){
+	    			sessionComensal.setSaldo(sessionComensal.getSaldo() - ticket.getMonto());
+	    			TicketDAO.createTicket(ticket);
+	    			UserDAO.updateUser(sessionUser);
+	    			redirectAttributes.addFlashAttribute("msj", "¡Compra registrada correctamente!" + msjReservaCartillaVencida);	
+	    		}
+	    		else{
+	    			redirectAttributes.addFlashAttribute("msj", "¡No se realizo ninguna reserva!" + msjReservaCartillaVencida);
+	    		}
+	    		
+    		}
+    		return new ModelAndView("redirect:selectSedeTicket");
     	}
     	else{
     		return new ModelAndView("redirect:index");
