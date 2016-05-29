@@ -55,6 +55,14 @@ public class CartillaDAOImpl implements CartillaDAO {
 		Query query = entityManager.createQuery("SELECT e "
 				+ "FROM Cartilla e "
 				+ "where e.activo=1 AND current_date() >= e.inicio AND current_date() <= e.fin");
-		return (Cartilla)query.getResultList().get(0);
+		List<Cartilla> resultList=(List<Cartilla>)query.getResultList();
+		
+		if(resultList.size() > 0 ){
+			return resultList.get(0);
+		}
+		else{
+			return null;
+		}
+		
 	}
 }

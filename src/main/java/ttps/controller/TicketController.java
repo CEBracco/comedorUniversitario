@@ -86,7 +86,7 @@ public class TicketController {
     		}
     		
     		Cartilla cartillaActual=CartillaDAO.getCartillaActual();
-    		
+
     		if(cartillaActual == null){
     			redirectAttributes.addFlashAttribute("msj", "¡Aún no existen cartillas cargadas para la sede!");
     			return new ModelAndView("redirect:selectSedeTicket");
