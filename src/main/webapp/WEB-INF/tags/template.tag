@@ -113,22 +113,13 @@
 					</a>
 				</li>
 				</c:if>
-				<c:if test="${role == 'Administrador' && role == 'Responsable'}">
 				<li>
 					<a href="getAllSugerencias" class="animsition-link">
 						<b><spring:message code="page.sugerencia"/></b>
 						<span></span><!-- icon -->
 					</a>
 				</li>
-				</c:if>
-				<c:if test="${role == 'Comensal'}">
-				<li>
-					<a href="createSugerencia" class="animsition-link">
-						<b><spring:message code="page.sugerencia"/></b>
-						<span></span><!-- icon -->
-					</a>
-				</li>
-				</c:if>
+				
 				<c:if test="${role == 'Administrador'}">
 				<li>
 					<a href="menuCartilla" class="animsition-link">
