@@ -286,6 +286,7 @@ public class UserController {
     			return new ModelAndView("redirect:showProfile");
     		}
     		else{
+    			redirectAttributes.addFlashAttribute("msj", "¡La contraseña ingresada es incorrecta!");
     			return new ModelAndView("redirect:changePassword");
     		}
     	}
