@@ -11,6 +11,7 @@ public interface ResponsableDAO {
     public List<Responsable> getAllResponsables();
     public Responsable getResponsable(long id);
     public Responsable getResponsable(Integer documento, String password);
+    public Responsable getResponsable(int documento);
     public Responsable toAdministrador(Responsable responsable);
     public Responsable toResponsable(Responsable responsable);
 }

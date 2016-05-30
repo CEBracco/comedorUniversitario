@@ -10,4 +10,5 @@ public interface SedeDAO {
     public void deleteSede(long id);
     public List<Sede> getAllSedes();
     public Sede getSede(long id);
+    public Sede getSede(String nombre);
 }

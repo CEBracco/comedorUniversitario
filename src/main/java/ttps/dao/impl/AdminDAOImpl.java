@@ -54,9 +54,22 @@ public class AdminDAOImpl implements AdministradorDAO{
 
 	@Override
 	public Administrador getAdministrador(Integer documento, String password) {
-		Query query=entityManager.createQuery("from Administrador where dni=:dni and password=:password");
+		Query query=entityManager.createQuery("from Administrador where dni=:dni and password=:password and activo=1");
 		query.setParameter("dni", documento);
 		query.setParameter("password", password);
+		
+		if(query.getResultList().size() == 0){
+			return null;
+		}
+		else{
+			return (Administrador)query.getResultList().get(0);
+		}
+	}
+	
+	@Override
+	public Administrador getAdministrador(int documento) {
+		Query query=entityManager.createQuery("from Administrador where dni=:dni");
+		query.setParameter("dni", documento);
 		
 		if(query.getResultList().size() == 0){
 			return null;

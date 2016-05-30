@@ -51,5 +51,17 @@ public class SedeDAOImpl implements SedeDAO {
 		return (Sede) entityManager.find(Sede.class, id);
 	}
 
-
+	@Override
+	public Sede getSede(String nombre) {
+		Query query=entityManager.createQuery("from Sede where nombre=:nombre");
+		query.setParameter("nombre", nombre);
+		
+		if(query.getResultList().size() == 0){
+			return null;
+		}
+		else{
+			return (Sede)query.getResultList().get(0);
+		}
+	}
+	
 }

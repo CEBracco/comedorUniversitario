@@ -50,9 +50,22 @@ public class ResponsableDAOImpl implements ResponsableDAO{
 
 	@Override
 	public Responsable getResponsable(Integer documento, String password) {
-		Query query=entityManager.createQuery("from Responsable where dni=:dni and password=:password and tipo='Responsable'");
+		Query query=entityManager.createQuery("from Responsable where dni=:dni and password=:password and tipo='Responsable' and activo=1");
 		query.setParameter("dni", documento);
 		query.setParameter("password", password);
+		
+		if(query.getResultList().size() == 0){
+			return null;
+		}
+		else{
+			return (Responsable)query.getResultList().get(0);
+		}
+	}
+	
+	@Override
+	public Responsable getResponsable(int documento) {
+		Query query=entityManager.createQuery("from Responsable where dni=:dni and tipo='Responsable'");
+		query.setParameter("dni", documento);
 		
 		if(query.getResultList().size() == 0){
 			return null;

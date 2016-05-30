@@ -12,5 +12,6 @@ public interface AdministradorDAO {
     public List<Administrador> getAllAdministradores();
     public Administrador getAdministrador(long id);
     public Administrador getAdministrador(Integer documento, String password);
+    public Administrador getAdministrador(int documento);
 	
 }
